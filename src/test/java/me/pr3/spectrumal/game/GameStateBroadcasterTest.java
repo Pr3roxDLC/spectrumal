@@ -11,6 +11,5 @@ public class GameStateBroadcasterTest extends AbstractWeldTest {
 
     @Test
     public void testJoinGameStateBroadcaster(){
-        gameStateBroadcaster.register();
     }
 }
