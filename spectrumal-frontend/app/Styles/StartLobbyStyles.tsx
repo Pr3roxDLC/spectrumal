@@ -1,10 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#0E2841",
-    },
     lobbyContainer: {
         width: "100%",
         height: "90%",

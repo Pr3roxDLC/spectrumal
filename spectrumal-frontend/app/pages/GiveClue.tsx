@@ -5,6 +5,7 @@ import styles from '../Styles/GiveClueStyles';
 import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 import GiveClueField from '../Components/GiveClueComponents/GiveClueField';
 import Button from '../Components/GlobalComponents/Button';
+import Selector from '../Components/Selector/Selector';
 
 
 export interface Props{
@@ -15,8 +16,8 @@ const GiveClue = (props: Props) => {
   return (
     <View style={styles.container}>
       <HeaderBack onPress={() => props.setPage("Start Lobby")} />
-        <View style={styles.giveClueContainer}>
-      <Slider />
+      <View style={styles.giveClueContainer}>
+      <Selector />
       <GiveClueField />
       <Button style={{ width: "80%"}} label="Ready" onPress={() => props.setPage("Guess Clue")} />
       </View>
