@@ -13,7 +13,6 @@ const HeaderBack = (props: Props) => {
             <TouchableOpacity onPress={() => props.onPress()}>
       <AntDesign style={styles.backIcon} name="left" size={28} />
       </TouchableOpacity>
-      <Text style={styles.backText}>Back</Text>
       </View>
   )
 }

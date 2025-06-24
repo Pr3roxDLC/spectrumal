@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import variables from "./Variables";
 
 const styles = StyleSheet.create({
     lobbyContainer: {
@@ -38,9 +39,8 @@ const styles = StyleSheet.create({
         height: "60%",
     },
     gameCode: {
-        color: "#0E2841",
+        color: variables.colors.whiteText,
         fontSize: 50,
-        backgroundColor: "#fefefe",
         paddingVertical: 15,
         paddingHorizontal: 20,
         borderRadius: 15,
@@ -51,9 +51,8 @@ const styles = StyleSheet.create({
     /*lobby component */
 
     lobbyComponentContainer: {
-        width: "80%",
-        height: "40%",
-        backgroundColor: "#fefefe",
+        width: "100%",
+        height: "100%",
         paddingVertical: 10,
         borderRadius: 15
     },
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     lobbyTitle: {
-        color: "#0E2841",
+        color: variables.colors.whiteText,
         fontSize: 26,
         fontWeight: 600
     },
@@ -73,9 +72,6 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-around"
-    },
-    userInLobby: {
-        color: "#0E2841"
     },
     userAndName: {
         display: "flex",
@@ -85,7 +81,7 @@ const styles = StyleSheet.create({
     userName: {
         paddingVertical: 10,
         fontSize: 17,
-        color: "#0E2841",
+        color: variables.colors.whiteText,
     }
 })
 

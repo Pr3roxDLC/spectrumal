@@ -8,12 +8,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row"
     },
-
-    backText: {
-        color: "#fefefe",
-        paddingLeft: 8,
-        fontSize: 18
-    },
     backIcon: {
         color: "#fefefe",
         paddingLeft: 10
