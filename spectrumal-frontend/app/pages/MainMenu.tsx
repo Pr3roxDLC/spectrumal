@@ -21,6 +21,7 @@ const MainMenu = (props: Props) => {
         <View style={styles.buttonsContainer}>
      <Button label='Play' onPress={() => props.setPage("Play")} style={{ width: "85%"}}></Button>
           <Button label='How To Play' onPress={() => props.setPage("How To Play")} style={{ width: "85%"}}></Button>
+          <Button label='Demo' onPress={() => props.setPage("Demo")} style={{ width: "85%"}}></Button>
         </View>
         </View>
     </View>

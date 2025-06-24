@@ -9,6 +9,7 @@ import JoinLobby from './app/pages/JoinLobby';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 import GuessClue from './app/pages/GuessClue';
+import SelectorDemoPage from './app/pages/SelectorDemoPage';
 
 export default function App() {
 
@@ -25,6 +26,7 @@ const[page, setPage] = useState<string>("Main Menu")
       {page === "Give Clue" && (<GiveClue setPage={setPage}   />)}
       {page === "Guess Clue" && (<GuessClue setPage={setPage}   />)}
       {page === "How To Play" && (<HowToPlay setPage={setPage}  />)}
+      {page === "Demo" && (<SelectorDemoPage setPage={setPage} />)}
     </ApplicationProvider>
     </>
   );
