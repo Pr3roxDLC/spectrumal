@@ -1,16 +1,20 @@
 import { StyleSheet } from "react-native";
+import variables from "../../Styles/Variables";
 
 const styles = StyleSheet.create({
     headerContainer: {
-        height: 60,
+        height: 80,
         width: "100%",
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         alignItems: "center",
-        flexDirection: "row"
+        flexDirection: "row",
+        paddingHorizontal: 8
     },
     backIcon: {
-        color: "#fefefe",
-        paddingLeft: 10
+        color: variables.colors.whiteText
+    },
+    settingIcon: {
+        color: variables.colors.whiteText
     }
 })
 

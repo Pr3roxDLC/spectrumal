@@ -14,9 +14,9 @@ const JoinLobby = (props: Props) => {
     return (
         <GradientBackground>
             <HeaderBack onPress={() => props.setPage("Play")} />
-                <View style={styles.lobbyContainer}>
-            <WaitingForHost />
-            <LobbyComponent />
+            <View style={styles.lobbyContainer}>
+                <WaitingForHost />
+                <LobbyComponent />
             </View>
         </GradientBackground>
     )

@@ -10,6 +10,7 @@ import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 import GuessClue from './app/pages/GuessClue';
 import SelectorDemoPage from './app/pages/SelectorDemoPage';
+import SettingsPage from './app/pages/SettingsPage';
 
 export default function App() {
 

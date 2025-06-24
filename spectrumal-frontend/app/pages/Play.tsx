@@ -12,10 +12,8 @@ const Play = (props: Props) => {
 
     return (
         <GradientBackground>
-        <View style={styles.container}>
             <HeaderBack onPress={() => props.setPage("Main Menu")} />
             <PlayNavBar setPage={props.setPage}/>
-        </View>
         </GradientBackground>
     );
 };

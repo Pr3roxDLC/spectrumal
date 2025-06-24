@@ -6,13 +6,13 @@ import GlassContainer from '../GlobalComponents/GlassContainer'
 const GameCode = () => {
   return (
     <View style={styles.gameCodeContainer}>
-        <View style={styles.textContainer}>
-      <Text style={styles.thisIsYourGameCode}>This is your game code</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.thisIsYourGameCode}>This is your game code</Text>
       </View>
-<View style={styles.gameCodeBox}>
+      <View style={styles.gameCodeBox}>
         <GlassContainer height={100} width={250}>
-        <Text style={styles.gameCode}>123456</Text>
-      </GlassContainer>
+          <Text style={styles.gameCode}>123456</Text>
+        </GlassContainer>
       </View>
     </View>
   )
