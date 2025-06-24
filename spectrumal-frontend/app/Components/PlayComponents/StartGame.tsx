@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { View, Text, TextInput } from 'react-native'
-import styles from '../../pages/Styles/StartGameStyles'
+import styles from '../../Styles/StartGameStyles'
 import Button from '../GlobalComponents/Button'
 
 
@@ -15,7 +15,7 @@ const StartGame = (props: Props) => {
       <View style={styles.startGameContainer}>
         <Text style={styles.codeAndName}>Name</Text>
         <TextInput style={styles.textInput}></TextInput>
-        <Button label="Start Game" style={{ width: "100%" }} onPress={() => props.setPage("Lobby")} />
+        <Button label="Start Game" style={{ width: "100%" }} onPress={() => props.setPage("Start Lobby")} />
       </View>
     </View>
   )

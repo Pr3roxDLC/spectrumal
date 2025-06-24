@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, View, ViewStyle } from 'react-native';
+import { TouchableOpacity, View, Text } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import styles from '../ComponentStyles/HeaderBackStyles';
 
@@ -11,8 +11,9 @@ const HeaderBack = (props: Props) => {
   return (
         <View style={styles.headerContainer}>
             <TouchableOpacity onPress={() => props.onPress()}>
-      <AntDesign style={styles.backIcon} name="left" size={24} />
+      <AntDesign style={styles.backIcon} name="left" size={28} />
       </TouchableOpacity>
+      <Text style={styles.backText}>Back</Text>
       </View>
   )
 }

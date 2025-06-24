@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { View, Text, TextInput } from 'react-native'
-import styles from '../../pages/Styles/JoinGameStyles'
+import styles from '../../Styles/JoinGameStyles'
 import Button from '../GlobalComponents/Button'
 
 
@@ -17,7 +17,7 @@ const JoinGame = (props: Props) => {
         <TextInput style={styles.textInput}></TextInput>
         <Text style={styles.codeAndName}>Name</Text>
         <TextInput style={styles.textInput}></TextInput>
-        <Button label="Join Game" style={{ width: "100%" }} onPress={() => props.setPage("Lobby")} />
+        <Button label="Join Game" style={{ width: "100%" }} onPress={() => props.setPage("Join Lobby")} />
       </View>
     </View>
   )
