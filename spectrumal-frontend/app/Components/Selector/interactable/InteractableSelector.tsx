@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, StyleSheet, GestureResponderEvent } from 'react-native';
 import SelectorBlip from '../SelectorBlip';
+import { BlurView } from 'expo-blur';
+import variables from '../../../Styles/Variables';
 
 type SelectorProps = {
 
@@ -58,7 +60,7 @@ const InteractableSelector: React.FC<SelectorProps> = () => {
 
 
     return (
-        <View style={styles.container}>
+        <BlurView style={styles.container}>
             <View
                 ref={viewRef}
                 style={styles.touchableView}
@@ -85,20 +87,26 @@ const InteractableSelector: React.FC<SelectorProps> = () => {
                     </View>
                 )}
             </View>
-        </View>
+        </BlurView>
     );
 };
 
 const styles = StyleSheet.create<StyleSheet.NamedStyles<any>>({
     container: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        borderRadius: variables.colors.buttonBorderRadius,
+        borderColor: 'rgba(255, 255, 255, 0.2)',
+        borderWidth: 1,
+        shadowColor: 'rgba(0, 0, 0, 0.3)',
+        shadowOffset: { width: 8, height: 8 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
     },
     touchableView: {
         width: 300,
         height: 300,
-        backgroundColor: '#e0e0e0',
+        backgroundColor: '#00000000', // Transparent background
         justifyContent: 'center',
         alignItems: 'center',
     },
