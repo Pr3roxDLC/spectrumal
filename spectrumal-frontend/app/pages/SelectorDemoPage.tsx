@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Selector from '../Components/Selector/Selector';
+import InteractableSelector from '../Components/Selector/interactable/InteractableSelector';
+import ReadOnlySelector from '../Components/Selector/read-only/ReadOnlySelector';
 type SelectorDemoPageProps = {
   setPage: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -10,7 +11,8 @@ const SelectorDemoPage: React.FC<SelectorDemoPageProps> = ({ setPage }) => {
         <View style={styles.container}>
             <Text style={styles.title}>Selector Demo Page</Text>
             {/* Add your selector demo components here */}
-            <Selector/>
+            <ReadOnlySelector x={150} y={150} />
+            <InteractableSelector/>
         </View>
     );
 };
