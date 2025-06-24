@@ -18,16 +18,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         fontWeight: 600
     },
-    textInput: {
-        width: "100%",
-        height: 50,
-        backgroundColor: "#fefefe",
-        marginBottom: 30,
-        borderRadius: 10,
-        fontSize: 22,
-        paddingLeft: 10
-    }
-
 })
 
 export default styles
