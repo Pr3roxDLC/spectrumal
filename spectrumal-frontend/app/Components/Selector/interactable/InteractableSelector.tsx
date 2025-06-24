@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, StyleSheet, GestureResponderEvent } from 'react-native';
+import { View, GestureResponderEvent } from 'react-native';
 import SelectorBlip from '../SelectorBlip';
-import { BlurView } from 'expo-blur';
-import variables from '../../../Styles/Variables';
+import GlassContainer from '../../GlobalComponents/GlassContainer';
+import styles from '../../ComponentStyles/InteractableSelectorStyles';
 
 type SelectorProps = {
 
@@ -60,7 +60,7 @@ const InteractableSelector: React.FC<SelectorProps> = () => {
 
 
     return (
-        <BlurView style={styles.container}>
+        <GlassContainer width={300} height={300}>
             <View
                 ref={viewRef}
                 style={styles.touchableView}
@@ -87,29 +87,9 @@ const InteractableSelector: React.FC<SelectorProps> = () => {
                     </View>
                 )}
             </View>
-        </BlurView>
+        </GlassContainer>
     );
 };
 
-const styles = StyleSheet.create<StyleSheet.NamedStyles<any>>({
-    container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: variables.colors.buttonBorderRadius,
-        borderColor: 'rgba(255, 255, 255, 0.2)',
-        borderWidth: 1,
-        shadowColor: 'rgba(0, 0, 0, 0.3)',
-        shadowOffset: { width: 8, height: 8 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-    },
-    touchableView: {
-        width: 300,
-        height: 300,
-        backgroundColor: '#00000000', // Transparent background
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});
 
 export default InteractableSelector;

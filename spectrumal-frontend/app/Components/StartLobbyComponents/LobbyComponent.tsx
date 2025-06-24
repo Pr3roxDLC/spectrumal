@@ -2,9 +2,11 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import styles from '../../Styles/StartLobbyStyles'
 import { Avatar } from '@ui-kitten/components';
+import GlassContainer from '../GlobalComponents/GlassContainer';
 
 const LobbyComponent = () => {
   return (
+    <GlassContainer width="80%" height="40%">
     <View style={styles.lobbyComponentContainer}>
       <View style={styles.lobbyTitleContainer}>
         <Text style={styles.lobbyTitle}>Lobby</Text>
@@ -28,6 +30,7 @@ const LobbyComponent = () => {
         </View>
       </View>
     </View>
+    </GlassContainer>
   )
 }
 
