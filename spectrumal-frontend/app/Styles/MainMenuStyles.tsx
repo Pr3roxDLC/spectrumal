@@ -1,13 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    mainMenuContainer: {
-        flex: 1,
-        backgroundColor: "#0E2841",
-        display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "center"
-    },
 
     /*Header container */
     headerContainer: {
@@ -18,8 +11,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     headerText: {
-        color: "#fefefe",
-        fontSize: 65,
+        fontSize: 56,
+        fontWeight: '700',
+        color: '#FFFFFF',
+        marginBottom: 40,
+        fontFamily: 'System',
     },
 
     /*Button container */

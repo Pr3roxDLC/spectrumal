@@ -4,6 +4,7 @@ import WaitingForHost from '../Components/JoinLobbyComponents/WaitingForHost'
 import styles from '../Styles/JoinLobbyStyles';
 import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 import LobbyComponent from '../Components/StartLobbyComponents/LobbyComponent';
+import GradientBackground from '../Components/GlobalComponents/GradientBackground';
 
 export interface Props {
     setPage: Dispatch<SetStateAction<string>>;
@@ -11,13 +12,13 @@ export interface Props {
 
 const JoinLobby = (props: Props) => {
     return (
-        <View style={styles.container}>
+        <GradientBackground>
             <HeaderBack onPress={() => props.setPage("Play")} />
                 <View style={styles.lobbyContainer}>
             <WaitingForHost />
             <LobbyComponent />
             </View>
-        </View>
+        </GradientBackground>
     )
 }
 

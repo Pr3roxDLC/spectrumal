@@ -2,15 +2,13 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#0E2841"
     },
     joinGameContainer: {
         marginTop: 30,
-        width: "80%",
         display: "flex",
+        width: "80%",
         justifyContent: "center",
         alignItems: "flex-start",
     },

@@ -3,8 +3,9 @@ import { View } from 'react-native'
 import Button from '../Components/GlobalComponents/Button'
 import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 import styles from '../Styles/StartLobbyStyles';
-import GameCode from '../Components/ComponentStyles/GameCode';
+import GameCode from '../Components/StartLobbyComponents/GameCode';
 import LobbyComponent from '../Components/StartLobbyComponents/LobbyComponent';
+import GradientBackground from '../Components/GlobalComponents/GradientBackground';
 
 
 export interface Props {
@@ -13,14 +14,14 @@ export interface Props {
 
 const Lobby = (props: Props) => {
   return (
-    <View style={styles.container}>
+    <GradientBackground>
       <HeaderBack onPress={() => props.setPage("Play")} />
       <View style={styles.lobbyContainer}>
         <GameCode />
         <LobbyComponent />
         <Button label="Start Game" onPress={() => props.setPage("Give Clue")} style={{ width: "90%" }}></Button>
       </View>
-    </View>
+    </GradientBackground>
 
   )
 }
