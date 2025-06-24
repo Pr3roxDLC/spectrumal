@@ -14,13 +14,13 @@ const Button = (props: Props) => {
 
     return (
         <TouchableOpacity activeOpacity={0.8} style={[props.style, styles.buttonWrapper]} onPress={() => props.onPress()}>  <BlurView
-        blurType="dark"
-        blurAmount={20}
-        reducedTransparencyFallbackColor="rgba(30, 50, 90, 0.3)"
-        style={styles.blurView}
-      >
+            blurType="dark"
+            blurAmount={20}
+            reducedTransparencyFallbackColor="rgba(30, 50, 90, 0.3)"
+            style={styles.blurView}
+        >
             <Text style={styles.buttonText}>{props.label}</Text>
-            </BlurView>
+        </BlurView>
         </TouchableOpacity>
     )
 }
