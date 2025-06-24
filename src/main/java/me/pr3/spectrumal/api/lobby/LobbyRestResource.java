@@ -2,6 +2,7 @@ package me.pr3.spectrumal.api.lobby;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
+import me.pr3.spectrumal.model.lobby.CreateLobbyRequest;
 import me.pr3.spectrumal.model.lobby.CreateLobbyResponse;
 import me.pr3.spectrumal.model.lobby.JoinLobbyRequest;
 import me.pr3.spectrumal.model.lobby.JoinLobbyResponse;
@@ -17,8 +18,8 @@ public class LobbyRestResource {
     @Consumes("application/json")
     @Produces("application/json")
     @Path("create")
-    public CreateLobbyResponse create(){
-        return lobbyService.create();
+    public CreateLobbyResponse create(CreateLobbyRequest request) {
+        return lobbyService.create(request.user);
     }
 
     @POST

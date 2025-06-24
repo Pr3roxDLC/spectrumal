@@ -26,11 +26,12 @@ public class LobbyService {
     @Inject
     private GameStateBroadcaster broadcaster;
 
-    public CreateLobbyResponse create() {
+    public CreateLobbyResponse create(User initiator) {
         CreateLobbyResponse createLobbyResponse = new CreateLobbyResponse();
         createLobbyResponse.lobbyId = UUID.randomUUID();
         createLobbyResponse.code = RandomStringUtils.random(6, 0, 0, true, true, null, new Random()).toUpperCase();
         Lobby lobby = new Lobby();
+        lobby.users.add(initiator);
         lobby.lobbyId = createLobbyResponse.lobbyId;
         lobby.code = createLobbyResponse.code;
         lobbyCache.getCodeCache().put(lobby.code, lobby);
