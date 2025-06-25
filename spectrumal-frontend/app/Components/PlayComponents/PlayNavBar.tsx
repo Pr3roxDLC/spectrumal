@@ -4,7 +4,7 @@ import styles from "../../Styles/PlayStyles";
 import StartGame from "./StartGame";
 import JoinGame from "./JoinGame";
 
-export interface Props{
+export interface Props {
   setPage: Dispatch<SetStateAction<string>>;
   setPreviousPage: Dispatch<SetStateAction<string | null>>
 }
@@ -14,7 +14,7 @@ const PlayNavBar = (props: Props) => {
   const [activeTab, setActiveTab] = useState("Join Game"); // default tab
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <View style={styles.navBarContainer}>
         <View style={styles.navBar}>
           {navBarItems.map((tab) => (
@@ -40,14 +40,12 @@ const PlayNavBar = (props: Props) => {
         </View>
       </View>
 
-      {activeTab === "Join Game" && (
-        <View>
+      {activeTab === "Join Game" ? (
+        <View style={{ flex: 1 }}>
           <JoinGame setPreviousPage={props.setPreviousPage} setPage={props.setPage} />
         </View>
-      )}
-
-      {activeTab === "Start Game" && (
-        <View>
+      ) : (
+        <View style={{ flex: 1 }}>
           <StartGame setPage={props.setPage} />
         </View>
       )}

@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "center",
         marginTop: 10,
+        marginBottom: 32,
     },
     navBar: {
         flexDirection: "row",
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
     },
     navItem: {
         width: "50%",
+        height: 40,
         paddingVertical: 10,
         alignItems: "center",
     },
