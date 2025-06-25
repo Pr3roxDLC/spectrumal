@@ -1,7 +1,7 @@
 import React from 'react'
-import { TouchableOpacity, Text, ViewStyle, DimensionValue } from 'react-native';
+import { TouchableOpacity, Text, ViewStyle, DimensionValue, View } from 'react-native';
 import styles from '../ComponentStyles/ButtonStyles';
-import { BlurView } from 'expo-blur';
+import GlassContainer from './GlassContainer';
 
 export interface Props {
     label: string;
@@ -13,15 +13,13 @@ export interface Props {
 const Button = (props: Props) => {
 
     return (
-        <TouchableOpacity activeOpacity={0.8} style={[props.style, styles.buttonWrapper]} onPress={() => props.onPress()}>
-            <BlurView
-                blurType="dark"
-                blurAmount={20}
-                reducedTransparencyFallbackColor="rgba(30, 50, 90, 0.3)"
-                style={styles.blurView}>
+        <View style={[props.style, styles.container]}>
+            <GlassContainer height={"100%"}>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => props.onPress()}>
                 <Text style={styles.buttonText}>{props.label}</Text>
-            </BlurView>
-        </TouchableOpacity>
+                </TouchableOpacity>
+            </GlassContainer>
+        </View>
     )
 }
 

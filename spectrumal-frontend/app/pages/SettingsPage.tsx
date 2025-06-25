@@ -45,9 +45,6 @@ const SettingsPage = (props: Props) => {
         <GlassContainer style={{ marginTop: 20 }} width="90%" height={55}>
           <View style={styles.settingsOptionContainer}>
             <Text style={styles.settingsOptionText}>About</Text>
-            <ToggleButton
-              initialValue={false}
-              onToggle={(value) =>  value}></ToggleButton>
           </View>
         </GlassContainer>
       </View>
