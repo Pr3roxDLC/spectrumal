@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { View, Text, TextInput } from 'react-native'
+import { View, Text } from 'react-native'
 import styles from '../../Styles/StartGameStyles'
 import Button from '../GlobalComponents/Button'
 import CustomTextInput from '../GlobalComponents/CustomTextInput';

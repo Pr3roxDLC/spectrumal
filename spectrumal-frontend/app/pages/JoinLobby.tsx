@@ -7,16 +7,17 @@ import LobbyComponent from '../Components/StartLobbyComponents/LobbyComponent';
 import GradientBackground from '../Components/GlobalComponents/GradientBackground';
 
 export interface Props {
-    setPage: Dispatch<SetStateAction<string>>;
+    setPage: Dispatch<SetStateAction<string>>
+    setPreviousPage: Dispatch<SetStateAction<string | null>>
 }
 
 const JoinLobby = (props: Props) => {
     return (
         <GradientBackground>
-            <HeaderBack onPress={() => props.setPage("Play")} />
-                <View style={styles.lobbyContainer}>
-            <WaitingForHost />
-            <LobbyComponent />
+            <HeaderBack goToSettings={() => { props.setPage('Settings'); props.setPreviousPage("Join Lobby") }} onPress={() => props.setPage("Play")} />
+            <View style={styles.lobbyContainer}>
+                <WaitingForHost />
+                <LobbyComponent />
             </View>
         </GradientBackground>
     )

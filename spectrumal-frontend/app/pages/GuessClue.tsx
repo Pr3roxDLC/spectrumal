@@ -1,16 +1,28 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { View, Text } from 'react-native'
+import { Text, View } from 'react-native'
+import GradientBackground from '../Components/GlobalComponents/GradientBackground';
+import HeaderBack from '../Components/GlobalComponents/HeaderBack';
+import InteractableSelector from '../Components/Selector/interactable/InteractableSelector';
+import styles from '../Styles/GuessClueStyles';
+import Button from '../Components/GlobalComponents/Button';
 
-export interface Props{
+export interface Props {
   setPage: Dispatch<SetStateAction<string>>;
+  setPreviousPage: Dispatch<SetStateAction<string | null>>
 }
 
 
 const GuessClue = (props: Props) => {
   return (
-    <View>
-      <Text>This is the guess clue page!</Text>
-    </View>
+    <GradientBackground>
+      <HeaderBack goToSettings={() => { props.setPage('Settings'); props.setPreviousPage("Guess Clue") }} onPress={() => props.setPage("Give Clue")}></HeaderBack>
+      <View style={styles.guessClueContainer}>
+        <InteractableSelector></InteractableSelector>
+        <Button style={{ width: "80%" }} label="Submit Answer" onPress={function (): void {
+          throw new Error('Function not implemented.');
+        }} ></Button>
+      </View>
+    </GradientBackground>
   )
 }
 
