@@ -14,7 +14,7 @@ const PlayNavBar = (props: Props) => {
   const [activeTab, setActiveTab] = useState("Join Game"); // default tab
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.navOuterContainer}>
       <View style={styles.navBarContainer}>
         <View style={styles.navBar}>
           {navBarItems.map((tab) => (
@@ -41,11 +41,11 @@ const PlayNavBar = (props: Props) => {
       </View>
 
       {activeTab === "Join Game" ? (
-        <View style={{ flex: 1 }}>
+        <View style={styles.joinAndStartOuterContainer}>
           <JoinGame setPreviousPage={props.setPreviousPage} setPage={props.setPage} />
         </View>
       ) : (
-        <View style={{ flex: 1 }}>
+        <View style={styles.joinAndStartOuterContainer}>
           <StartGame setPage={props.setPage} />
         </View>
       )}

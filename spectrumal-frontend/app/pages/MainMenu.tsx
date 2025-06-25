@@ -12,6 +12,7 @@ export interface Props {
 const MainMenu = (props: Props) => {
   return (
     <GradientBackground>
+      <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Spectrumal</Text>
       </View>
@@ -24,6 +25,7 @@ const MainMenu = (props: Props) => {
           <Button label='How To Play' onPress={() => props.setPage("How To Play")} style={{ width: "80%" }}></Button>
           <Button label='Demo' onPress={() => props.setPage("Demo")} style={{ width: "80%" }}></Button>
         </View>
+      </View>
       </View>
     </GradientBackground>
   )
