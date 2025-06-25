@@ -4,13 +4,14 @@ import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 
 export interface Props{
   setPage: Dispatch<SetStateAction<string>>;
+  setPreviousPage: Dispatch<SetStateAction<string | null>>
 }
 
 
 const HowToPlay = (props: Props) => {
   return (
     <View>
-      <HeaderBack onPress={() => props.setPage("Main Menu")} />
+      <HeaderBack goToSettings={() => {props.setPage('Settings'); props.setPreviousPage("How To Play")}} onPress={() => props.setPage("Main Menu")} />
       <Text>This is the how to play screen!</Text>
     </View>
   )

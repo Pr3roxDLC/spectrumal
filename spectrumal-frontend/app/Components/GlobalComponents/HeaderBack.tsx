@@ -7,7 +7,9 @@ import Feather from '@expo/vector-icons/Feather';
 
 export interface Props {
   onPress: () => void;
+  goToSettings: () => void
 }
+
 
 const HeaderBack = (props: Props) => {
   return (
@@ -17,7 +19,7 @@ const HeaderBack = (props: Props) => {
         <AntDesign style={styles.backIcon} name="left" size={28} />
         </GlassContainer>
       </TouchableOpacity>
-       <TouchableOpacity>
+       <TouchableOpacity onPress={props.goToSettings}>
         <GlassContainer width={50} height={50}>
         <Feather style={styles.settingIcon} name="settings" size={28} />
         </GlassContainer>

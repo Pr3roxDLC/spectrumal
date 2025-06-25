@@ -1,26 +1,11 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#0E2841",
-        width: "100%",
-        height: "100%",},
     giveClueContainer: {
         height: "90%",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center"
-    },
-    sliderContainer: {
-        width: "80%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "40%",
-        marginTop: 20,
-        borderColor: "#fff",
-        borderWidth: 2
     },
     clueContainer: {
         width: "80%",

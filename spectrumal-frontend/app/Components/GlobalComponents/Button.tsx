@@ -1,13 +1,13 @@
 import React from 'react'
-import { TouchableOpacity, Text, ViewStyle } from 'react-native';
+import { TouchableOpacity, Text, ViewStyle, DimensionValue } from 'react-native';
 import styles from '../ComponentStyles/ButtonStyles';
-import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 
 export interface Props {
     label: string;
     onPress: () => void;
-    style: ViewStyle
+    style?: ViewStyle;
+    width?: DimensionValue
 }
 
 const Button = (props: Props) => {

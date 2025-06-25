@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    guessClueContainer: {
+       settingsContainer: {
         height: "90%",
         display: "flex",
         justifyContent: "space-between",

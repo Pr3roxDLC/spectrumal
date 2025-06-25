@@ -10,12 +10,13 @@ import GradientBackground from '../Components/GlobalComponents/GradientBackgroun
 
 export interface Props {
   setPage: Dispatch<SetStateAction<string>>;
+  setPreviousPage: Dispatch<SetStateAction<string | null>>
 }
 
 const Lobby = (props: Props) => {
   return (
     <GradientBackground>
-      <HeaderBack onPress={() => props.setPage("Play")} />
+      <HeaderBack goToSettings={() => {props.setPage('Settings'); props.setPreviousPage("Start Lobby")}} onPress={() => props.setPage("Play")} />
       <View style={styles.lobbyContainer}>
         <GameCode />
         <LobbyComponent />

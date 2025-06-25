@@ -4,20 +4,21 @@ import styles from '../Styles/GiveClueStyles';
 import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 import GiveClueField from '../Components/GiveClueComponents/GiveClueField';
 import Button from '../Components/GlobalComponents/Button';
-import InteractableSelector from '../Components/Selector/interactable/InteractableSelector';
 import GradientBackground from '../Components/GlobalComponents/GradientBackground';
+import GlassContainer from '../Components/GlobalComponents/GlassContainer';
 
 
 export interface Props{
   setPage: Dispatch<SetStateAction<string>>;
+  setPreviousPage: Dispatch<SetStateAction<string | null>>
 }
 
 const GiveClue = (props: Props) => {
   return (
     <GradientBackground>
-      <HeaderBack onPress={() => props.setPage("Start Lobby")} />
+      <HeaderBack goToSettings={() => {props.setPage('Settings'); props.setPreviousPage("Give Clue")}} onPress={() => props.setPage("Start Lobby")} />
       <View style={styles.giveClueContainer}>
-      <InteractableSelector />
+      <GlassContainer height={300} width={300}></GlassContainer>
       <GiveClueField />
       <Button style={{ width: "80%"}} label="Ready" onPress={() => props.setPage("Guess Clue")} />
       </View>
