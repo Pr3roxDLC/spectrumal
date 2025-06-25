@@ -7,6 +7,7 @@ import Button from '../Components/GlobalComponents/Button';
 import GradientBackground from '../Components/GlobalComponents/GradientBackground';
 import GlassContainer from '../Components/GlobalComponents/GlassContainer';
 import styles from '../Components/ComponentStyles/InteractableSelectorStyles';
+import ReadOnlySelector from '../Components/Selector/read-only/ReadOnlySelector';
 
 
 export interface Props{
@@ -19,23 +20,7 @@ const GiveClue = (props: Props) => {
     <GradientBackground>
       <HeaderBack goToSettings={() => {props.setPage('Settings'); props.setPreviousPage("Give Clue")}} onPress={() => props.setPage("Start Lobby")} />
       <View style={styles2.giveClueContainer}>
-      <GlassContainer height={300} width={300}>
-        <Text style={styles.leftXaxisText}>
-                Left
-            </Text>
-            <Text style={styles.rightXaxisText}>
-                Right
-            </Text>
-            <Text style={styles.topYaxisText}>Top</Text>
-            <Text style={styles.bottomYaxisText}>Bottom</Text>
-
-            <View style={styles.xAxisLine} />
-            <View style={styles.yAxisLine} />
-                        <View style={[styles.arrow, styles.leftArrow]} />
-            <View style={[styles.arrow, styles.rightArrow]} />
-            <View style={[styles.arrow, styles.topArrow]} />
-            <View style={[styles.arrow, styles.bottomArrow]} />
-      </GlassContainer>
+      <ReadOnlySelector x={10} y={40}></ReadOnlySelector>
       <GiveClueField />
       <Button style={{ width: "80%"}} label="Ready" onPress={() => props.setPage("Guess Clue")} />
       </View>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import SelectorBlip from '../SelectorBlip';
+import GlassContainer from '../../GlobalComponents/GlassContainer';
+import SelectorAxis from '../interactable/SelectorAxis';
 
 type ReadOnlySelectorProps = {
     x: number;
@@ -14,7 +16,8 @@ const ReadOnlySelector: React.FC<ReadOnlySelectorProps> = ({ x, y }) => {
     const isValidPosition = x >= 0 && y >= 0 && x <= viewWidth && y <= viewHeight;
 
     return (
-        <View style={styles.container}>
+        <GlassContainer width={300} height={300}>
+            <SelectorAxis></SelectorAxis>
             <View style={styles.touchableView}>
                 {isValidPosition && (
                     <View
@@ -33,7 +36,7 @@ const ReadOnlySelector: React.FC<ReadOnlySelectorProps> = ({ x, y }) => {
                     </View>
                 )}
             </View>
-        </View>
+        </GlassContainer>
     );
 };
 
@@ -46,7 +49,6 @@ const styles = StyleSheet.create({
     touchableView: {
         width: 300,
         height: 300,
-        backgroundColor: '#e0e0e0',
         justifyContent: 'center',
         alignItems: 'center',
     },
