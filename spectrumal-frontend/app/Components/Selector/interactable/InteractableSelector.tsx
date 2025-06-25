@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, GestureResponderEvent } from 'react-native';
+import { View, GestureResponderEvent, Text } from 'react-native';
 import SelectorBlip from '../SelectorBlip';
 import GlassContainer from '../../GlobalComponents/GlassContainer';
 import styles from '../../ComponentStyles/InteractableSelectorStyles';
@@ -61,6 +61,17 @@ const InteractableSelector: React.FC<SelectorProps> = () => {
 
     return (
         <GlassContainer width={300} height={300}>
+            <Text style={styles.leftXaxisText}>
+                Left
+            </Text>
+            <Text style={styles.rightXaxisText}>
+                Right
+            </Text>
+            <Text style={styles.topYaxisText}>Top</Text>
+            <Text style={styles.bottomYaxisText}>Bottom</Text>
+
+            <View style={styles.xAxisLine} />
+            <View style={styles.yAxisLine} />
             <View
                 ref={viewRef}
                 style={styles.touchableView}

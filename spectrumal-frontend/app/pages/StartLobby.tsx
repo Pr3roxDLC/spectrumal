@@ -20,7 +20,7 @@ const Lobby = (props: Props) => {
       <View style={styles.lobbyContainer}>
         <GameCode />
         <LobbyComponent />
-        <Button label="Start Game" onPress={() => props.setPage("Give Clue")} style={{ width: "90%" }}></Button>
+        <Button label="Start Game" onPress={() => props.setPage("Give Clue")} style={{ width: "80%" }}></Button>
       </View>
     </GradientBackground>
 

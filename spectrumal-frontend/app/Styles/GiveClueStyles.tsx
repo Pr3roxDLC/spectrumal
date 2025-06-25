@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+const styles2 = StyleSheet.create({
     giveClueContainer: {
         height: "90%",
         display: "flex",
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default styles
+export default styles2
