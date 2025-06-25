@@ -12,7 +12,7 @@ export interface Props{
 
 const StartGame = (props: Props) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <View style={styles.startGameContainer}>
         <Text style={styles.codeAndName}>Name</Text>
          <CustomTextInput placeholder='Enter your name' />

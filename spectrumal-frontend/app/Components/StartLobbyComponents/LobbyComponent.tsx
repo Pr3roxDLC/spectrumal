@@ -13,7 +13,7 @@ const LobbyComponent = () => {
       </View>
       <View style={styles.usersInLobbyContainer}>
         <View style={styles.userAndName}>
-        <Avatar source={require('../../../assets/avatar4.svg')} />
+        <Avatar style={{borderColor: "black", borderWidth: 1}} source={require('../../../assets/avatar4.svg')} />
         <Text style={styles.userName}>User 1</Text>
         </View>
         <View style={styles.userAndName}>
