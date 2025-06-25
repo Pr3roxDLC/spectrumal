@@ -20,16 +20,16 @@ const [previousPage, setPreviousPage] = useState<string | null>(null);
   return (
     <>
     <ApplicationProvider {...eva} theme={eva.dark}>
-     {page === "Main Menu" && (<MainMenu setPage={setPage}/>)}
-      {page === "Start Lobby" && (<StartLobby setPage={setPage} setPreviousPage={setPreviousPage}/>)}
-      {page === "Join Lobby" && (<JoinLobby setPage={setPage} setPreviousPage={setPreviousPage}/>)}
-      {page === "Play" && (<Play setPage={setPage} setPreviousPage={setPreviousPage} />)}
-       {page === "Join Game" && (<JoinGame setPage={setPage} />)}  
-      {page === "Give Clue" && (<GiveClue setPage={setPage} setPreviousPage={setPreviousPage}   />)}
-      {page === "Guess Clue" && (<GuessClue setPage={setPage} setPreviousPage={setPreviousPage}   />)}
-      {page === "How To Play" && (<HowToPlay setPage={setPage} setPreviousPage={setPreviousPage} />)}
-      {page === "Demo" && (<SelectorDemoPage setPage={setPage} />)}
-      {page === "Settings" && (<SettingsPage setPage={setPage} setPreviousPage={setPreviousPage} previousPage={previousPage} />)}
+     {page === "Main Menu" ? (<MainMenu setPage={setPage}/>) : null}
+      {page === "Start Lobby" ? (<StartLobby setPage={setPage} setPreviousPage={setPreviousPage}/>) : null}
+      {page === "Join Lobby" ? (<JoinLobby setPage={setPage} setPreviousPage={setPreviousPage}/>) : null}
+      {page === "Play" ? (<Play setPage={setPage} setPreviousPage={setPreviousPage} />) : null}
+       {page === "Join Game" ? (<JoinGame setPage={setPage} />) : null}
+      {page === "Give Clue" ? (<GiveClue setPage={setPage} setPreviousPage={setPreviousPage}   />) : null}
+      {page === "Guess Clue" ? (<GuessClue setPage={setPage} setPreviousPage={setPreviousPage}   />) : null}
+      {page === "How To Play" ? (<HowToPlay setPage={setPage} setPreviousPage={setPreviousPage} />) : null}
+      {page === "Demo" ? (<SelectorDemoPage setPage={setPage} />) : null}
+      {page === "Settings" ? (<SettingsPage setPage={setPage} setPreviousPage={setPreviousPage} previousPage={previousPage} />) : null}
     </ApplicationProvider>
     </>
   );
