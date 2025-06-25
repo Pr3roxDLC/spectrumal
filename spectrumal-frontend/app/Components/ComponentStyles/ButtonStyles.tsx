@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
 
   container: {
     borderRadius: variables.colors.buttonBorderRadius,
-    overflow: 'hidden',
     marginVertical: 12,
     alignSelf: 'center',
     height: 50
