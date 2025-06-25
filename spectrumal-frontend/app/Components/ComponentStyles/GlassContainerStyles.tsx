@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 8, height: 8 },
         shadowOpacity: 0.5,
         shadowRadius: 5,
+        boxShadow: 'rgba(255, 255, 255, 0.2) 4px 4px 16px -8px inset',
+        overflow: 'hidden',
     },
 })
 

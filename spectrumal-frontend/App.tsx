@@ -11,24 +11,26 @@ import SelectorDemoPage from './app/pages/SelectorDemoPage';
 import SettingsPage from './app/pages/SettingsPage';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
+import { StatusBar } from 'react-native';
 
 export default function App() {
 
-const[page, setPage] = useState<string>("Main Menu")
-const [previousPage, setPreviousPage] = useState<string | null>(null);
+  const [page, setPage] = useState<string>("Main Menu")
+  const [previousPage, setPreviousPage] = useState<string | null>(null);
 
   return (
     <>
-    <ApplicationProvider {...eva} theme={eva.dark}>
-     {page === "Main Menu" && (<MainMenu setPage={setPage}/>)}
-      {page === "Start Lobby" && (<StartLobby setPage={setPage} setPreviousPage={setPreviousPage}/>)}
-      {page === "Join Lobby" && (<JoinLobby setPage={setPage} setPreviousPage={setPreviousPage}/>)}
-      {page === "Play" && (<Play setPage={setPage} setPreviousPage={setPreviousPage} />)}
-       {page === "Join Game" && (<JoinGame setPage={setPage} setPreviousPage={setPreviousPage}/>)}  
-      {page === "Give Clue" && (<GiveClue setPage={setPage} setPreviousPage={setPreviousPage}   />)}
-      {page === "Guess Clue" && (<GuessClue setPage={setPage} setPreviousPage={setPreviousPage}   />)}
-      {page === "How To Play" && (<HowToPlay setPage={setPage} setPreviousPage={setPreviousPage} />)}
-      {page === "Settings" && (<SettingsPage setPage={setPage} setPreviousPage={setPreviousPage} previousPage={previousPage} />)}
+      <StatusBar hidden={true} />
+      <ApplicationProvider {...eva} theme={eva.dark}>
+        {page === "Main Menu" ? (<MainMenu setPage={setPage} />) : null}
+        {page === "Start Lobby" ? (<StartLobby setPage={setPage} setPreviousPage={setPreviousPage} />) : null}
+        {page === "Join Lobby" ? (<JoinLobby setPage={setPage} setPreviousPage={setPreviousPage} />) : null}
+        {page === "Play" ? (<Play setPage={setPage} setPreviousPage={setPreviousPage} />) : null}
+        {page === "Join Game" ? (<JoinGame setPage={setPage} setPreviousPage={setPreviousPage} />) : null}
+        {page === "Give Clue" ? (<GiveClue setPage={setPage} setPreviousPage={setPreviousPage} />) : null}
+        {page === "Guess Clue" ? (<GuessClue setPage={setPage} setPreviousPage={setPreviousPage} />) : null}
+        {page === "How To Play" ? (<HowToPlay setPage={setPage} setPreviousPage={setPreviousPage} />) : null}
+        {page === "Settings" ? (<SettingsPage setPage={setPage} setPreviousPage={setPreviousPage} previousPage={previousPage} />) : null}
       </ApplicationProvider>
     </>
   );

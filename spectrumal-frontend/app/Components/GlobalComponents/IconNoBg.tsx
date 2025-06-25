@@ -6,13 +6,15 @@ function IconNoBg(props) {
   return (
     <Svg
       fill="#fefefe"
-  
+      width={"300"}
+      height={"300"}
       viewBox="0 0 32 32"
       id="icon"
       xmlns="http://www.w3.org/2000/svg"
       stroke="#fefefe"
       strokeWidth={0.00032}
-      {...props} 
+      {...props}
+      style={{ justifyContent: "center", alignSelf: "center" }}
     >
       <G id="SVGRepo_iconCarrier">
         <Path d="M30 15L17 15 17 2 15 2 15 15 2 15 2 17 15 17 15 30 17 30 17 17 30 17 30 15z" />
