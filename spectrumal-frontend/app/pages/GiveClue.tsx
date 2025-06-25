@@ -31,6 +31,10 @@ const GiveClue = (props: Props) => {
 
             <View style={styles.xAxisLine} />
             <View style={styles.yAxisLine} />
+                        <View style={[styles.arrow, styles.leftArrow]} />
+            <View style={[styles.arrow, styles.rightArrow]} />
+            <View style={[styles.arrow, styles.topArrow]} />
+            <View style={[styles.arrow, styles.bottomArrow]} />
       </GlassContainer>
       <GiveClueField />
       <Button style={{ width: "80%"}} label="Ready" onPress={() => props.setPage("Guess Clue")} />
