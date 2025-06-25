@@ -14,11 +14,11 @@ const Button = (props: Props) => {
 
     return (
         <View style={[props.style, styles.container]}>
+            <TouchableOpacity style={{height: "100%"}} activeOpacity={0.8} onPress={() => props.onPress()}>
             <GlassContainer height={"100%"}>
-                <TouchableOpacity activeOpacity={0.8} onPress={() => props.onPress()}>
                 <Text style={styles.buttonText}>{props.label}</Text>
-                </TouchableOpacity>
             </GlassContainer>
+            </TouchableOpacity>
         </View>
     )
 }
