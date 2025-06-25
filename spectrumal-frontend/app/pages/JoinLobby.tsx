@@ -14,7 +14,16 @@ export interface Props {
 const JoinLobby = (props: Props) => {
     return (
         <GradientBackground>
-            <HeaderBack goToSettings={() => { props.setPage('Settings'); props.setPreviousPage("Join Lobby") }} onPress={() => props.setPage("Play")} />
+            <HeaderBack
+                goToSettings={() => {
+                    props.setPreviousPage("Join Lobby");
+                    props.setPage('Settings');
+                }}
+                onPress={() => {
+                    props.setPreviousPage("Join Lobby");
+                    props.setPage("Play");
+                }}
+            />
             <View style={styles.lobbyContainer}>
                 <WaitingForHost />
                 <LobbyComponent />

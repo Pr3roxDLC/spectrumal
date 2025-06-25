@@ -5,8 +5,9 @@ import Button from '../GlobalComponents/Button'
 import CustomTextInput from '../GlobalComponents/CustomTextInput'
 
 
-export interface Props{
+export interface Props {
   setPage: Dispatch<SetStateAction<string>>;
+  setPreviousPage: Dispatch<SetStateAction<string | null>>;
 }
 
 
@@ -18,7 +19,14 @@ const JoinGame = (props: Props) => {
         <CustomTextInput placeholder='Enter your game code' />
         <Text style={styles.codeAndName}>Name</Text>
         <CustomTextInput placeholder='Enter your name' />
-        <Button label="Join Game" style={{ width: "100%" }} onPress={() => props.setPage("Join Lobby")} />
+        <Button
+          label="Join Lobby"
+          style={{ width: "100%" }}
+          onPress={() => {
+            props.setPreviousPage("Join Game");
+            props.setPage("Join Lobby");
+          }}
+        />
       </View>
     </View>
   )

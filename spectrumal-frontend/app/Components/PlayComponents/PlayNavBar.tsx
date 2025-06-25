@@ -6,6 +6,7 @@ import JoinGame from "./JoinGame";
 
 export interface Props{
   setPage: Dispatch<SetStateAction<string>>;
+  setPreviousPage: Dispatch<SetStateAction<string | null>>
 }
 const navBarItems = ["Join Game", "Start Game"];
 
@@ -41,7 +42,7 @@ const PlayNavBar = (props: Props) => {
 
       {activeTab === "Join Game" && (
         <View>
-          <JoinGame setPage={props.setPage} />
+          <JoinGame setPreviousPage={props.setPreviousPage} setPage={props.setPage} />
         </View>
       )}
 
