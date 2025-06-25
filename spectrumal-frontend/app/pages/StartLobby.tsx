@@ -15,14 +15,14 @@ export interface Props {
 
 const Lobby = (props: Props) => {
   return (
-    <GradientBackground>
+    <>
       <HeaderBack goToSettings={() => {props.setPage('Settings'); props.setPreviousPage("Start Lobby")}} onPress={() => props.setPage("Play")} />
       <View style={styles.lobbyContainer}>
         <GameCode />
         <LobbyComponent />
         <Button label="Start Game" onPress={() => props.setPage("Give Clue")} style={{ width: "80%" }}></Button>
       </View>
-    </GradientBackground>
+    </>
 
   )
 }

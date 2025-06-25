@@ -17,14 +17,14 @@ export interface Props{
 
 const GiveClue = (props: Props) => {
   return (
-    <GradientBackground>
+    <>
       <HeaderBack goToSettings={() => {props.setPage('Settings'); props.setPreviousPage("Give Clue")}} onPress={() => props.setPage("Start Lobby")} />
       <View style={styles2.giveClueContainer}>
       <ReadOnlySelector x={10} y={40}></ReadOnlySelector>
       <GiveClueField />
       <Button style={{ width: "80%"}} label="Ready" onPress={() => props.setPage("Guess Clue")} />
       </View>
-    </GradientBackground>
+    </>
   )
 }
 

@@ -15,7 +15,7 @@ export interface Props {
 
 const SettingsPage = (props: Props) => {
   return (
-    <GradientBackground>
+    <>
       <HeaderBack goToSettings={() => props.setPage("Settings")} onPress={() => props.setPage(props.previousPage ?? "Main Menu")}></HeaderBack>
       <View style={styles.settingsContainer}>
         <GlassContainer style={{ marginTop: 20 }} width="90%" height={55}>
@@ -48,7 +48,7 @@ const SettingsPage = (props: Props) => {
           </View>
         </GlassContainer>
       </View>
-    </GradientBackground>
+    </>
   )
 }
 

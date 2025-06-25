@@ -41,11 +41,11 @@ const PlayNavBar = (props: Props) => {
       </View>
 
       {activeTab === "Join Game" ? (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 12 }}>
           <JoinGame setPreviousPage={props.setPreviousPage} setPage={props.setPage} />
         </View>
       ) : (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 12 }}>
           <StartGame setPage={props.setPage} />
         </View>
       )}

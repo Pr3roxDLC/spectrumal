@@ -13,7 +13,7 @@ export interface Props {
 
 const JoinLobby = (props: Props) => {
     return (
-        <GradientBackground>
+        <>
             <HeaderBack
                 goToSettings={() => {
                     props.setPreviousPage("Join Lobby");
@@ -28,7 +28,7 @@ const JoinLobby = (props: Props) => {
                 <WaitingForHost />
                 <LobbyComponent />
             </View>
-        </GradientBackground>
+        </>
     )
 }
 

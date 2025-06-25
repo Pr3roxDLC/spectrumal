@@ -10,7 +10,7 @@ export interface Props {
 const Play = (props: Props) => {
 
     return (
-        <GradientBackground>
+        <>
             <HeaderBack
                 goToSettings={() => {
                     props.setPreviousPage("Play");
@@ -19,7 +19,7 @@ const Play = (props: Props) => {
                 onPress={() => props.setPage("Main Menu")}
             />
             <PlayNavBar setPreviousPage={props.setPreviousPage} setPage={props.setPage} />
-        </GradientBackground>
+        </>
     );
 };
 

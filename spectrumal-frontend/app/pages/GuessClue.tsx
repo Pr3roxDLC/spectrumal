@@ -14,7 +14,7 @@ export interface Props {
 
 const GuessClue = (props: Props) => {
   return (
-    <GradientBackground>
+    <>
       <HeaderBack goToSettings={() => { props.setPage('Settings'); props.setPreviousPage("Guess Clue") }} onPress={() => props.setPage("Give Clue")}></HeaderBack>
       <View style={styles.guessClueContainer}>
         <InteractableSelector></InteractableSelector>
@@ -22,7 +22,7 @@ const GuessClue = (props: Props) => {
           throw new Error('Function not implemented.');
         }} ></Button>
       </View>
-    </GradientBackground>
+    </>
   )
 }
 
