@@ -2,13 +2,8 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { View, Text } from 'react-native'
 import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 
-export interface Props{
-  setPage: Dispatch<SetStateAction<string>>;
-  setPreviousPage: Dispatch<SetStateAction<string | null>>
-}
 
-
-const HowToPlay = (props: Props) => {
+const HowToPlay = () => {
   return (
     <View>
       <HeaderBack goToSettings={() => {props.setPage('Settings'); props.setPreviousPage("How To Play")}} onPress={() => props.setPage("Main Menu")} />

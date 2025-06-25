@@ -6,21 +6,25 @@ import styles from '../Styles/StartLobbyStyles';
 import GameCode from '../Components/StartLobbyComponents/GameCode';
 import LobbyComponent from '../Components/StartLobbyComponents/LobbyComponent';
 import GradientBackground from '../Components/GlobalComponents/GradientBackground';
+import { useAppDispatch } from '../store/hooks';
+import { openTabOnTopAction, TabType } from '../store/navigationSlice';
 
 
-export interface Props {
-  setPage: Dispatch<SetStateAction<string>>;
-  setPreviousPage: Dispatch<SetStateAction<string | null>>
-}
 
-const Lobby = (props: Props) => {
+const Lobby = () => {
+  const dispatch = useAppDispatch()
+
+  const handleStartGameClick = () => {
+    dispatch(openTabOnTopAction({ type: TabType.GIVE_CLUE }))
+  }
+
   return (
     <>
       <HeaderBack goToSettings={() => {props.setPage('Settings'); props.setPreviousPage("Start Lobby")}} onPress={() => props.setPage("Play")} />
       <View style={styles.lobbyContainer}>
         <GameCode />
         <LobbyComponent />
-        <Button label="Start Game" onPress={() => props.setPage("Give Clue")} style={{ width: "80%" }}></Button>
+        <Button label="Start Game" onPress={handleStartGameClick} style={{ width: "80%" }}></Button>
       </View>
     </>
 
