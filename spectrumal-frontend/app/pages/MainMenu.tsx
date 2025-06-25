@@ -20,7 +20,7 @@ const MainMenu = () => {
   }
 
   return (
-    <GradientBackground>
+    <>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}>Spectrumal</Text>
@@ -36,7 +36,7 @@ const MainMenu = () => {
           </View>
         </View>
       </View>
-    </GradientBackground>
+    </>
   )
 }
 

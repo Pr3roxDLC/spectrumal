@@ -9,7 +9,7 @@ import GradientBackground from '../Components/GlobalComponents/GradientBackgroun
 
 const JoinLobby = () => {
     return (
-        <GradientBackground>
+        <>
             <HeaderBack
                 goToSettings={() => {
                     props.setPreviousPage("Join Lobby");
@@ -24,7 +24,7 @@ const JoinLobby = () => {
                 <WaitingForHost />
                 <LobbyComponent />
             </View>
-        </GradientBackground>
+        </>
     )
 }
 

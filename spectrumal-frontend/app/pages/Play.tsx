@@ -7,11 +7,11 @@ import GradientBackground from "../Components/GlobalComponents/GradientBackgroun
 const Play = () => {
 
     return (
-        <GradientBackground>
+        <>
             <HeaderBack
             />
             <PlayNavBar />
-        </GradientBackground>
+        </>
     );
 };
 

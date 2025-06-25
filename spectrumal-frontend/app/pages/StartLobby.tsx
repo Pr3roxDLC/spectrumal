@@ -19,14 +19,14 @@ const Lobby = () => {
   }
 
   return (
-    <GradientBackground>
+    <>
       <HeaderBack goToSettings={() => {props.setPage('Settings'); props.setPreviousPage("Start Lobby")}} onPress={() => props.setPage("Play")} />
       <View style={styles.lobbyContainer}>
         <GameCode />
         <LobbyComponent />
         <Button label="Start Game" onPress={handleStartGameClick} style={{ width: "80%" }}></Button>
       </View>
-    </GradientBackground>
+    </>
 
   )
 }

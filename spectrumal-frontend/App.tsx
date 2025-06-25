@@ -2,7 +2,7 @@
 import React from 'react';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
-import { StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { useAppDispatch, useAppSelector } from "./app/store/hooks";
 import { TabType } from "./app/store/navigationSlice";
 import GiveClue from './app/pages/GiveClue';
@@ -15,6 +15,7 @@ import Lobby from './app/pages/StartLobby';
 import Play from './app/pages/Play';
 import { Provider } from 'react-redux';
 import store from './app/store/store';
+import GradientBackground from './app/Components/GlobalComponents/GradientBackground';
 
 export default function App () {
   const currentActiveTab = useAppSelector(
@@ -26,6 +27,8 @@ export default function App () {
   return (
     <>
       <StatusBar hidden={true} />
+       <SafeAreaView style={{ flex: 1 }}>
+          <GradientBackground>
         <ApplicationProvider {...eva} theme={eva.dark}>
           {
             {
@@ -40,6 +43,9 @@ export default function App () {
             }[currentActiveTab?.type ?? TabType.MAIN_MENU]
           }
         </ApplicationProvider>
+        </GradientBackground>
+        </SafeAreaView>
+        
 
     </>
   );

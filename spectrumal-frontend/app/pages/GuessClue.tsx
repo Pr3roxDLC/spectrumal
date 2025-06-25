@@ -10,7 +10,7 @@ import Button from '../Components/GlobalComponents/Button';
 
 const GuessClue = () => {
   return (
-    <GradientBackground>
+    <>
       <HeaderBack goToSettings={() => { props.setPage('Settings'); props.setPreviousPage("Guess Clue") }} onPress={() => props.setPage("Give Clue")}></HeaderBack>
       <View style={styles.guessClueContainer}>
         <InteractableSelector></InteractableSelector>
@@ -18,7 +18,7 @@ const GuessClue = () => {
           throw new Error('Function not implemented.');
         }} ></Button>
       </View>
-    </GradientBackground>
+    </>
   )
 }
 
