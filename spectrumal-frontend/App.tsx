@@ -7,7 +7,6 @@ import JoinGame from './app/Components/PlayComponents/JoinGame';
 import StartLobby from './app/pages/StartLobby';
 import JoinLobby from './app/pages/JoinLobby';
 import GuessClue from './app/pages/GuessClue';
-import SelectorDemoPage from './app/pages/SelectorDemoPage';
 import SettingsPage from './app/pages/SettingsPage';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
