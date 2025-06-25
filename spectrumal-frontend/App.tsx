@@ -28,7 +28,6 @@ const [previousPage, setPreviousPage] = useState<string | null>(null);
       {page === "Give Clue" && (<GiveClue setPage={setPage} setPreviousPage={setPreviousPage}   />)}
       {page === "Guess Clue" && (<GuessClue setPage={setPage} setPreviousPage={setPreviousPage}   />)}
       {page === "How To Play" && (<HowToPlay setPage={setPage} setPreviousPage={setPreviousPage} />)}
-      {page === "Demo" && (<SelectorDemoPage setPage={setPage} />)}
       {page === "Settings" && (<SettingsPage setPage={setPage} setPreviousPage={setPreviousPage} previousPage={previousPage} />)}
       </ApplicationProvider>
     </>
