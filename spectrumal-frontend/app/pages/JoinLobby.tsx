@@ -6,12 +6,8 @@ import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 import LobbyComponent from '../Components/StartLobbyComponents/LobbyComponent';
 import GradientBackground from '../Components/GlobalComponents/GradientBackground';
 
-export interface Props {
-    setPage: Dispatch<SetStateAction<string>>
-    setPreviousPage: Dispatch<SetStateAction<string | null>>
-}
 
-const JoinLobby = (props: Props) => {
+const JoinLobby = () => {
     return (
         <GradientBackground>
             <HeaderBack

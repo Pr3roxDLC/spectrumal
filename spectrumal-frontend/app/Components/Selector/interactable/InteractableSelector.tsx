@@ -61,8 +61,9 @@ const InteractableSelector: React.FC<SelectorProps> = () => {
 
 
     return (
-        <GlassContainer width={300} height={300}>
+        <View style={{ width: 300, height: 300}}>
             <SelectorAxis></SelectorAxis>
+        <GlassContainer width={300} height={300}>
             <View
                 ref={viewRef}
                 style={styles.touchableView}
@@ -90,6 +91,7 @@ const InteractableSelector: React.FC<SelectorProps> = () => {
                 )}
             </View>
         </GlassContainer>
+        </View>
     );
 };
 

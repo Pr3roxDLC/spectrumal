@@ -16,27 +16,29 @@ const ReadOnlySelector: React.FC<ReadOnlySelectorProps> = ({ x, y }) => {
     const isValidPosition = x >= 0 && y >= 0 && x <= viewWidth && y <= viewHeight;
 
     return (
-        <GlassContainer width={300} height={300}>
+        <View style={{ width: 300, height: 300 }}>
             <SelectorAxis></SelectorAxis>
-            <View style={styles.touchableView}>
-                {isValidPosition && (
-                    <View
-                        style={{
-                            position: 'absolute',
-                            left: x - 15,
-                            top: y - 15,
-                            width: 30,
-                            height: 30,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            pointerEvents: 'none',
-                        }}
-                    >
-                        <SelectorBlip />
-                    </View>
-                )}
-            </View>
-        </GlassContainer>
+            <GlassContainer width={300} height={300}>
+                <View style={styles.touchableView}>
+                    {isValidPosition && (
+                        <View
+                            style={{
+                                position: 'absolute',
+                                left: x - 15,
+                                top: y - 15,
+                                width: 30,
+                                height: 30,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                pointerEvents: 'none',
+                            }}
+                        >
+                            <SelectorBlip />
+                        </View>
+                    )}
+                </View>
+            </GlassContainer>
+        </View>
     );
 };
 

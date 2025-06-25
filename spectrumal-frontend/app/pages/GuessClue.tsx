@@ -1,18 +1,14 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import GradientBackground from '../Components/GlobalComponents/GradientBackground';
 import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 import InteractableSelector from '../Components/Selector/interactable/InteractableSelector';
 import styles from '../Styles/GuessClueStyles';
 import Button from '../Components/GlobalComponents/Button';
 
-export interface Props {
-  setPage: Dispatch<SetStateAction<string>>;
-  setPreviousPage: Dispatch<SetStateAction<string | null>>
-}
 
 
-const GuessClue = (props: Props) => {
+const GuessClue = () => {
   return (
     <GradientBackground>
       <HeaderBack goToSettings={() => { props.setPage('Settings'); props.setPreviousPage("Guess Clue") }} onPress={() => props.setPage("Give Clue")}></HeaderBack>

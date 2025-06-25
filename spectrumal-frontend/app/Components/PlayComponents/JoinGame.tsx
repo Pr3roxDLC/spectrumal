@@ -3,15 +3,19 @@ import { View, Text } from 'react-native'
 import styles from '../../Styles/JoinGameStyles'
 import Button from '../GlobalComponents/Button'
 import CustomTextInput from '../GlobalComponents/CustomTextInput'
+import { useAppDispatch } from '../../store/hooks'
+import { openTabOnTopAction, TabType } from '../../store/navigationSlice'
 
 
-export interface Props {
-  setPage: Dispatch<SetStateAction<string>>;
-  setPreviousPage: Dispatch<SetStateAction<string | null>>;
-}
+
+const JoinGame = () => {
+  const dispatch = useAppDispatch()
+
+  const handleJoinLobbyClick = () => {
+    dispatch(openTabOnTopAction({ type: TabType.JOIN_LOBBY }))
+  }
 
 
-const JoinGame = (props: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.joinGameContainer}>
@@ -22,10 +26,7 @@ const JoinGame = (props: Props) => {
         <Button
           label="Join Lobby"
           style={{ width: "100%" }}
-          onPress={() => {
-            props.setPreviousPage("Join Game");
-            props.setPage("Join Lobby");
-          }}
+          onPress={handleJoinLobbyClick}
         />
       </View>
     </View>

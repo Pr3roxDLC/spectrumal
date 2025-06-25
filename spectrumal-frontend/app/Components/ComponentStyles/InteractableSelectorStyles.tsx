@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
         left: 15,
         width: 270,
         height: 3,
+        zIndex: 2,
         backgroundColor: variables.colors.whiteText,
         opacity: 0.3,
     },
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
     yAxisLine: {
         position: 'absolute',
         left: 150,
+        zIndex: 2,
         top: 15,
         width: 3,
         height: 270,
@@ -69,11 +71,13 @@ const styles = StyleSheet.create({
         width: 0,
         height: 0,
         borderStyle: 'solid',
+        zIndex: 2,
     },
 
     leftArrow: {
         left: 5,
         top: 147,
+        zIndex: 2,
         borderTopWidth: 5,
         borderBottomWidth: 5,
         borderRightWidth: 10,
@@ -84,6 +88,7 @@ const styles = StyleSheet.create({
 
     rightArrow: {
         right: 5,
+        zIndex: 2,
         top: 147,
         borderTopWidth: 5,
         borderBottomWidth: 5,
@@ -95,6 +100,7 @@ const styles = StyleSheet.create({
 
     topArrow: {
         top: 5,
+        zIndex: 2,
         left: 147,
         borderLeftWidth: 5,
         borderRightWidth: 5,
@@ -106,6 +112,7 @@ const styles = StyleSheet.create({
 
     bottomArrow: {
         bottom: 5,
+        zIndex: 2,
         left: 147,
         borderLeftWidth: 5,
         borderRightWidth: 5,
