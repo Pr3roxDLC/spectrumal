@@ -5,8 +5,8 @@ import { DimensionValue, StyleProp, ViewStyle } from 'react-native';
 
 interface Props {
   children?: React.ReactNode;
-  width: DimensionValue;
-  height: DimensionValue;
+  width?: DimensionValue;
+  height?: DimensionValue;
   style?: StyleProp<ViewStyle>
 }
 
