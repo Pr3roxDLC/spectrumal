@@ -20,9 +20,9 @@ const MainMenu = (props: Props) => {
       {/*buttons */}
       <View style={styles.buttonsOuterContainer}>
         <View style={styles.buttonsContainer}>
-          <Button label='Play' onPress={() => props.setPage("Play")} style={{ width: "85%" }}></Button>
-          <Button label='How To Play' onPress={() => props.setPage("How To Play")} style={{ width: "85%" }}></Button>
-          <Button label='Demo' onPress={() => props.setPage("Demo")} style={{ width: "85%" }}></Button>
+          <Button label='Play' onPress={() => props.setPage("Play")} style={{ width: "80%" }}></Button>
+          <Button label='How To Play' onPress={() => props.setPage("How To Play")} style={{ width: "80%" }}></Button>
+          <Button label='Demo' onPress={() => props.setPage("Demo")} style={{ width: "80%" }}></Button>
         </View>
       </View>
     </GradientBackground>

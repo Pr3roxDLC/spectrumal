@@ -18,7 +18,7 @@ const Play = (props: Props) => {
                 }}
                 onPress={() => props.setPage("Main Menu")}
             />
-            <PlayNavBar setPage={props.setPage} />
+            <PlayNavBar setPreviousPage={props.setPreviousPage} setPage={props.setPage} />
         </GradientBackground>
     );
 };

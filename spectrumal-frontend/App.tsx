@@ -6,11 +6,11 @@ import Play from './app/pages/Play';
 import JoinGame from './app/Components/PlayComponents/JoinGame';
 import StartLobby from './app/pages/StartLobby';
 import JoinLobby from './app/pages/JoinLobby';
-import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 import GuessClue from './app/pages/GuessClue';
 import SelectorDemoPage from './app/pages/SelectorDemoPage';
 import SettingsPage from './app/pages/SettingsPage';
+import { ApplicationProvider } from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
 
 export default function App() {
 
@@ -28,7 +28,6 @@ const [previousPage, setPreviousPage] = useState<string | null>(null);
       {page === "Give Clue" ? (<GiveClue setPage={setPage} setPreviousPage={setPreviousPage}   />) : null}
       {page === "Guess Clue" ? (<GuessClue setPage={setPage} setPreviousPage={setPreviousPage}   />) : null}
       {page === "How To Play" ? (<HowToPlay setPage={setPage} setPreviousPage={setPreviousPage} />) : null}
-      {page === "Demo" ? (<SelectorDemoPage setPage={setPage} />) : null}
       {page === "Settings" ? (<SettingsPage setPage={setPage} setPreviousPage={setPreviousPage} previousPage={previousPage} />) : null}
     </ApplicationProvider>
     </>
