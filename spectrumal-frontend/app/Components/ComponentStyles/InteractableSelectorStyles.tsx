@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     xAxisLine: {
         position: 'absolute',
         top: 150,
-        left: 0,
-        width: 300,
+        left: 15,
+        width: 270,
         height: 3,
         backgroundColor: variables.colors.whiteText,
         opacity: 0.3,
@@ -58,12 +58,63 @@ const styles = StyleSheet.create({
     yAxisLine: {
         position: 'absolute',
         left: 150,
-        top: 0,
+        top: 15,
         width: 3,
-        height: 300,
+        height: 270,
         backgroundColor: variables.colors.whiteText,
         opacity: 0.3,
     },
+    arrow: {
+        position: 'absolute',
+        width: 0,
+        height: 0,
+        borderStyle: 'solid',
+    },
+
+    leftArrow: {
+        left: 5,
+        top: 147,
+        borderTopWidth: 5,
+        borderBottomWidth: 5,
+        borderRightWidth: 10,
+        borderTopColor: 'transparent',
+        borderBottomColor: 'transparent',
+        borderRightColor: variables.colors.whiteText,
+    },
+
+    rightArrow: {
+        right: 5,
+        top: 147,
+        borderTopWidth: 5,
+        borderBottomWidth: 5,
+        borderLeftWidth: 10,
+        borderTopColor: 'transparent',
+        borderBottomColor: 'transparent',
+        borderLeftColor: variables.colors.whiteText,
+    },
+
+    topArrow: {
+        top: 5,
+        left: 147,
+        borderLeftWidth: 5,
+        borderRightWidth: 5,
+        borderBottomWidth: 10,
+        borderLeftColor: 'transparent',
+        borderRightColor: 'transparent',
+        borderBottomColor: variables.colors.whiteText,
+    },
+
+    bottomArrow: {
+        bottom: 5,
+        left: 147,
+        borderLeftWidth: 5,
+        borderRightWidth: 5,
+        borderTopWidth: 10,
+        borderLeftColor: 'transparent',
+        borderRightColor: 'transparent',
+        borderTopColor: variables.colors.whiteText,
+    },
+
 })
 
 export default styles

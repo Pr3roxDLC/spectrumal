@@ -72,6 +72,10 @@ const InteractableSelector: React.FC<SelectorProps> = () => {
 
             <View style={styles.xAxisLine} />
             <View style={styles.yAxisLine} />
+            <View style={[styles.arrow, styles.leftArrow]} />
+            <View style={[styles.arrow, styles.rightArrow]} />
+            <View style={[styles.arrow, styles.topArrow]} />
+            <View style={[styles.arrow, styles.bottomArrow]} />
             <View
                 ref={viewRef}
                 style={styles.touchableView}
