@@ -3,24 +3,14 @@ import variables from "../../Styles/Variables";
 
 const styles = StyleSheet.create({
 
-  buttonWrapper: {
+  container: {
     borderRadius: variables.colors.buttonBorderRadius,
     overflow: 'hidden',
     marginVertical: 12,
     alignSelf: 'center',
+    height: 50
   },
-  blurView: {
-    paddingVertical: 16,
-    paddingHorizontal: 32,
-    borderRadius: variables.colors.buttonBorderRadius,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)', 
-    shadowColor: '#2C3E75', 
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 20,
-  },
+  
   buttonText: {
     color: variables.colors.whiteText, 
     fontWeight: '600',
