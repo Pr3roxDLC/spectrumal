@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../../Styles/GiveClueStyles'
-import { View, Text, KeyboardAvoidingView } from 'react-native'
+import { View, Text } from 'react-native'
 import CustomTextInput from '../GlobalComponents/CustomTextInput'
 
 const GiveClueField = () => {

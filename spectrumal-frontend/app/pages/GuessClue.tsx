@@ -1,22 +1,27 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React from 'react'
 import { View } from 'react-native'
-import GradientBackground from '../Components/GlobalComponents/GradientBackground';
 import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 import InteractableSelector from '../Components/Selector/interactable/InteractableSelector';
 import styles from '../Styles/GuessClueStyles';
 import Button from '../Components/GlobalComponents/Button';
+import { useAppDispatch } from '../store/hooks';
+import { openTabOnTopAction, TabType } from '../store/navigationSlice';
 
 
 
 const GuessClue = () => {
+  const dispatch = useAppDispatch()
+
+  const handleSubmitClick = () => {
+    dispatch(openTabOnTopAction({ type: TabType.WAITING_FOR_OTHERS }))
+  }
+
   return (
     <>
-      <HeaderBack goToSettings={() => { props.setPage('Settings'); props.setPreviousPage("Guess Clue") }} onPress={() => props.setPage("Give Clue")}></HeaderBack>
+      <HeaderBack></HeaderBack>
       <View style={styles.guessClueContainer}>
         <InteractableSelector></InteractableSelector>
-        <Button style={{ width: "80%" }} label="Submit Answer" onPress={function (): void {
-          throw new Error('Function not implemented.');
-        }} ></Button>
+        <Button style={{ width: "80%" }} label="Submit Answer" onPress={handleSubmitClick} ></Button>
       </View>
     </>
   )

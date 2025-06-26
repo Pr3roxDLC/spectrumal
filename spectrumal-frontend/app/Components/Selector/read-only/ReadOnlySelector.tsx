@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import SelectorBlip from '../SelectorBlip';
 import GlassContainer from '../../GlobalComponents/GlassContainer';
 import SelectorAxis from '../interactable/SelectorAxis';
+import styles from '../../ComponentStyles/ReadOnlySelectorStyles';
 
 type ReadOnlySelectorProps = {
     x: number;
@@ -42,18 +43,5 @@ const ReadOnlySelector: React.FC<ReadOnlySelectorProps> = ({ x, y }) => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    touchableView: {
-        width: 300,
-        height: 300,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});
 
 export default ReadOnlySelector;

@@ -20,7 +20,7 @@ const Lobby = () => {
 
   return (
     <>
-      <HeaderBack goToSettings={() => {props.setPage('Settings'); props.setPreviousPage("Start Lobby")}} onPress={() => props.setPage("Play")} />
+      <HeaderBack />
       <View style={styles.lobbyContainer}>
         <GameCode />
         <LobbyComponent />
