@@ -19,7 +19,12 @@ const styles = StyleSheet.create({
     },
     settingsOptionText: {
         color: variables.colors.whiteText,
-        fontSize: 18
+        fontSize: 18,
+        fontWeight: '600',
+        textAlign: "center",
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 4,
     }
 })
 

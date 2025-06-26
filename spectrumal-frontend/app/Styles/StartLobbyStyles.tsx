@@ -3,10 +3,9 @@ import variables from "./Variables";
 
 const styles = StyleSheet.create({
     lobbyContainer: {
-        width: "100%",
-        height: "90%",
+        flex: 1,
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center"
     },
 
@@ -27,9 +26,13 @@ const styles = StyleSheet.create({
         height: "30%",
     },
     thisIsYourGameCode: {
-        color: "#fefefe",
+        color: variables.colors.whiteText,
         fontSize: 26,
-        fontWeight: 600
+        fontWeight: '600',
+        textAlign: "center",
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 4,
     },
     gameCodeBox: {
         display: "flex",
@@ -66,7 +69,12 @@ const styles = StyleSheet.create({
     lobbyTitle: {
         color: variables.colors.whiteText,
         fontSize: 26,
-        fontWeight: 600
+        fontWeight: '600',
+        textAlign: "center",
+        marginBottom: 20,
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 4,
     },
     usersInLobbyContainer: {
         display: "flex",
@@ -80,8 +88,14 @@ const styles = StyleSheet.create({
     },
     userName: {
         paddingVertical: 10,
-        fontSize: 17,
         color: variables.colors.whiteText,
+        fontSize: 17,
+        fontWeight: '600',
+        textAlign: "center",
+        marginBottom: 20,
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 4,
     }
 })
 

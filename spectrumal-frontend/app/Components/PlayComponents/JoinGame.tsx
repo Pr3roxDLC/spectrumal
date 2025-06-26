@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React from 'react'
 import { View, Text } from 'react-native'
 import styles from '../../Styles/JoinGameStyles'
 import Button from '../GlobalComponents/Button'

@@ -8,7 +8,9 @@ const WaitingForHost = () => {
   return (
     <View style={styles.waitingForHostContainer}>
       <Text style={styles.waitingForHostText}>Waiting for your host to start the game</Text>
-      <Spinner size="giant" style={styles.loading} />
+      <View style={[{ transform: [{ scale: 3 }] }]}>
+      <Spinner size="giant" />
+      </View>
     </View>
   )
 }
