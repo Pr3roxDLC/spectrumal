@@ -104,13 +104,13 @@ export interface JoinLobbyRequest {
      * @type {string}
      * @memberof JoinLobbyRequest
      */
-    'userId'?: string;
+    'id'?: string;
     /**
      * 
      * @type {string}
      * @memberof JoinLobbyRequest
      */
-    'userName'?: string;
+    'name'?: string;
 }
 /**
  * 
@@ -234,6 +234,50 @@ export interface RoundInfoResponse {
      * @memberof RoundInfoResponse
      */
     'round'?: RoundInfo;
+}
+/**
+ * 
+ * @export
+ * @interface Score
+ */
+export interface Score {
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof Score
+     */
+    'previousScores'?: { [key: string]: number; };
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof Score
+     */
+    'gainedScores'?: { [key: string]: number; };
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof Score
+     */
+    'newScores'?: { [key: string]: number; };
+    /**
+     * 
+     * @type {{ [key: string]: Point; }}
+     * @memberof Score
+     */
+    'userGuesses'?: { [key: string]: Point; };
+}
+/**
+ * 
+ * @export
+ * @interface ScoreResponse
+ */
+export interface ScoreResponse {
+    /**
+     * 
+     * @type {Score}
+     * @memberof ScoreResponse
+     */
+    'score'?: Score;
 }
 /**
  * 
@@ -391,6 +435,39 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
                 .replace(`{${"round"}}`, encodeURIComponent(String(round)))
                 .replace(`{${"player"}}`, encodeURIComponent(String(player)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScore: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getScore', 'id', id)
+            const localVarPath = `/game/{id}/score`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -583,6 +660,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getScore(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ScoreResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getScore(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.getScore']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
          * @param {string} player 
          * @param {PointGuessRequest} [pointGuessRequest] 
          * @param {*} [options] Override http request option.
@@ -663,6 +752,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScore(id: string, options?: RawAxiosRequestConfig): AxiosPromise<ScoreResponse> {
+            return localVarFp.getScore(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
          * @param {string} player 
          * @param {PointGuessRequest} [pointGuessRequest] 
          * @param {*} [options] Override http request option.
@@ -735,6 +833,17 @@ export class DefaultApi extends BaseAPI {
      */
     public getRoundInfo(id: string, round: number, player: string, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).getRoundInfo(id, round, player, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getScore(id: string, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getScore(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

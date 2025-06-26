@@ -1,6 +1,5 @@
 .gitignore
 .npmignore
-.openapi-generator-ignore
 api.ts
 base.ts
 common.ts
@@ -16,6 +15,8 @@ docs/Point.md
 docs/PointGuessRequest.md
 docs/RoundInfo.md
 docs/RoundInfoResponse.md
+docs/Score.md
+docs/ScoreResponse.md
 docs/User.md
 docs/WordGuess.md
 docs/WordGuessRequest.md

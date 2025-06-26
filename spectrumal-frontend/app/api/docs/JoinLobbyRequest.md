@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**userId** | **string** |  | [optional] [default to undefined]
-**userName** | **string** |  | [optional] [default to undefined]
+**id** | **string** |  | [optional] [default to undefined]
+**name** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 import { JoinLobbyRequest } from './api';
 
 const instance: JoinLobbyRequest = {
-    userId,
-    userName,
+    id,
+    name,
 };
 ```
 

@@ -7,6 +7,7 @@ All URIs are relative to *http://localhost*
 |[**create**](#create) | **POST** /lobby/create | |
 |[**createGame**](#creategame) | **POST** /game/create/{lobbyId} | |
 |[**getRoundInfo**](#getroundinfo) | **GET** /game/{id}/round/{round}/{player} | |
+|[**getScore**](#getscore) | **GET** /game/{id}/score | |
 |[**guessPoint**](#guesspoint) | **POST** /game/{id}/guess/point/{player} | |
 |[**guessWord**](#guessword) | **POST** /game/{id}/guess/word/{player} | |
 |[**joinLobby**](#joinlobby) | **POST** /lobby/join/{code} | |
@@ -150,6 +151,56 @@ const { status, data } = await apiInstance.getRoundInfo(
 ### Return type
 
 **RoundInfoResponse**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**0** | default response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getScore**
+> ScoreResponse getScore()
+
+
+### Example
+
+```typescript
+import {
+    DefaultApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new DefaultApi(configuration);
+
+let id: string; // (default to undefined)
+
+const { status, data } = await apiInstance.getScore(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**ScoreResponse**
 
 ### Authorization
 
