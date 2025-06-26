@@ -1,13 +1,13 @@
-import { StyleSheet } from "react-native";
-import variables from "../../Styles/Variables";
+import { StyleSheet, Dimensions } from 'react-native';
+import variables from '../../Styles/Variables';
+
+const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    margin: 20,
+    marginTop: 35,
     width: 350,
     padding: 20,
-
   },
   title: {
     color: variables.colors.whiteText,
@@ -15,9 +15,9 @@ const styles = StyleSheet.create({
     fontSize: 26,
     marginBottom: 20,
     textAlign: 'center',
-    textShadowColor: 'rgba(0,0,0,0.3)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 1,
+  },
+  scrollArea: {
+    maxHeight: screenHeight * 0.27,
   },
   card: {
     flexDirection: 'row',
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   avatar: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
     resizeMode: 'contain',
     marginRight: 15,
   },
@@ -42,9 +42,6 @@ const styles = StyleSheet.create({
     color: variables.colors.whiteText,
     fontWeight: '600',
     fontSize: 18,
-    textShadowColor: 'rgba(0,0,0,0.3)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 1,
     flex: 1,
   },
   score: {
@@ -52,6 +49,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-})
+  fadeWrapper: {
+    position: 'relative',
+    maxHeight: screenHeight * 0.24,
+    overflow: 'hidden',
+  },
+  bottomFade: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 20,
+    zIndex: 1,
+  },
+});
 
-export default styles
+export default styles;

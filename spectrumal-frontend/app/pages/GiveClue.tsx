@@ -14,7 +14,7 @@ const GiveClue = () => {
   const dispatch = useAppDispatch()
 
   const handleReadyClick = () => {
-    dispatch(openTabOnTopAction({ type: TabType.GUESS_CLUE }))
+    dispatch(openTabOnTopAction({ type: TabType.WAITING_FOR_OTHERS }))
   }
 
   return (
