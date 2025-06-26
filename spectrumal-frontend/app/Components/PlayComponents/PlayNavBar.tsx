@@ -5,10 +5,10 @@ import StartGame from "./StartGame";
 import JoinGame from "./JoinGame";
 
 
-const navBarItems = ["Join Game", "Start Game"];
+const navBarItems = ["Join Lobby", "Start Lobby"];
 
 const PlayNavBar = () => {
-  const [activeTab, setActiveTab] = useState("Join Game"); // default tab
+  const [activeTab, setActiveTab] = useState("Join Lobby"); // default tab
 
   return (
     <View style={styles.navOuterContainer}>
@@ -37,7 +37,7 @@ const PlayNavBar = () => {
         </View>
       </View>
 
-      {activeTab === "Join Game" ? (
+      {activeTab === "Join Lobby" ? (
         <View style={styles.joinAndStartOuterContainer}>
           <JoinGame />
         </View>
