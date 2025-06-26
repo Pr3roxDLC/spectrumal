@@ -3,6 +3,7 @@ package me.pr3.spectrumal.api.game;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import me.pr3.spectrumal.model.game.CreateGameResponse;
+import me.pr3.spectrumal.model.game.ScoreResponse;
 import me.pr3.spectrumal.model.game.round.PointGuessRequest;
 import me.pr3.spectrumal.model.game.round.WordGuessRequest;
 import me.pr3.spectrumal.model.game.round.WordGuessResponse;
@@ -44,6 +45,13 @@ public class GameRestResource {
     @Path("/{id}/guess/point/{player}")
     public void guessPoint(@PathParam("id") UUID id, @PathParam("player") UUID player, PointGuessRequest request) {
         gameService.pointGuess(id, player, request);
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/{id}/score")
+    public ScoreResponse getScore(@PathParam("id") UUID id) {
+        return gameService.getScores(id);
     }
 
 }

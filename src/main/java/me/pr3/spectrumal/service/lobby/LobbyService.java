@@ -2,18 +2,15 @@ package me.pr3.spectrumal.service.lobby;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import me.pr3.spectrumal.api.game.GameStateWebSocket;
 import me.pr3.spectrumal.model.lobby.CreateLobbyResponse;
 import me.pr3.spectrumal.model.lobby.JoinLobbyRequest;
 import me.pr3.spectrumal.model.lobby.JoinLobbyResponse;
 import me.pr3.spectrumal.model.lobby.Lobby;
 import me.pr3.spectrumal.model.user.User;
-import me.pr3.spectrumal.service.game.GameService;
 import me.pr3.spectrumal.service.game.websocket.GameStateBroadcaster;
 import me.pr3.spectrumal.service.game.websocket.Message;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -41,8 +38,8 @@ public class LobbyService {
 
     public JoinLobbyResponse joinLobby(String code, JoinLobbyRequest request) {
         Lobby lobby = lobbyCache.getCodeCache().getIfPresent(code);
-        broadcaster.notify(lobby.users, new Message(Message.Type.LOBBY_PLAYER_JOIN, Map.of("id", request.userId.toString(), "name", request.userName)));
-        lobby.users.add(new User(request.userId, request.userName));
+        broadcaster.notify(lobby.users, new Message(Message.Type.LOBBY_PLAYER_JOIN, Map.of("id", request.id.toString(), "name", request.name)));
+        lobby.users.add(new User(request.id, request.name));
         JoinLobbyResponse joinLobbyResponse = new JoinLobbyResponse();
         joinLobbyResponse.setLobbyId(lobby.lobbyId);
         joinLobbyResponse.setUsers(lobby.users);

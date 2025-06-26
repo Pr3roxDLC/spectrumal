@@ -4,7 +4,9 @@ import me.pr3.spectrumal.model.game.round.Round;
 import me.pr3.spectrumal.model.user.User;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -14,6 +16,7 @@ public class GameState {
     public CopyOnWriteArrayList<Round> rounds;
     public CopyOnWriteArrayList<User> users;
     public UUID lobbyOrigin;
+    private Score score;
 
     public List<User> getUsers() {
         return users;
@@ -53,5 +56,13 @@ public class GameState {
 
     public void setLobbyOrigin(UUID lobbyOrigin) {
         this.lobbyOrigin = lobbyOrigin;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
     }
 }

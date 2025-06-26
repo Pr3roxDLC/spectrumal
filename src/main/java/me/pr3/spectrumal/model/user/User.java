@@ -6,6 +6,10 @@ public class User {
     UUID id;
     String name;
 
+    public User() {
+        // Default constructor for serialization/deserialization
+    }
+
     public User(UUID id, String name) {
         this.id = id;
         this.name = name;

@@ -3,22 +3,22 @@ package me.pr3.spectrumal.model.lobby;
 import java.util.UUID;
 
 public class JoinLobbyRequest {
-    public UUID userId;
-    public String userName;
+    public UUID id;
+    public String name;
 
-    public UUID getUserId() {
-        return userId;
+    public UUID getId() {
+        return id;
     }
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

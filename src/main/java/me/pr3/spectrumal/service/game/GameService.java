@@ -30,6 +30,9 @@ public class GameService {
     @Inject
     private GameStateBroadcaster broadcaster;
 
+    @Inject
+    private ScoreService scoreService;
+
     public RoundInfoResponse getRoundInfo(UUID id, int roundNumber, UUID player) {
         GameState state = gameCache.getCache().getIfPresent(id);
         assert state != null;
@@ -73,10 +76,11 @@ public class GameService {
         gameState.setRounds(new CopyOnWriteArrayList<>());
         gameState.getRounds().add(createRound(gameState));
         gameCache.getCache().put(id, gameState);
+        scoreService.initGameScore(id);
         CreateGameResponse createGameResponse = new CreateGameResponse();
         createGameResponse.setId(id);
         createGameResponse.setUsers(users);
-        broadcaster.notify(users, new Message(Message.Type.GAME_START, Map.of("id", id.toString())));
+        broadcaster.notify(users, new Message(Message.Type.LOBBY_GAME_START, Map.of("id", id.toString())));
         return createGameResponse;
     }
 
@@ -96,7 +100,7 @@ public class GameService {
         return round;
     }
 
-    public synchronized WordGuessResponse wordGuess(UUID gameId, UUID player, WordGuessRequest wordGuessRequest) {
+    public WordGuessResponse wordGuess(UUID gameId, UUID player, WordGuessRequest wordGuessRequest) {
         GameState state = gameCache.getCache().getIfPresent(gameId);
         assert state != null;
         Round round = state.getRounds().get(state.getRound() - 1);
@@ -120,7 +124,7 @@ public class GameService {
                             .map(User::getId)
                             .collect(Collectors.
                                     toMap(Function.identity(), (id) -> new ConcurrentHashMap<>())));
-            broadcaster.notify(state.users, new Message(Message.Type.ROUND_USERS_CREATED_ALL_CLUES, Map.of()));
+            broadcaster.notify(state.users, new Message(Message.Type.SHOW_GUESS_CLUE_SCREEN, Map.of()));
         }
 
         WordGuessResponse wordGuessResponse = new WordGuessResponse();
@@ -128,7 +132,11 @@ public class GameService {
         return wordGuessResponse;
     }
 
-    public synchronized void pointGuess(UUID gameId, UUID player, PointGuessRequest pointGuessRequest) {
+    public ScoreResponse getScores(UUID gameId) {
+        return scoreService.getScores(gameId);
+    }
+
+    public void pointGuess(UUID gameId, UUID player, PointGuessRequest pointGuessRequest) {
         GameState state = gameCache.getCache().getIfPresent(gameId);
         assert state != null;
         Round round = state.getRounds().get(state.getRound() - 1);
@@ -147,14 +155,27 @@ public class GameService {
             //Select Next user;
             int nextUserIndex = state.users.indexOf(round.userForCurrentPointGuess) + 1;
             if(nextUserIndex < state.users.size()) {
+                scoreService.recalculateScores(gameId);
                 round.userForCurrentPointGuess =  state.users.get(nextUserIndex);
-                broadcaster.notify(state.users, new Message(Message.Type.ROUND_USERS_CREATED_ALL_POINTS, Map.of()));
+                broadcaster.notify(state.users, new Message(Message.Type.SHOW_SCORE_SCREEN, Map.of()));
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        broadcaster.notify(state.users, new Message(Message.Type.SHOW_GUESS_CLUE_SCREEN, Map.of()));
+                    }
+                }, 10000);
             }else {
+                scoreService.recalculateScores(gameId);
                 round.roundState = Round.RoundState.OVER;
                 state.getRounds().add(createRound(state));
                 state.setRound(state.getRound() + 1);
-                broadcaster.notify(state.users, new Message(Message.Type.GAME_NEXT_ROUND, Map.of()));
-            }
+                broadcaster.notify(state.users, new Message(Message.Type.SHOW_SCORE_SCREEN, Map.of()));
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        broadcaster.notify(state.users, new Message(Message.Type.SHOW_GIVE_CLUE_SCREEN, Map.of()));
+                    }
+                }, 10000);            }
         }
     }
 

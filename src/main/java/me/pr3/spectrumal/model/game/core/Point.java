@@ -27,4 +27,8 @@ public class Point {
     public void setDim2(float dim2) {
         this.dim2 = dim2;
     }
+
+    public float distanceTo(Point other) {
+        return (float) Math.sqrt(Math.pow(this.dim1 - other.dim1, 2) + Math.pow(this.dim2 - other.dim2, 2));
+    }
 }
