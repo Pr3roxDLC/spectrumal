@@ -6,14 +6,9 @@ import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 import GlassContainer from '../Components/GlobalComponents/GlassContainer';
 import ToggleButton from '../Components/SettingsComponents/ToggleButton';
 
-export interface Props {
-  setPage: Dispatch<SetStateAction<string>>;
-  setPreviousPage: Dispatch<SetStateAction<string | null>>
-  previousPage: string | null;
-}
 
 
-const SettingsPage = (props: Props) => {
+const SettingsPage = () => {
   return (
     <>
       <HeaderBack goToSettings={() => props.setPage("Settings")} onPress={() => props.setPage(props.previousPage ?? "Main Menu")}></HeaderBack>

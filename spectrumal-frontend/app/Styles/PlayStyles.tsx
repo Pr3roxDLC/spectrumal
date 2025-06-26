@@ -1,9 +1,13 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-/*navbar */
+    /*navbar */
 
-  navBarContainer: {
+    navOuterContainer: {
+        flex: 1,
+    },
+
+    navBarContainer: {
         flex: 1,
         justifyContent: "flex-start",
         alignItems: "center",
@@ -42,6 +46,9 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: -2,
     },
+    joinAndStartOuterContainer: {
+        flex: 12,
+    }
 
 
 })

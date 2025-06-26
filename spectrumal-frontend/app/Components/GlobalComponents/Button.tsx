@@ -5,7 +5,7 @@ import GlassContainer from './GlassContainer';
 
 export interface Props {
     label: string;
-    onPress: () => void;
+    onPress?: () => void;
     style?: ViewStyle;
     width?: DimensionValue
 }

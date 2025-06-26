@@ -1,10 +1,14 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+    container: {
+flex: 1,
+justifyContent: "space-between",
+alignItems:  "center"   },
 
     /*Header container */
     headerContainer: {
-        height: "20%",
+        height: "30%",
         width: "100%",
         display: "flex",
         justifyContent: "center",
@@ -25,7 +29,7 @@ const styles = StyleSheet.create({
         display: "flex",
         width: "100%",
         height: "30%",
-        marginBottom: 40
+        marginBottom: 40,
     },
     buttonsContainer: {
         justifyContent: "space-around",
