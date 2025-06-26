@@ -4,6 +4,7 @@ import styles from '../ComponentStyles/GradientBackgroundStyles';
 
 interface GradientBackgroundProps {
   children: React.ReactNode;
+  style?: any
 }
 
 const GradientBackground = ({ children }: GradientBackgroundProps) => {

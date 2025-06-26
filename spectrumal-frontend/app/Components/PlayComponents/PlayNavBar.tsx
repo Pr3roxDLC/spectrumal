@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 import styles from "../../Styles/PlayStyles";
 import StartGame from "./StartGame";

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, GestureResponderEvent, Text } from 'react-native';
+import { View, GestureResponderEvent } from 'react-native';
 import SelectorBlip from '../SelectorBlip';
 import GlassContainer from '../../GlobalComponents/GlassContainer';
 import styles from '../../ComponentStyles/InteractableSelectorStyles';

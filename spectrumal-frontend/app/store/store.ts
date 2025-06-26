@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import createSagaMiddleWare from "redux-saga"
 import { navigationReducer } from "./navigationSlice";
 
 

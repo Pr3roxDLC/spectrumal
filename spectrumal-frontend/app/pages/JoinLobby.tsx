@@ -4,21 +4,12 @@ import WaitingForHost from '../Components/JoinLobbyComponents/WaitingForHost'
 import styles from '../Styles/JoinLobbyStyles';
 import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 import LobbyComponent from '../Components/StartLobbyComponents/LobbyComponent';
-import GradientBackground from '../Components/GlobalComponents/GradientBackground';
 
 
 const JoinLobby = () => {
     return (
         <>
             <HeaderBack
-                goToSettings={() => {
-                    props.setPreviousPage("Join Lobby");
-                    props.setPage('Settings');
-                }}
-                onPress={() => {
-                    props.setPreviousPage("Join Lobby");
-                    props.setPage("Play");
-                }}
             />
             <View style={styles.lobbyContainer}>
                 <WaitingForHost />

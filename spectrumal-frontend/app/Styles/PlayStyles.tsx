@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     navItem: {
         width: "50%",
         height: 40,
-        paddingVertical: 10,
         alignItems: "center",
     },
     navText: {

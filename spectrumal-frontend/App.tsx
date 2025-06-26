@@ -2,8 +2,8 @@
 import React from 'react';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
-import { SafeAreaView, StatusBar } from 'react-native';
-import { useAppDispatch, useAppSelector } from "./app/store/hooks";
+import { ImageBackground, SafeAreaView, StatusBar } from 'react-native';
+import { useAppSelector } from "./app/store/hooks";
 import { TabType } from "./app/store/navigationSlice";
 import GiveClue from './app/pages/GiveClue';
 import GuessClue from './app/pages/GuessClue';
@@ -13,9 +13,9 @@ import MainMenu from './app/pages/MainMenu';
 import SettingsPage from './app/pages/SettingsPage';
 import Lobby from './app/pages/StartLobby';
 import Play from './app/pages/Play';
-import { Provider } from 'react-redux';
-import store from './app/store/store';
 import GradientBackground from './app/Components/GlobalComponents/GradientBackground';
+import LeaderboardPage from './app/pages/LeaderboardPage';
+import WaitingForOthers from './app/pages/WaitingForOthers';
 
 export default function App () {
   const currentActiveTab = useAppSelector(
@@ -39,7 +39,9 @@ export default function App () {
               MAIN_MENU: <MainMenu></MainMenu>,
               PLAY: <Play></Play>,
               SETTINGS_PAGE: <SettingsPage></SettingsPage>,
-              START_LOBBY: <Lobby></Lobby>
+              START_LOBBY: <Lobby></Lobby>,
+              WAITING_FOR_OTHERS: <WaitingForOthers></WaitingForOthers>,
+              LEADERBOARD: <LeaderboardPage></LeaderboardPage>
             }[currentActiveTab?.type ?? TabType.MAIN_MENU]
           }
         </ApplicationProvider>

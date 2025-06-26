@@ -2,23 +2,17 @@ import { StyleSheet } from "react-native";
 import variables from "./Variables";
 
 const styles = StyleSheet.create({
-    container: {
-        justifyContent: "center",
-        alignItems: "center",
+    waitingForOthersContainer: {
+        flex: 1,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        
     },
-    joinGameContainer: {
-        marginTop: 10,
-        display: "flex",
-        width: "80%",
-        justifyContent: "center",
-        alignItems: "flex-start",
-    },
-    codeAndName: {
+    title: {
         color: variables.colors.whiteText,
-        fontSize: 25,
+        fontSize: 26,
         fontWeight: '600',
         textAlign: "center",
-        marginBottom: 20,
         textShadowColor: 'rgba(0, 0, 0, 0.5)',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 4,

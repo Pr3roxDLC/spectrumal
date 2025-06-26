@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",
-        paddingHorizontal: 8
+        paddingHorizontal: 8,
+        marginBottom: 20,
     },
     backIcon: {
         color: variables.colors.whiteText

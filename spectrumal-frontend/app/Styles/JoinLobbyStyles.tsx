@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import variables from "./Variables";
 
 const styles = StyleSheet.create({
     lobbyContainer: {
@@ -16,14 +17,15 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     waitingForHostText: {
-        color: "#fefefe",
+                color: variables.colors.whiteText,
         fontSize: 30,
-        textAlign: "center"
+        fontWeight: '600',
+        textAlign: "center",
+        marginBottom: 20,
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 4,
     },
-    loading: {
-        borderWidth: 3,
-        borderColor: "#fff",
-    }
 })
 
 export default styles
