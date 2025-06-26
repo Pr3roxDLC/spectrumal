@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import variables from "./Variables";
 
 const styles2 = StyleSheet.create({
     giveClueContainer: {
@@ -15,9 +16,14 @@ const styles2 = StyleSheet.create({
         alignItems: "flex-start"
     },
     giveAClue: {
-        color: "#fefefe",
-        fontSize: 30,
-        marginBottom: 30
+        color: variables.colors.whiteText,
+        fontSize: 28,
+        fontWeight: '600',
+        textAlign: "center",
+        marginBottom: 20,
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 4,
     },
     clueInput: {
         width: "100%",

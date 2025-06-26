@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import variables from "./Variables";
 
 const styles = StyleSheet.create({
     container: {
@@ -6,17 +7,21 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     joinGameContainer: {
-        marginTop: 30,
+        marginTop: 10,
         display: "flex",
         width: "80%",
         justifyContent: "center",
         alignItems: "flex-start",
     },
     codeAndName: {
-        color: "#fefefe",
+        color: variables.colors.whiteText,
         fontSize: 25,
+        fontWeight: '600',
+        textAlign: "center",
         marginBottom: 20,
-        fontWeight: 600
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 4,
     },
 })
 

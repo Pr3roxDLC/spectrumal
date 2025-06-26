@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native";
+import variables from "./Variables";
 
 const styles = StyleSheet.create({
     container: {
-flex: 1,
-justifyContent: "space-between",
-alignItems:  "center"   },
+        flex: 1,
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
 
     /*Header container */
     headerContainer: {
@@ -15,10 +17,14 @@ alignItems:  "center"   },
         alignItems: "center",
     },
     headerText: {
+        color: variables.colors.whiteText,
         fontSize: 56,
-        fontWeight: '700',
-        color: '#FFFFFF',
+        fontWeight: '600',
+        textAlign: "center",
         marginBottom: 40,
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 4,
         fontFamily: 'System',
     },
 
