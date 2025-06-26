@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "gen-api": "openapi-generator-cli generate -i  ./spectrumal-openapi.json -g typescript-axios -o ./app/api --skip-validate-spec"
+    "gen-api": "openapi-generator-cli generate -i  ./spectrumal-openapi.json -g typescript-fetch -o ./app/api --skip-validate-spec"
   },
   "dependencies": {
     "@eva-design/eva": "^2.2.0",

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { use, useEffect } from 'react';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 import { SafeAreaView, StatusBar } from 'react-native';
@@ -16,36 +16,37 @@ import Play from './app/pages/Play';
 import { Provider } from 'react-redux';
 import store from './app/store/store';
 import GradientBackground from './app/Components/GlobalComponents/GradientBackground';
+import { BaseAPI, DefaultApi } from './app/api';
 
-export default function App () {
+
+export default function App() {
+
   const currentActiveTab = useAppSelector(
     (state) => state.navigation.tabStack.at(-1)
   );
 
-
-
   return (
     <>
       <StatusBar hidden={true} />
-       <SafeAreaView style={{ flex: 1 }}>
-          <GradientBackground>
-        <ApplicationProvider {...eva} theme={eva.dark}>
-          {
+      <SafeAreaView style={{ flex: 1 }}>
+        <GradientBackground>
+          <ApplicationProvider {...eva} theme={eva.dark}>
             {
-              GIVE_CLUE: <GiveClue ></GiveClue>,
-              GUESS_CLUE: <GuessClue></GuessClue>,
-              HOW_TO_PLAY: <HowToPlay></HowToPlay>,
-              JOIN_LOBBY: <JoinLobby></JoinLobby>,
-              MAIN_MENU: <MainMenu></MainMenu>,
-              PLAY: <Play></Play>,
-              SETTINGS_PAGE: <SettingsPage></SettingsPage>,
-              START_LOBBY: <Lobby></Lobby>
-            }[currentActiveTab?.type ?? TabType.MAIN_MENU]
-          }
-        </ApplicationProvider>
+              {
+                GIVE_CLUE: <GiveClue ></GiveClue>,
+                GUESS_CLUE: <GuessClue></GuessClue>,
+                HOW_TO_PLAY: <HowToPlay></HowToPlay>,
+                JOIN_LOBBY: <JoinLobby></JoinLobby>,
+                MAIN_MENU: <MainMenu></MainMenu>,
+                PLAY: <Play></Play>,
+                SETTINGS_PAGE: <SettingsPage></SettingsPage>,
+                START_LOBBY: <Lobby></Lobby>
+              }[currentActiveTab?.type ?? TabType.MAIN_MENU]
+            }
+          </ApplicationProvider>
         </GradientBackground>
-        </SafeAreaView>
-        
+      </SafeAreaView>
+
 
     </>
   );

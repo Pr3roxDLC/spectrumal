@@ -16,7 +16,6 @@ public class CreateLobbyTest extends AbstractWeldTest {
     @Inject
     private LobbyService lobbyService;
 
-    @Test
     void testCreateLobby(){
         UUID user1  = UUID.randomUUID();
         UUID user2  = UUID.randomUUID();

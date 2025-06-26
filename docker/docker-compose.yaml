@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  tomcat:
+    image: tomcat:10.1.42-jdk21
+    container_name: spectrumal_backend
+    volumes:
+      - ./wars:/usr/local/tomcat/webapps
+    ports:
+      - '8080:8080'
+      - '1099:1099'
+      - '8000:8000'
+

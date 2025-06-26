@@ -1,0 +1,460 @@
+{
+  "openapi" : "3.0.1",
+  "paths" : {
+    "/game/create/{lobbyId}" : {
+      "post" : {
+        "operationId" : "createGame",
+        "parameters" : [ {
+          "name" : "lobbyId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateGameResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/{id}/round/{round}/{player}" : {
+      "get" : {
+        "operationId" : "getRoundInfo",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        }, {
+          "name" : "round",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "player",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RoundInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/{id}/score" : {
+      "get" : {
+        "operationId" : "getScore",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ScoreResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/{id}/guess/point/{player}" : {
+      "post" : {
+        "operationId" : "guessPoint",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        }, {
+          "name" : "player",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PointGuessRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : { }
+            }
+          }
+        }
+      }
+    },
+    "/game/{id}/guess/word/{player}" : {
+      "post" : {
+        "operationId" : "guessWord",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        }, {
+          "name" : "player",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/WordGuessRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/WordGuessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lobby/create" : {
+      "post" : {
+        "operationId" : "create",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateLobbyRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateLobbyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lobby/join/{code}" : {
+      "post" : {
+        "operationId" : "joinLobby",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/JoinLobbyRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/JoinLobbyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "CreateGameResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid"
+          },
+          "users" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "User" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Dimension" : {
+        "type" : "object",
+        "properties" : {
+          "left" : {
+            "type" : "string"
+          },
+          "right" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Point" : {
+        "type" : "object",
+        "properties" : {
+          "dim1" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "dim2" : {
+            "type" : "number",
+            "format" : "float"
+          }
+        }
+      },
+      "RoundInfo" : {
+        "type" : "object",
+        "properties" : {
+          "round" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "dimensions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Dimension"
+            }
+          },
+          "roundState" : {
+            "type" : "string",
+            "enum" : [ "FIND_CLUE", "FIND_POINT", "SHOW_RESULTS", "OVER" ]
+          },
+          "target" : {
+            "$ref" : "#/components/schemas/Point"
+          },
+          "wordGuess" : {
+            "$ref" : "#/components/schemas/WordGuess"
+          }
+        }
+      },
+      "RoundInfoResponse" : {
+        "type" : "object",
+        "properties" : {
+          "gameId" : {
+            "type" : "string",
+            "format" : "uuid"
+          },
+          "roundNumber" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "round" : {
+            "$ref" : "#/components/schemas/RoundInfo"
+          }
+        }
+      },
+      "WordGuess" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid"
+          },
+          "word" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Score" : {
+        "type" : "object",
+        "properties" : {
+          "previousScores" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "gainedScores" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "newScores" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "userGuesses" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/Point"
+            }
+          }
+        }
+      },
+      "ScoreResponse" : {
+        "type" : "object",
+        "properties" : {
+          "score" : {
+            "$ref" : "#/components/schemas/Score"
+          }
+        }
+      },
+      "PointGuessRequest" : {
+        "type" : "object",
+        "properties" : {
+          "guess" : {
+            "$ref" : "#/components/schemas/Point"
+          }
+        }
+      },
+      "WordGuessResponse" : {
+        "type" : "object",
+        "properties" : {
+          "dummy" : {
+            "type" : "string"
+          }
+        }
+      },
+      "WordGuessRequest" : {
+        "type" : "object",
+        "properties" : {
+          "word" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CreateLobbyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "lobbyId" : {
+            "type" : "string",
+            "format" : "uuid"
+          },
+          "code" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CreateLobbyRequest" : {
+        "type" : "object",
+        "properties" : {
+          "user" : {
+            "$ref" : "#/components/schemas/User"
+          }
+        }
+      },
+      "JoinLobbyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "lobbyId" : {
+            "type" : "string",
+            "format" : "uuid"
+          },
+          "users" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "JoinLobbyRequest" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}
