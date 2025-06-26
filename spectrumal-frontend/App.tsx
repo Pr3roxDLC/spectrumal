@@ -2,7 +2,7 @@
 import React from 'react';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { ImageBackground, SafeAreaView, StatusBar } from 'react-native';
 import { useAppSelector } from "./app/store/hooks";
 import { TabType } from "./app/store/navigationSlice";
 import GiveClue from './app/pages/GiveClue';

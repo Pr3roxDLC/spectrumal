@@ -3,10 +3,9 @@ import variables from "./Variables";
 
 const styles = StyleSheet.create({
     lobbyContainer: {
-        width: "100%",
-        height: "90%",
+        flex: 1,
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center"
     },
 

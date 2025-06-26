@@ -1,23 +1,23 @@
 import { StyleSheet } from "react-native";
+import variables from "../../Styles/Variables";
 
 const styles = StyleSheet.create({
-container: {
+  container: {
+    flex: 1,
     margin: 20,
     width: 350,
-    backgroundColor: '#1B2C56',
-    borderRadius: 20,
     padding: 20,
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 10,
+
   },
   title: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: '#ffffff',
-    marginBottom: 15,
+    color: variables.colors.whiteText,
+    fontWeight: '600',
+    fontSize: 26,
+    marginBottom: 20,
     textAlign: 'center',
+    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 1,
   },
   card: {
     flexDirection: 'row',
@@ -27,7 +27,7 @@ container: {
     marginBottom: 10,
   },
   rank: {
-    color: '#FFD700',
+    color: variables.colors.whiteText,
     fontSize: 18,
     width: 40,
     fontWeight: 'bold',
@@ -39,12 +39,16 @@ container: {
     marginRight: 15,
   },
   name: {
-    color: '#ffffff',
+    color: variables.colors.whiteText,
+    fontWeight: '600',
     fontSize: 18,
+    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 1,
     flex: 1,
   },
   score: {
-    color: '#76FF03',
+    color: variables.colors.whiteText,
     fontSize: 16,
     fontWeight: 'bold',
   },

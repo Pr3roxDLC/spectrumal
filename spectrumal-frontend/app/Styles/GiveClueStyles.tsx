@@ -3,7 +3,7 @@ import variables from "./Variables";
 
 const styles2 = StyleSheet.create({
     giveClueContainer: {
-        height: "90%",
+        flex: 1,
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center"
