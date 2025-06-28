@@ -5,7 +5,6 @@ import HeaderBack from '../Components/GlobalComponents/HeaderBack';
 import styles from '../Styles/StartLobbyStyles';
 import GameCode from '../Components/StartLobbyComponents/GameCode';
 import LobbyComponent from '../Components/StartLobbyComponents/LobbyComponent';
-import GradientBackground from '../Components/GlobalComponents/GradientBackground';
 import { useAppDispatch } from '../store/hooks';
 import { openTabOnTopAction, TabType } from '../store/navigationSlice';
 
@@ -16,6 +15,7 @@ const Lobby = () => {
 
   const handleStartGameClick = () => {
     dispatch(openTabOnTopAction({ type: TabType.GIVE_CLUE }))
+
   }
 
   return (
