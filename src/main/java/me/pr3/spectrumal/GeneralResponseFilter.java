@@ -9,7 +9,7 @@ import jakarta.ws.rs.ext.Provider;
 public class GeneralResponseFilter implements ContainerResponseFilter {
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext){
-        responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
-        responseContext.getHeaders().add("Access-Control-Allow-Headers", "*");
+       // responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
+       // responseContext.getHeaders().add("Access-Control-Allow-Headers", "*");
     }
 }

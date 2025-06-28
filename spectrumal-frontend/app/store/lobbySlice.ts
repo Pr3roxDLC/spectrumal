@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "../api/models";
 
-
-interface User {
-  id: string;
-  name: string;
-}
 
 interface LobbyState {
   lobbyCode: string | null;
