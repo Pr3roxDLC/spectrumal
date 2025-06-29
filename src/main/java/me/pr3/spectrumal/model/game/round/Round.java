@@ -1,17 +1,15 @@
 package me.pr3.spectrumal.model.game.round;
 
-import me.pr3.spectrumal.model.game.core.Dimension;
 import me.pr3.spectrumal.model.game.core.Point;
 import me.pr3.spectrumal.model.game.core.WordGuess;
 import me.pr3.spectrumal.model.user.User;
 
-import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Round {
     public int round;
-    public List<Dimension> dimensions;
+    public Spectrum spectrum;
     public RoundState roundState;
     //The location on the spectrum users are supposed to find a word for
     public ConcurrentHashMap<UUID, Point> userTargets = new ConcurrentHashMap<>();

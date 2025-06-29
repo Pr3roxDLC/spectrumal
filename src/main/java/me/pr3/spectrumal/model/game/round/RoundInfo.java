@@ -1,14 +1,11 @@
 package me.pr3.spectrumal.model.game.round;
 
-import me.pr3.spectrumal.model.game.core.Dimension;
 import me.pr3.spectrumal.model.game.core.Point;
 import me.pr3.spectrumal.model.game.core.WordGuess;
 
-import java.util.List;
-
 public class RoundInfo {
     public int round;
-    public List<Dimension> dimensions;
+    public Spectrum dimensions;
     public Round.RoundState roundState;
     public Point target;
     public WordGuess wordGuess;
@@ -16,14 +13,14 @@ public class RoundInfo {
     public RoundInfo() {
     }
 
-    public RoundInfo(Round.RoundState roundState, List<Dimension> dimensions, int round, Point target) {
+    public RoundInfo(Round.RoundState roundState, Spectrum dimensions, int round, Point target) {
         this.roundState = roundState;
         this.dimensions = dimensions;
         this.round = round;
         this.target = target;
     }
 
-    public RoundInfo(Round.RoundState roundState, List<Dimension> dimensions, int round,  WordGuess wordGuess) {
+    public RoundInfo(Round.RoundState roundState, Spectrum dimensions, int round, WordGuess wordGuess) {
         this.roundState = roundState;
         this.dimensions = dimensions;
         this.round = round;
@@ -38,11 +35,11 @@ public class RoundInfo {
         this.round = round;
     }
 
-    public List<Dimension> getDimensions() {
+    public Spectrum getDimensions() {
         return dimensions;
     }
 
-    public void setDimensions(List<Dimension> dimensions) {
+    public void setDimensions(Spectrum dimensions) {
         this.dimensions = dimensions;
     }
 

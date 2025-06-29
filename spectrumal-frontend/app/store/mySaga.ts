@@ -1,6 +1,6 @@
 import { takeEvery, call, put, take, cancelled } from 'redux-saga/effects';
 import { EventChannel, eventChannel } from 'redux-saga';
-import { createNewLobbyAction, setLobbyCodeAction, setLobbyIdAction, setListOfUsersAction, joinLobbyAction } from './lobbySlice';
+import { createNewLobbyAction, setLobbyCodeAction, setLobbyIdAction, setListOfUsersAction, joinLobbyAction, addUserAction } from './lobbySlice';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { Configuration, CreateLobbyResponse, DefaultApi, DefaultConfig, JoinLobbyResponse } from '../api';
 import { openTabOnTopAction, TabType } from './navigationSlice';
@@ -63,8 +63,8 @@ export function createWebSocketChannel(socket: WebSocket): EventChannel<any> {
           const [key, value] = pair.split('=');
           if (key) payload[key.trim()] = value?.trim() ?? '';
         });
-        
-        emit(handleMessageAction({ type: type, payload: payload}));
+
+        emit(handleMessageAction({ type: type, payload: payload }));
       } catch (err) {
         console.error("Error parsing WebSocket message:", err);
         emit(handleMessageAction({ type: 'ERROR', payload: { message: 'Failed to parse message' } }));
@@ -87,12 +87,12 @@ export function createWebSocketChannel(socket: WebSocket): EventChannel<any> {
 function* joinLobbySaga(action: PayloadAction<{ id: string; name: string; code: string }>) {
   const { id, name, code } = action.payload;
 
-   try {
-    const response: JoinLobbyResponse = yield call(() => 
+  try {
+    const response: JoinLobbyResponse = yield call(() =>
       new DefaultApi().joinLobby({ joinLobbyRequest: { id, name }, code })
     );
     console.log(response)
-  
+
     yield put(setLobbyCodeAction(action.payload.code))
     yield put(setLobbyIdAction(response.lobbyId ?? ""))
     yield put(setListOfUsersAction(response.users ?? []))
@@ -103,17 +103,31 @@ function* joinLobbySaga(action: PayloadAction<{ id: string; name: string; code: 
   }
 }
 
+function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Record<string, string> }>) {
+  const { type, payload } = action.payload;
+
+  switch (type) {
+    case 'LOBBY_PLAYER_JOIN':
+      yield put(addUserAction({ id: payload.id, name: payload.name }));
+      break;
+    default:
+      console.warn(`Unhandled message type: ${type}`);
+  }
+
+}
+
 function* appSaga() {
   yield takeEvery(createNewLobbyAction.type,
     createNewLobbySaga
   )
   yield takeEvery(connectToWebSocketAction.type, connectToWebSocketSaga)
-    yield takeEvery(createNewLobbyAction.type,
-        createNewLobbySaga
-    )
-    yield takeEvery(joinLobbyAction.type,
-      joinLobbySaga
-    )
+
+  yield takeEvery(joinLobbyAction.type,
+    joinLobbySaga
+  )
+  yield takeEvery(handleMessageAction.type,
+    onHandleMessageSaga
+  )
 }
 
 export default appSaga

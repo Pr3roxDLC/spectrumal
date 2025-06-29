@@ -7,6 +7,8 @@ export interface Props {
   placeholder: string
   value: any
   onChange: (text: string) => void
+  value?: any
+  onChange?: (text: string) => void
 }
 
 const CustomTextInput = (props: Props) => {

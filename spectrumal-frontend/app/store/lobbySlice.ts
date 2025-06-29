@@ -27,6 +27,14 @@ const lobbySlice = createSlice({
     setListOfUsersAction: (state, action: PayloadAction<User[]>) => {
       state.users = action.payload;
     },
+    addUserAction: (state, action: PayloadAction<User>) => {
+      if (!state.users.some(user => user.id === action.payload.id)) {
+        state.users.push(action.payload);
+      }
+    },
+    removeUserAction: (state, action: PayloadAction<string>) => {
+      state.users = state.users.filter(user => user.id !== action.payload);
+    },
     createNewLobbyAction: (state, action: PayloadAction<{ id: string; name: string }>) => { },
     joinLobbyAction: (state, action: PayloadAction<{ id: string; name: string; code: string }>) => {
     },
@@ -37,6 +45,8 @@ export const {
   setLobbyCodeAction,
   setLobbyIdAction,
   setListOfUsersAction,
+  addUserAction,
+  removeUserAction,
   createNewLobbyAction,
   joinLobbyAction
 } = lobbySlice.actions;

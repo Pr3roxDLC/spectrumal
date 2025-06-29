@@ -8,6 +8,7 @@ import me.pr3.spectrumal.model.game.core.Point;
 import me.pr3.spectrumal.model.game.core.WordGuess;
 import me.pr3.spectrumal.model.game.round.*;
 import me.pr3.spectrumal.model.user.User;
+import me.pr3.spectrumal.service.ai.SpectrumGenerator;
 import me.pr3.spectrumal.service.game.websocket.GameStateBroadcaster;
 import me.pr3.spectrumal.service.game.websocket.Message;
 import me.pr3.spectrumal.service.lobby.LobbyCache;
@@ -38,7 +39,7 @@ public class GameService {
         assert state != null;
         Round round = state.getRounds().get(roundNumber - 1);
         if (round.roundState == Round.RoundState.FIND_CLUE) {
-            RoundInfo roundInfo = new RoundInfo(round.roundState, round.dimensions, roundNumber, round.userTargets.get(player));
+            RoundInfo roundInfo = new RoundInfo(round.roundState, round.spectrum, roundNumber, round.userTargets.get(player));
             RoundInfoResponse roundInfoResponse = new RoundInfoResponse();
             roundInfoResponse.setRound(roundInfo);
             roundInfoResponse.setRoundNumber(roundNumber);
@@ -46,7 +47,7 @@ public class GameService {
             return roundInfoResponse;
         } else if (round.roundState == Round.RoundState.FIND_POINT) {
             WordGuess wordGuess = round.userWords.get(round.userForCurrentPointGuess.getId());
-            RoundInfo roundInfo = new RoundInfo(round.roundState, round.dimensions, roundNumber, wordGuess);
+            RoundInfo roundInfo = new RoundInfo(round.roundState, round.spectrum, roundNumber, wordGuess);
             RoundInfoResponse roundInfoResponse = new RoundInfoResponse();
             roundInfoResponse.setRound(roundInfo);
             roundInfoResponse.setRoundNumber(roundNumber);
@@ -87,7 +88,7 @@ public class GameService {
     private Round createRound(GameState gameState) {
         Round round = new Round();
         round.roundState = Round.RoundState.FIND_CLUE;
-        round.dimensions = List.of(new Dimension("Hot", "Ick"), new Dimension("Useful", "Useless"));
+        round.spectrum = new Spectrum(List.of(new Dimension("Hot", "Ick"), new Dimension("Useful", "Useless")), "A Skill to have");
 
         for (User user : gameState.getUsers()) {
             Random random = new Random();
