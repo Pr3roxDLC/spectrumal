@@ -5,8 +5,6 @@ import styles from '../ComponentStyles/CustomTextInputStyles';
 
 export interface Props {
   placeholder: string
-  value: any
-  onChange: (text: string) => void
   value?: any
   onChange?: (text: string) => void
 }
