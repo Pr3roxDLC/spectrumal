@@ -1,18 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 import styles from '../../Styles/JoinGameStyles'
 import Button from '../GlobalComponents/Button'
 import CustomTextInput from '../GlobalComponents/CustomTextInput'
 import { useAppDispatch } from '../../store/hooks'
-import { openTabOnTopAction, TabType } from '../../store/navigationSlice'
+import { joinLobbyAction } from '../../store/lobbySlice'
+import { v4 as uuidv4 } from 'uuid';
 
 
 
 const JoinGame = () => {
   const dispatch = useAppDispatch()
+    const [name, setName] = useState("")
+    const [code, setCode] = useState("")
+
+    const handleUsernameInput = (text: string) => {
+    setName(text)
+  }
+
+  const handleCodeInput = (text: string) => {
+      setCode(text)
+  }
 
   const handleJoinLobbyClick = () => {
-    dispatch(openTabOnTopAction({ type: TabType.JOIN_LOBBY }))
+    const id = uuidv4(); 
+    dispatch(joinLobbyAction({id, name, code}))
   }
 
 
@@ -20,9 +32,9 @@ const JoinGame = () => {
     <View style={styles.container}>
       <View style={styles.joinGameContainer}>
         <Text style={styles.codeAndName}>Game code</Text>
-        <CustomTextInput placeholder='Enter your game code' />
+        <CustomTextInput value={code} onChange={handleCodeInput} placeholder='Enter your game code' />
         <Text style={styles.codeAndName}>Name</Text>
-        <CustomTextInput placeholder='Enter your name' />
+        <CustomTextInput value={name} onChange={handleUsernameInput} placeholder='Enter your name' />
         <Button
           label="Join Lobby"
           style={{ width: "100%" }}

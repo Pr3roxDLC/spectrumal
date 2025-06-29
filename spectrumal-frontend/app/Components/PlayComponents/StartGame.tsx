@@ -5,14 +5,12 @@ import styles from '../../Styles/StartGameStyles'
 import Button from '../GlobalComponents/Button'
 import CustomTextInput from '../GlobalComponents/CustomTextInput';
 import { useAppDispatch } from '../../store/hooks';
-import { openTabOnTopAction, TabType } from '../../store/navigationSlice';
 import { createNewLobbyAction } from '../../store/lobbySlice';
 
 
 const StartGame = () => {
   const dispatch = useAppDispatch()
   const [name, setName] = useState("")
-
   const handleUsernameInput = (text: string) => {
     setName(text)
   }

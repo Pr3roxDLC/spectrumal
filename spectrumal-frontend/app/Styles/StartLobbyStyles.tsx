@@ -79,12 +79,15 @@ const styles = StyleSheet.create({
     usersInLobbyContainer: {
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-around"
+        width: "100%",
+        flexWrap: "wrap",
+        justifyContent: "flex-start"
     },
     userAndName: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        width: "25%"
     },
     userName: {
         paddingVertical: 10,
