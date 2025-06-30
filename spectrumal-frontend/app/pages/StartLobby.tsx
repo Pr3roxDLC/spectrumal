@@ -7,6 +7,7 @@ import GameCode from '../Components/StartLobbyComponents/GameCode';
 import LobbyComponent from '../Components/StartLobbyComponents/LobbyComponent';
 import { useAppDispatch } from '../store/hooks';
 import { openTabOnTopAction, TabType } from '../store/navigationSlice';
+import { startGameAction } from '../store/gameSlice';
 
 
 
@@ -14,7 +15,7 @@ const Lobby = () => {
   const dispatch = useAppDispatch()
 
   const handleStartGameClick = () => {
-    dispatch(openTabOnTopAction({ type: TabType.GIVE_CLUE }))
+    dispatch(startGameAction())
 
   }
 

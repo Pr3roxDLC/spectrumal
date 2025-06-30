@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { navigationReducer } from "./navigationSlice";
 import { lobbyReducer } from "./lobbySlice";
+import { gameReducer } from "./gameSlice";
 import appSaga from "./mySaga";
 
 
@@ -11,7 +12,8 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
     reducer: { 
         navigation: navigationReducer,
-        lobby: lobbyReducer
+        lobby: lobbyReducer,
+        game: gameReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware)
