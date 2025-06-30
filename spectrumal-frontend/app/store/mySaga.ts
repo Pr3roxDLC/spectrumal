@@ -2,11 +2,13 @@ import { takeEvery, call, put, take, cancelled } from 'redux-saga/effects';
 import { EventChannel, eventChannel } from 'redux-saga';
 import { createNewLobbyAction, setLobbyCodeAction, setLobbyIdAction, setListOfUsersAction, joinLobbyAction, addUserAction } from './lobbySlice';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { Configuration, CreateLobbyResponse, DefaultApi, DefaultConfig, JoinLobbyResponse } from '../api';
+import { Configuration, CreateGameResponse, CreateLobbyResponse, DefaultApi, DefaultConfig, JoinLobbyResponse } from '../api';
 import { openTabOnTopAction, TabType } from './navigationSlice';
 import { connectToWebSocketAction, handleMessageAction, setConnectedAction } from './eventsSlice';
+import { setGameIdAction, startGameAction } from './gameSlice';
+import { appSelect, useAppSelector } from './hooks';
 
-const HOST = "localhost:9980";
+const HOST = "localhost:8080";
 
 const API_BASE_URL = "http://" + HOST + "/api";
 const WEBSOCKET_BASE_URL = "ws://" + HOST + "/ws";
@@ -87,9 +89,9 @@ export function createWebSocketChannel(socket: WebSocket): EventChannel<any> {
 function* joinLobbySaga(action: PayloadAction<{ id: string; name: string; code: string }>) {
   const { id, name, code } = action.payload;
 
-  try {
-    const response: JoinLobbyResponse = yield call(() =>
-      new DefaultApi().joinLobby({ joinLobbyRequest: { id, name }, code })
+   try {
+    const response: JoinLobbyResponse = yield call(() => 
+      API.joinLobby({ joinLobbyRequest: { id, name }, code })
     );
     console.log(response)
 
@@ -103,17 +105,23 @@ function* joinLobbySaga(action: PayloadAction<{ id: string; name: string; code: 
   }
 }
 
-function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Record<string, string> }>) {
-  const { type, payload } = action.payload;
+function* startGameSaga (action: PayloadAction<void>) {
+  let lobbyId: string = yield appSelect(state => state.lobby.lobbyId)
 
-  switch (type) {
-    case 'LOBBY_PLAYER_JOIN':
-      yield put(addUserAction({ id: payload.id, name: payload.name }));
-      break;
-    default:
-      console.warn(`Unhandled message type: ${type}`);
+
+  try {
+    const response: CreateGameResponse = yield call(() => 
+      API.createGame({lobbyId: lobbyId})
+    );
+    console.log(response)
+  
+    yield put(setGameIdAction(response.id ?? ""))
+     yield put(openTabOnTopAction({ type: TabType.GIVE_CLUE }));
+
+
+  } catch (error) {
+    console.error("Error starting game:", error);
   }
-
 }
 
 function* appSaga() {
@@ -121,13 +129,18 @@ function* appSaga() {
     createNewLobbySaga
   )
   yield takeEvery(connectToWebSocketAction.type, connectToWebSocketSaga)
-
-  yield takeEvery(joinLobbyAction.type,
-    joinLobbySaga
-  )
-  yield takeEvery(handleMessageAction.type,
-    onHandleMessageSaga
-  )
+    yield takeEvery(createNewLobbyAction.type,
+        createNewLobbySaga
+    )
+    yield takeEvery(joinLobbyAction.type,
+      joinLobbySaga
+    )
+    yield takeEvery(startGameAction.type,
+      startGameSaga
+    )
+    yield takeEvery(handleMessageAction.type, 
+      onHandleMessageSaga
+    )
 }
 
 export default appSaga

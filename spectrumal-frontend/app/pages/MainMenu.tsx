@@ -19,6 +19,10 @@ const MainMenu = () => {
     dispatch(openTabOnTopAction({ type: TabType.HOW_TO_PLAY }))
   }
 
+  const handleDemoPress = () => {
+    dispatch(openTabOnTopAction({ type: TabType.LEADERBOARD }))
+  }
+
   return (
     <>
       <View style={styles.container}>
@@ -32,7 +36,7 @@ const MainMenu = () => {
           <View style={styles.buttonsContainer}>
             <Button label='Play' onPress={handlePlayClick} style={{ width: "80%" }}></Button>
             <Button label='How To Play' onPress={handleHowToPlayClick} style={{ width: "80%" }}></Button>
-            <Button label='Demo' style={{ width: "80%" }}></Button>
+            <Button onPress={handleDemoPress} label='Demo' style={{ width: "80%" }}></Button>
           </View>
         </View>
       </View>
