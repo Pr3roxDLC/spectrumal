@@ -124,6 +124,19 @@ function* startGameSaga (action: PayloadAction<void>) {
   }
 }
 
+function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Record<string, string> }>) {
+  const { type, payload } = action.payload;
+
+  switch (type) {
+    case 'LOBBY_PLAYER_JOIN':
+      yield put(addUserAction({ id: payload.id, name: payload.name }));
+      break;
+    default:
+      console.warn(`Unhandled message type: ${type}`);
+  }
+
+}
+
 function* appSaga() {
   yield takeEvery(createNewLobbyAction.type,
     createNewLobbySaga
