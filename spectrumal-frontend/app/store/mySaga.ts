@@ -98,6 +98,7 @@ function* joinLobbySaga(action: PayloadAction<{ id: string; name: string; code: 
     yield put(setLobbyCodeAction(action.payload.code))
     yield put(setLobbyIdAction(response.lobbyId ?? ""))
     yield put(setListOfUsersAction(response.users ?? []))
+    yield put (connectToWebSocketAction({userId: id}))
     yield put(openTabOnTopAction({ type: TabType.JOIN_LOBBY }));
 
   } catch (error) {
@@ -130,7 +131,13 @@ function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Rec
   switch (type) {
     case 'LOBBY_PLAYER_JOIN':
       yield put(addUserAction({ id: payload.id, name: payload.name }));
+      console.log(action.payload)
       break;
+    case "LOBBY_GAME_START":
+      yield put (openTabOnTopAction({type: TabType.GIVE_CLUE}))
+       yield put(setGameIdAction(payload.id))
+      console.log(payload)
+      break
     default:
       console.warn(`Unhandled message type: ${type}`);
   }
