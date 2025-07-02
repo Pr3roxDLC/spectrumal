@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import variables from '../../Styles/Variables';
+import variables from '../../../assets/variables/Variables';
 
 const SelectorBlip = () => (
     <View style={styles.circle} />

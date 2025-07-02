@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
 import SelectorBlip from '../SelectorBlip';
-import GlassContainer from '../../GlobalComponents/GlassContainer';
+import GlassContainer from '../../glassContainer/GlassContainer';
 import SelectorAxis from '../interactable/SelectorAxis';
-import styles from '../../ComponentStyles/ReadOnlySelectorStyles';
+import styles from './ReadOnlySelectorStyles';
 
 type ReadOnlySelectorProps = {
     x: number;

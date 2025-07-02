@@ -2,20 +2,20 @@
 import React from 'react';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
-import { ImageBackground, SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { useAppSelector } from "./app/store/hooks";
-import { TabType } from "./app/store/navigationSlice";
-import GiveClue from './app/pages/GiveClue';
-import GuessClue from './app/pages/GuessClue';
-import HowToPlay from './app/pages/HowToPlay';
-import JoinLobby from './app/pages/JoinLobby';
-import MainMenu from './app/pages/MainMenu';
-import SettingsPage from './app/pages/SettingsPage';
-import Lobby from './app/pages/StartLobby';
-import Play from './app/pages/Play';
-import GradientBackground from './app/Components/GlobalComponents/GradientBackground';
-import LeaderboardPage from './app/pages/LeaderboardPage';
-import WaitingForOthers from './app/pages/WaitingForOthers';
+import { TabType } from "./app/store/features/navigation/navigationSlice";
+import GiveClue from './app/pages/GiveClue/GiveClue';
+import GuessClue from './app/pages/GuessClue/GuessClue';
+import HowToPlay from './app/pages/HowToPlay/HowToPlay';
+import JoinLobby from './app/pages/JoinLobby/JoinLobby';
+import MainMenu from './app/pages/MainMenu/MainMenu';
+import SettingsPage from './app/pages/SettingsPage/SettingsPage';
+import Lobby from './app/pages/StartLobby/StartLobby';
+import Play from './app/pages/Play/Play';
+import GradientBackground from './app/components/gradientBackground/GradientBackground';
+import LeaderboardPage from './app/pages/LeaderboardPage/LeaderboardPage';
+import WaitingForOthers from './app/pages/WaitingForOthers/WaitingForOthers';
 
 export default function App () {
   const currentActiveTab = useAppSelector(

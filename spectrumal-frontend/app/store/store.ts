@@ -1,9 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { navigationReducer } from "./navigationSlice";
-import { lobbyReducer } from "./lobbySlice";
-import { gameReducer } from "./gameSlice";
-import appSaga from "./mySaga";
-
+import { navigationReducer } from "./features/navigation/navigationSlice";
+import { lobbyReducer } from "./features/lobby/lobbySlice";
+import { gameReducer } from "./features/game/gameSlice";
+import rootSaga from "./rootSaga";
 
 const createSagaMiddleware = require("redux-saga").default;
 const sagaMiddleware = createSagaMiddleware();
@@ -20,7 +19,7 @@ export const store = configureStore({
 
 })
 
-sagaMiddleware.run(appSaga)
+sagaMiddleware.run(rootSaga)
 
 
 export type State = ReturnType<typeof store.getState>

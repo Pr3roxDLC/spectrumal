@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, GestureResponderEvent } from 'react-native';
 import SelectorBlip from '../SelectorBlip';
-import GlassContainer from '../../GlobalComponents/GlassContainer';
-import styles from '../../ComponentStyles/InteractableSelectorStyles';
+import GlassContainer from '../../glassContainer/GlassContainer'
+import styles from './InteractableSelectorStyles';
 import SelectorAxis from './SelectorAxis';
 
 type SelectorProps = {
