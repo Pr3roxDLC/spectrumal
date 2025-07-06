@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "../api/models";
+import { User } from "../../../api/models";
 
 
 interface LobbyState {
@@ -35,8 +35,8 @@ const lobbySlice = createSlice({
     removeUserAction: (state, action: PayloadAction<string>) => {
       state.users = state.users.filter(user => user.id !== action.payload);
     },
-    createNewLobbyAction: (state, action: PayloadAction<{ id: string; name: string }>) => { },
-    joinLobbyAction: (state, action: PayloadAction<{ id: string; name: string; code: string }>) => {
+    createNewLobbyAction: (state, action: PayloadAction<{ playerId: string; name: string }>) => { },
+    joinLobbyAction: (state, action: PayloadAction<{ playerId: string; name: string; code: string }>) => {
     },
   }
 });

@@ -1,18 +1,24 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import styles from './InteractableSelectorStyles'
+import { useAppSelector } from '../../../store/hooks'
 
 const InteractableAxis = () => {
+const top = useAppSelector(state => state.game.dim2?.left)
+const bottom = useAppSelector(state => state.game.dim2?.right)
+const left = useAppSelector(state => state.game.dim1?.left)
+const right = useAppSelector(state => state.game.dim1?.right)
+
   return (
     <>
                   <Text style={styles.leftXaxisText}>
-                Left
+                {left}
             </Text>
             <Text style={styles.rightXaxisText}>
-                Right
+                {right}
             </Text>
-            <Text style={styles.topYaxisText}>Top</Text>
-            <Text style={styles.bottomYaxisText}>Bottom</Text>
+            <Text style={styles.topYaxisText}>{top}</Text>
+            <Text style={styles.bottomYaxisText}>{bottom}</Text>
 
             <View style={styles.xAxisLine} />
             <View style={styles.yAxisLine} />

@@ -4,6 +4,7 @@ import variables from "../../../../assets/variables/Variables";
 const styles = StyleSheet.create({
     touchableView: {
         width: 300,
+        
         height: 300,
         backgroundColor: '#00000000', // Transparent background
         justifyContent: 'center',
@@ -12,9 +13,10 @@ const styles = StyleSheet.create({
     rightXaxisText: {
         position: 'absolute',
         top: 140,
-        right: -45,
+        right: -30,
+        transform: [{ rotate: '90deg' }],
         color: variables.colors.whiteText,
-        fontSize: 15,
+        fontSize: 17,
         fontWeight: '600',
         textAlign: "center",
         marginBottom: 20,
@@ -24,10 +26,11 @@ const styles = StyleSheet.create({
     },
     leftXaxisText: {
         position: 'absolute',
+        transform: [{ rotate: '-90deg' }],
         top: 140,
         left: -30,
         color: variables.colors.whiteText,
-        fontSize: 15,
+        fontSize: 17,
         fontWeight: '600',
         textAlign: "center",
         marginBottom: 20,
@@ -39,7 +42,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: -30,
         left: 100,
-        fontSize: 15,
+        fontSize: 17,
         color: variables.colors.whiteText,
         textAlign: "center",
         width: 100,
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: -30,
         left: 100,
-        fontSize: 15,
+        fontSize: 17,
         color: variables.colors.whiteText,
         width: 100,
         textAlign: "center",

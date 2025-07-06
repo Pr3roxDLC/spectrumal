@@ -24,7 +24,7 @@ const JoinGame = () => {
 
   const handleJoinLobbyClick = () => {
     const id = uuidv4(); 
-    dispatch(joinLobbyAction({id, name, code}))
+    dispatch(joinLobbyAction({playerId: id, name: name, code: code}))
   }
 
 

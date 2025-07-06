@@ -3,11 +3,15 @@ import styles from './GiveClueStyles'
 import { View, Text } from 'react-native'
 import CustomTextInput from '../../components/customTextInput/CustomTextInput'
 
-const GiveClueField = () => {
+export interface Props {
+  setClueInput: React.Dispatch<React.SetStateAction<string>>
+}
+
+const GiveClueField = (props: Props) => {
   return (
     <View style={styles.clueContainer}>
         <Text style={styles.giveAClue}>Give a clue</Text>
-        <CustomTextInput placeholder="Type your clue here" />
+        <CustomTextInput onChange={props.setClueInput} placeholder="Type your clue here" />
     </View>
   )
 }

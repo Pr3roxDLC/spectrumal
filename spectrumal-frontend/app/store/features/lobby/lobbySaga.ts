@@ -1,48 +1,49 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { call, put, take, takeEvery } from "redux-saga/effects";
-import { Configuration, CreateLobbyResponse, DefaultApi, JoinLobbyResponse } from "../../../api";
+import { call, put, takeEvery } from "redux-saga/effects";
+import { CreateLobbyResponse, JoinLobbyResponse } from "../../../api";
 import { connectToWebSocketAction } from "../events/eventsSlice";
 import { openTabOnTopAction, TabType } from "../navigation/navigationSlice";
 import { setLobbyCodeAction, setLobbyIdAction, setListOfUsersAction, createNewLobbyAction, joinLobbyAction } from "./lobbySlice";
+import { setPlayerIdAction } from "../game/gameSlice";
+import { API }  from "../../api"
 
-const HOST = "localhost:8080";
 
-const API_BASE_URL = "http://" + HOST + "/api";
-const API = new DefaultApi(new Configuration({ basePath: API_BASE_URL }));
 
-function* createNewLobbySaga(action: PayloadAction<{ id: string; name: string }>) {
-  const { id, name } = action.payload;
+function* createNewLobbySaga(action: PayloadAction<{ playerId: string; name: string }>) {
+  const { playerId, name } = action.payload;
 
   try {
     const response: CreateLobbyResponse = yield call(() =>
-      API.create({ createLobbyRequest: { user: { id, name } } })
+      API.create({ createLobbyRequest: { user: { id: playerId, name: name } } })
     );
 
     yield put(setLobbyCodeAction(response.code ?? ""));
     yield put(setLobbyIdAction(response.lobbyId ?? ""));
-    yield put(setListOfUsersAction([{ id, name }]));
-    yield put(connectToWebSocketAction({ userId: id }));
+    yield put(setListOfUsersAction([{ id: playerId, name: name }]));
+    yield put(connectToWebSocketAction({ userId: playerId }));
     yield put(openTabOnTopAction({ type: TabType.START_LOBBY }));
+    yield put(setPlayerIdAction(playerId))
 
   } catch (error) {
     console.error("Error creating lobby:", error);
   }
 }
 
-function* joinLobbySaga(action: PayloadAction<{ id: string; name: string; code: string }>) {
-  const { id, name, code } = action.payload;
+function* joinLobbySaga(action: PayloadAction<{ playerId: string; name: string; code: string }>) {
+  const { playerId, name, code } = action.payload;
 
    try {
     const response: JoinLobbyResponse = yield call(() => 
-      API.joinLobby({ joinLobbyRequest: { id, name }, code })
+      API.joinLobby({ joinLobbyRequest: { id: playerId, name: name }, code: code })
     );
     console.log(response)
 
     yield put(setLobbyCodeAction(action.payload.code))
     yield put(setLobbyIdAction(response.lobbyId ?? ""))
     yield put(setListOfUsersAction(response.users ?? []))
-    yield put (connectToWebSocketAction({userId: id}))
+    yield put (connectToWebSocketAction({userId: playerId}))
     yield put(openTabOnTopAction({ type: TabType.JOIN_LOBBY }));
+    yield put(setPlayerIdAction(action.payload.playerId))
 
   } catch (error) {
     console.error("Error joining lobby:", error);

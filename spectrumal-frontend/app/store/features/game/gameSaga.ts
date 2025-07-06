@@ -1,15 +1,10 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { Configuration, CreateGameResponse, DefaultApi, RoundInfoResponse } from "../../../api";
-import { appSelect } from "../../hooks";
-import { openTabOnTopAction, TabType } from "../navigation/navigationSlice";
-import { setGameIdAction, fetchRoundInfoAction, startGameAction } from "./gameSlice";
-
-const HOST = "localhost:8080";
-
-const API_BASE_URL = "http://" + HOST + "/api";
-const WEBSOCKET_BASE_URL = "ws://" + HOST + "/ws";
-const API = new DefaultApi(new Configuration({ basePath: API_BASE_URL }));
+import { CreateGameResponse, RoundInfoResponse } from "../../../api";
+import { appSelect, useAppSelector } from "../../hooks";
+import { changeTabAction, openTabOnTopAction, TabType } from "../navigation/navigationSlice";
+import { setGameIdAction, fetchRoundInfoAction, startGameAction, setTargetAction, setDim1Action, setDim2Action, submitClueAction } from "./gameSlice";
+import { API } from "../../api";
 
 
 function* startGameSaga (action: PayloadAction<void>) {
@@ -32,12 +27,16 @@ function* startGameSaga (action: PayloadAction<void>) {
   }
 }
 
-function* fetchRoundInfoSaga (action: PayloadAction<{ id: string  }>) {
+function* fetchRoundInfoSaga (action: PayloadAction<string>) {
+    let playerId: string = yield appSelect(state => state.game.playerId)
 try {
     const response: RoundInfoResponse = yield call(() => 
-      API.getRoundInfo({id: "", round: 1, player: ""})
+      API.getRoundInfo({id: action.payload, round: 1, player: playerId})
     );
     console.log(response)
+    yield put (setTargetAction(response.round?.target ?? {dim1: 0, dim2: 0}))
+    yield put(setDim1Action(response.round?.dimensions?.[0] ?? {left: "", right: ""}))
+   yield put(setDim2Action(response.round?.dimensions?.[1] ?? {left: "", right: ""}))
   
 
 
@@ -46,11 +45,28 @@ try {
   }
 }
 
+function* submitClueSaga (action: PayloadAction<string>) {
+let gameId: string = yield appSelect(state => state.game.gameId)
+let playerId: string = yield appSelect(state => state.game.playerId)
+
+try {
+  yield call (() => 
+  API.guessWord({id: gameId, player: playerId, wordGuessRequest: {word: action.payload}}))
+
+  yield put (changeTabAction({type: TabType.WAITING_FOR_OTHERS}))
+} catch(error){
+  console.error("Error:", error);
+}
+}
+
 export function* watchGame() {
   yield takeEvery(startGameAction.type,
     startGameSaga
   )
   yield takeEvery(fetchRoundInfoAction.type,
     fetchRoundInfoSaga
+  )
+  yield takeEvery(submitClueAction.type,
+    submitClueSaga
   )
 }

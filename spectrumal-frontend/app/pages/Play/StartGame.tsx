@@ -17,7 +17,7 @@ const StartGame = () => {
 
   const handleStartGameClick = () => {
     const id = uuidv4(); 
-    dispatch(createNewLobbyAction({ id , name }));
+    dispatch(createNewLobbyAction({ playerId: id , name: name }));
   }
 
   return (

@@ -19,7 +19,7 @@ const MainMenu = () => {
   }
 
   const handleDemoPress = () => {
-    dispatch(openTabOnTopAction({ type: TabType.LEADERBOARD }))
+    dispatch(openTabOnTopAction({ type: TabType.GAME_STARTING }))
   }
 
   return (

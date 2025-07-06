@@ -1,17 +1,11 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { call, take, put, cancelled, takeEvery } from "redux-saga/effects";
-import { DefaultApi, Configuration } from "../../../api";
 import { connectToWebSocketAction, handleMessageAction } from "./eventsSlice";
 import { EventChannel, eventChannel } from "redux-saga";
 import { setGameIdAction, fetchRoundInfoAction } from "../game/gameSlice";
 import { addUserAction } from "../lobby/lobbySlice";
-import { openTabOnTopAction, TabType } from "../navigation/navigationSlice";
-
-const HOST = "localhost:8080";
-
-const API_BASE_URL = "http://" + HOST + "/api";
-const WEBSOCKET_BASE_URL = "ws://" + HOST + "/ws";
-const API = new DefaultApi(new Configuration({ basePath: API_BASE_URL }));
+import { changeTabAction, openTabOnTopAction, TabType } from "../navigation/navigationSlice";
+import { WEBSOCKET_BASE_URL } from "../../api";
 
 
 function* connectToWebSocketSaga(action: PayloadAction<{ userId: string }>): Generator<any, void, any> {
@@ -80,6 +74,9 @@ function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Rec
        yield put(setGameIdAction(payload.id))
        yield put(fetchRoundInfoAction(payload.id))
       console.log(payload)
+      break
+      case "SHOW_GUESS_CLUE_SCREEN":
+      yield put (changeTabAction({type: TabType.GUESS_CLUE}))
       break
     default:
       console.warn(`Unhandled message type: ${type}`);

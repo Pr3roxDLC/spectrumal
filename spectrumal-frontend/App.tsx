@@ -16,6 +16,7 @@ import Play from './app/pages/Play/Play';
 import GradientBackground from './app/components/gradientBackground/GradientBackground';
 import LeaderboardPage from './app/pages/LeaderboardPage/LeaderboardPage';
 import WaitingForOthers from './app/pages/WaitingForOthers/WaitingForOthers';
+import GameStarting from './app/pages/GameStarting/GameStarting';
 
 export default function App () {
   const currentActiveTab = useAppSelector(
@@ -41,7 +42,8 @@ export default function App () {
               SETTINGS_PAGE: <SettingsPage></SettingsPage>,
               START_LOBBY: <Lobby></Lobby>,
               WAITING_FOR_OTHERS: <WaitingForOthers></WaitingForOthers>,
-              LEADERBOARD: <LeaderboardPage></LeaderboardPage>
+              LEADERBOARD: <LeaderboardPage></LeaderboardPage>,
+              GAME_STARTING: <GameStarting></GameStarting>
             }[currentActiveTab?.type ?? TabType.MAIN_MENU]
           }
         </ApplicationProvider>
