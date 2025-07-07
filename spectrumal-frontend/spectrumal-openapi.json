@@ -298,11 +298,8 @@
             "type" : "integer",
             "format" : "int32"
           },
-          "dimensions" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Dimension"
-            }
+          "spectrum" : {
+            "$ref" : "#/components/schemas/Spectrum"
           },
           "roundState" : {
             "type" : "string",
@@ -329,6 +326,20 @@
           },
           "round" : {
             "$ref" : "#/components/schemas/RoundInfo"
+          }
+        }
+      },
+      "Spectrum" : {
+        "type" : "object",
+        "properties" : {
+          "dimensions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Dimension"
+            }
+          },
+          "header" : {
+            "type" : "string"
           }
         }
       },
@@ -395,8 +406,8 @@
       "WordGuessResponse" : {
         "type" : "object",
         "properties" : {
-          "dummy" : {
-            "type" : "string"
+          "showWaitingScreen" : {
+            "type" : "boolean"
           }
         }
       },

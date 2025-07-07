@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import styles from './StartLobbyStyles'
-import GlassContainer from '../../components/glassContainer/GlassContainer';
+import GlassContainer from '../../Components/glassContainer/GlassContainer';
 import LobbyUser from './LobbyUser';
 import { useAppSelector } from '../../store/hooks';
 

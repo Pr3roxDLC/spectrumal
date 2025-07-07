@@ -129,6 +129,7 @@ public class GameService {
         }
 
         WordGuessResponse wordGuessResponse = new WordGuessResponse();
+        wordGuessResponse.setShowWaitingScreen(foundMissingWord);
 
         return wordGuessResponse;
     }

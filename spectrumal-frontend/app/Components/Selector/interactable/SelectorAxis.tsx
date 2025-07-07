@@ -4,10 +4,10 @@ import styles from './InteractableSelectorStyles'
 import { useAppSelector } from '../../../store/hooks'
 
 const InteractableAxis = () => {
-const top = useAppSelector(state => state.game.dim2?.left)
-const bottom = useAppSelector(state => state.game.dim2?.right)
-const left = useAppSelector(state => state.game.dim1?.left)
-const right = useAppSelector(state => state.game.dim1?.right)
+const top = useAppSelector(state => state.game.spectrum?.dimensions?.[1].left)
+const bottom = useAppSelector(state => state.game.spectrum?.dimensions?.[1].right)
+const left = useAppSelector(state => state.game.spectrum?.dimensions?.[0].left)
+const right = useAppSelector(state => state.game.spectrum?.dimensions?.[0].right)
 
   return (
     <>

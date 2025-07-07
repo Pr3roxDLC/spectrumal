@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface WordGuessResponse {
     /**
      * 
-     * @type {string}
+     * @type {boolean}
      * @memberof WordGuessResponse
      */
-    dummy?: string;
+    showWaitingScreen?: boolean;
 }
 
 /**
@@ -44,7 +44,7 @@ export function WordGuessResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'dummy': json['dummy'] == null ? undefined : json['dummy'],
+        'showWaitingScreen': json['showWaitingScreen'] == null ? undefined : json['showWaitingScreen'],
     };
 }
 
@@ -59,7 +59,7 @@ export function WordGuessResponseToJSONTyped(value?: WordGuessResponse | null, i
 
     return {
         
-        'dummy': value['dummy'],
+        'showWaitingScreen': value['showWaitingScreen'],
     };
 }
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import HeaderBack from '../../components/header/HeaderBack'
+import HeaderBack from '../../Components/header/HeaderBack'
 import styles from './WaitingForOthersStyles'
 import { Spinner } from '@ui-kitten/components'
-import Button from '../../components/button/Button'
+import Button from '../../Components/button/Button'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice'
 

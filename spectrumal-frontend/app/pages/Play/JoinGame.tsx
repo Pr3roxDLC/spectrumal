@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 import styles from './JoinGameStyles'
-import Button from '../../components/button/Button'
-import CustomTextInput from '../../components/customTextInput/CustomTextInput'
+import Button from '../../Components/button/Button'
+import CustomTextInput from '../../Components/customTextInput/CustomTextInput'
 import { useAppDispatch } from '../../store/hooks'
 import { joinLobbyAction } from '../../store/features/lobby/lobbySlice'
 import { v4 as uuidv4 } from 'uuid';

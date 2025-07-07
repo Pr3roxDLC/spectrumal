@@ -1,9 +1,9 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { CreateGameResponse, RoundInfoResponse } from "../../../api";
+import { CreateGameResponse, RoundInfoResponse, WordGuessResponse } from "../../../api";
 import { appSelect, useAppSelector } from "../../hooks";
 import { changeTabAction, openTabOnTopAction, TabType } from "../navigation/navigationSlice";
-import { setGameIdAction, fetchRoundInfoAction, startGameAction, setTargetAction, setDim1Action, setDim2Action, submitClueAction } from "./gameSlice";
+import { setGameIdAction, fetchRoundInfoAction, startGameAction, setTargetAction, submitClueAction, setSpectrumAction } from "./gameSlice";
 import { API } from "../../api";
 
 
@@ -35,11 +35,8 @@ try {
     );
     console.log(response)
     yield put (setTargetAction(response.round?.target ?? {dim1: 0, dim2: 0}))
-    yield put(setDim1Action(response.round?.dimensions?.[0] ?? {left: "", right: ""}))
-   yield put(setDim2Action(response.round?.dimensions?.[1] ?? {left: "", right: ""}))
+    yield put(setSpectrumAction(response.round?.spectrum))
   
-
-
   } catch (error) {
     console.error("Error fetching:", error);
   }
@@ -50,10 +47,15 @@ let gameId: string = yield appSelect(state => state.game.gameId)
 let playerId: string = yield appSelect(state => state.game.playerId)
 
 try {
-  yield call (() => 
+ const response: WordGuessResponse =  yield call (() => 
   API.guessWord({id: gameId, player: playerId, wordGuessRequest: {word: action.payload}}))
 
+ if(response.showWaitingScreen){
   yield put (changeTabAction({type: TabType.WAITING_FOR_OTHERS}))
+ }else {
+    yield put (changeTabAction({type: TabType.GUESS_CLUE}))
+ }
+
 } catch(error){
   console.error("Error:", error);
 }

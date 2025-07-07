@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
-import Button from '../../components/button/Button'
-import HeaderBack from '../../components/header/HeaderBack';
+import Button from '../../Components/button/Button'
+import HeaderBack from '../../Components/header/HeaderBack';
 import styles from './StartLobbyStyles';
 import GameCode from './GameCode';
 import LobbyComponent from './LobbyComponent';

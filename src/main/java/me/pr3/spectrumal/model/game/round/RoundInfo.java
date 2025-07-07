@@ -5,7 +5,7 @@ import me.pr3.spectrumal.model.game.core.WordGuess;
 
 public class RoundInfo {
     public int round;
-    public Spectrum dimensions;
+    public Spectrum spectrum;
     public Round.RoundState roundState;
     public Point target;
     public WordGuess wordGuess;
@@ -13,16 +13,16 @@ public class RoundInfo {
     public RoundInfo() {
     }
 
-    public RoundInfo(Round.RoundState roundState, Spectrum dimensions, int round, Point target) {
+    public RoundInfo(Round.RoundState roundState, Spectrum spectrum, int round, Point target) {
         this.roundState = roundState;
-        this.dimensions = dimensions;
+        this.spectrum = spectrum;
         this.round = round;
         this.target = target;
     }
 
-    public RoundInfo(Round.RoundState roundState, Spectrum dimensions, int round, WordGuess wordGuess) {
+    public RoundInfo(Round.RoundState roundState, Spectrum spectrum, int round, WordGuess wordGuess) {
         this.roundState = roundState;
-        this.dimensions = dimensions;
+        this.spectrum = spectrum;
         this.round = round;
         this.wordGuess = wordGuess;
     }
@@ -35,12 +35,12 @@ public class RoundInfo {
         this.round = round;
     }
 
-    public Spectrum getDimensions() {
-        return dimensions;
+    public Spectrum getSpectrum() {
+        return spectrum;
     }
 
-    public void setDimensions(Spectrum dimensions) {
-        this.dimensions = dimensions;
+    public void setSpectrum(Spectrum spectrum) {
+        this.spectrum = spectrum;
     }
 
     public Round.RoundState getRoundState() {

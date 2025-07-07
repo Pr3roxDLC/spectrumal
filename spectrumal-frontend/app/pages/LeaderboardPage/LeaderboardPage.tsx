@@ -1,9 +1,9 @@
 import React from 'react'
 import { View } from 'react-native'
-import HeaderBack from '../../components/header/HeaderBack'
+import HeaderBack from '../../Components/header/HeaderBack'
 import styles from './LeaderboardPageStyles'
 import Leaderboard from './Leaderboard'
-import ReadOnlySelector from '../../components/selector/read-only/ReadOnlySelector'
+import ReadOnlySelector from '../../Components/Selector/read-only/ReadOnlySelector'
 import ContinuingRound from './ContinuingRound'
 
 const LeaderboardPage = () => {

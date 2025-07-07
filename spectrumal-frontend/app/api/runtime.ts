@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "http://localhost:9980/api/".replace(/\/+$/, "");
+export const BASE_PATH = "http://localhost".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path

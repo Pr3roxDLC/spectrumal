@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native';
 import styles from "./MainMenuStyles";
-import IconNoBg from '../../components/icon/IconNoBg';
-import Button from '../../components/button/Button';
+import IconNoBg from '../../Components/icon/IconNoBg';
+import Button from '../../Components/button/Button';
 import { useAppDispatch } from '../../store/hooks';
 import { openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice';
 

@@ -1,6 +1,6 @@
 import React from "react";
 import PlayNavBar from "./PlayNavBar";
-import HeaderBack from "../../components/header/HeaderBack";
+import HeaderBack from "../../Components/header/HeaderBack";
 
 
 const Play = () => {

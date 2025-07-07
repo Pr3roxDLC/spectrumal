@@ -51,7 +51,7 @@ export function CreateLobbyResponseFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'lobbyId': json['lobbyId'] == null ? undefined : json['lobbyId'],
-        'code': json['code'] == null ? undefined : json['code']
+        'code': json['code'] == null ? undefined : json['code'],
     };
 }
 

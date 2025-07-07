@@ -1,13 +1,13 @@
 package me.pr3.spectrumal.model.game.round;
 
 public class WordGuessResponse {
-    String dummy;
+    boolean showWaitingScreen;
 
-    public String getDummy() {
-        return dummy;
+    public boolean isShowWaitingScreen() {
+        return showWaitingScreen;
     }
 
-    public void setDummy(String dummy) {
-        this.dummy = dummy;
+    public void setShowWaitingScreen(boolean showWaitingScreen) {
+        this.showWaitingScreen = showWaitingScreen;
     }
 }

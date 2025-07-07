@@ -1,20 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Dimension, Point } from "../../../api";
+import { Dimension, Point, Spectrum } from "../../../api";
 
 interface GameState {
   gameId?: string;
   playerId?: string;
-  dim1?: Dimension;
-  dim2?: Dimension;
+  spectrum?: Spectrum;
   target: Point
 }
 
 const initialState: GameState = {
   gameId: undefined,
-  dim1: undefined,
-  dim2: undefined,
   target: {dim1: 0, dim2: 0}
-
 };
 
 
@@ -30,11 +26,8 @@ const gameSlice = createSlice({
     setPlayerIdAction: (state, action: PayloadAction<string>) => {
       state.playerId = action.payload
     },
-    setDim1Action: (state, action: PayloadAction<Dimension>) => {
-      state.dim1 = action.payload
-    },
-    setDim2Action: (state, action: PayloadAction<Dimension>) => {
-      state.dim2 = action.payload
+    setSpectrumAction: (state, action: PayloadAction<Spectrum | undefined>) => {
+      state.spectrum = action.payload
     },
     setTargetAction: (state, action: PayloadAction<Point>) => {
       state.target = action.payload
@@ -50,8 +43,7 @@ export const {
     startGameAction,
     fetchRoundInfoAction,
     setPlayerIdAction,
-    setDim1Action,
-    setDim2Action,
+    setSpectrumAction,
     setTargetAction,
     submitClueAction
 } = gameSlice.actions;

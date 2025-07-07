@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/DefaultApi.ts
 apis/index.ts
 index.ts
@@ -14,6 +13,7 @@ models/RoundInfo.ts
 models/RoundInfoResponse.ts
 models/Score.ts
 models/ScoreResponse.ts
+models/Spectrum.ts
 models/User.ts
 models/WordGuess.ts
 models/WordGuessRequest.ts

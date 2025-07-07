@@ -13,7 +13,7 @@ import MainMenu from './app/pages/MainMenu/MainMenu';
 import SettingsPage from './app/pages/SettingsPage/SettingsPage';
 import Lobby from './app/pages/StartLobby/StartLobby';
 import Play from './app/pages/Play/Play';
-import GradientBackground from './app/components/gradientBackground/GradientBackground';
+import GradientBackground from './app/Components/gradientBackground/GradientBackground';
 import LeaderboardPage from './app/pages/LeaderboardPage/LeaderboardPage';
 import WaitingForOthers from './app/pages/WaitingForOthers/WaitingForOthers';
 import GameStarting from './app/pages/GameStarting/GameStarting';

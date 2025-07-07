@@ -12,6 +12,7 @@ export * from './RoundInfo';
 export * from './RoundInfoResponse';
 export * from './Score';
 export * from './ScoreResponse';
+export * from './Spectrum';
 export * from './User';
 export * from './WordGuess';
 export * from './WordGuessRequest';

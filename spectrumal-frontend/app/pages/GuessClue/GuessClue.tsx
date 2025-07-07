@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import HeaderBack from '../../components/header/HeaderBack';
-import InteractableSelector from '../../components/selector/interactable/InteractableSelector';
+import HeaderBack from '../../Components/header/HeaderBack';
+import InteractableSelector from '../../Components/Selector/interactable/InteractableSelector';
 import styles from './GuessClueStyles';
-import Button from '../../components/button/Button';
+import Button from '../../Components/button/Button';
 import { useAppDispatch } from '../../store/hooks';
 import { openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice';
-import GlassContainer from '../../components/glassContainer/GlassContainer';
+import GlassContainer from '../../Components/glassContainer/GlassContainer';
 
 
 

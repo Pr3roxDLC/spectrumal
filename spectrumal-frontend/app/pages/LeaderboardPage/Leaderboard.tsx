@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Image, Animated, ScrollView } from 'react-native';
 import styles from './LeaderBoardStyles';
-import GlassContainer from '../../components/glassContainer/GlassContainer';
+import GlassContainer from '../../Components/glassContainer/GlassContainer';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const CARD_HEIGHT = 60;

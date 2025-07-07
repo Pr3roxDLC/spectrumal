@@ -1,6 +1,7 @@
 package me.pr3.spectrumal.service.game.websocket;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class Message {
 
@@ -26,6 +27,18 @@ public class Message {
 
     public void setData(Map<String, String> data) {
         this.data = data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Message message = (Message) o;
+        return type == message.type && Objects.equals(data, message.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, data);
     }
 
     public enum Type{

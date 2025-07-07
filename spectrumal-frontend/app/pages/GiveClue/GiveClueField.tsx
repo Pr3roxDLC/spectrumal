@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './GiveClueStyles'
 import { View, Text } from 'react-native'
-import CustomTextInput from '../../components/customTextInput/CustomTextInput'
+import CustomTextInput from '../../Components/customTextInput/CustomTextInput'
 
 export interface Props {
   setClueInput: React.Dispatch<React.SetStateAction<string>>

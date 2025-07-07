@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import styles from './HowToPlayStyles';
-import HeaderBack from '../../components/header/HeaderBack';
-import GlassContainer from '../../components/glassContainer/GlassContainer';
+import HeaderBack from '../../Components/header/HeaderBack';
+import GlassContainer from '../../Components/glassContainer/GlassContainer';
 
 const HowToPlay = () => {
   return (

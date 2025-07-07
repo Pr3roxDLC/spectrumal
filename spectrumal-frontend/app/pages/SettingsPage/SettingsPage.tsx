@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import styles from './SettingsStyles';
-import HeaderBack from '../../components/header/HeaderBack';
-import GlassContainer from '../../components/glassContainer/GlassContainer';
+import HeaderBack from '../../Components/header/HeaderBack';
+import GlassContainer from '../../Components/glassContainer/GlassContainer';
 import ToggleButton from './ToggleButton';
 
 

@@ -20,13 +20,6 @@ import {
     WordGuessToJSON,
     WordGuessToJSONTyped,
 } from './WordGuess';
-import type { Dimension } from './Dimension';
-import {
-    DimensionFromJSON,
-    DimensionFromJSONTyped,
-    DimensionToJSON,
-    DimensionToJSONTyped,
-} from './Dimension';
 import type { Point } from './Point';
 import {
     PointFromJSON,
@@ -34,6 +27,13 @@ import {
     PointToJSON,
     PointToJSONTyped,
 } from './Point';
+import type { Spectrum } from './Spectrum';
+import {
+    SpectrumFromJSON,
+    SpectrumFromJSONTyped,
+    SpectrumToJSON,
+    SpectrumToJSONTyped,
+} from './Spectrum';
 
 /**
  * 
@@ -49,10 +49,10 @@ export interface RoundInfo {
     round?: number;
     /**
      * 
-     * @type {Array<Dimension>}
+     * @type {Spectrum}
      * @memberof RoundInfo
      */
-    dimensions?: Array<Dimension>;
+    spectrum?: Spectrum;
     /**
      * 
      * @type {string}
@@ -104,7 +104,7 @@ export function RoundInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'round': json['round'] == null ? undefined : json['round'],
-        'dimensions': json['dimensions'] == null ? undefined : ((json['dimensions'] as Array<any>).map(DimensionFromJSON)),
+        'spectrum': json['spectrum'] == null ? undefined : SpectrumFromJSON(json['spectrum']),
         'roundState': json['roundState'] == null ? undefined : json['roundState'],
         'target': json['target'] == null ? undefined : PointFromJSON(json['target']),
         'wordGuess': json['wordGuess'] == null ? undefined : WordGuessFromJSON(json['wordGuess']),
@@ -123,7 +123,7 @@ export function RoundInfoToJSONTyped(value?: RoundInfo | null, ignoreDiscriminat
     return {
         
         'round': value['round'],
-        'dimensions': value['dimensions'] == null ? undefined : ((value['dimensions'] as Array<any>).map(DimensionToJSON)),
+        'spectrum': SpectrumToJSON(value['spectrum']),
         'roundState': value['roundState'],
         'target': PointToJSON(value['target']),
         'wordGuess': WordGuessToJSON(value['wordGuess']),
