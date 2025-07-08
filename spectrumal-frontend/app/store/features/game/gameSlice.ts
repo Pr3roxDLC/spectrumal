@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Dimension, Point, Spectrum } from "../../../api";
+import { Point, Spectrum } from "../../../api";
+
+type ScoreMap = { [key: string]: number };
 
 interface GameState {
   gameId?: string;
@@ -7,13 +9,16 @@ interface GameState {
   spectrum?: Spectrum;
   target: Point;
   currentClue?: string;
-  selectedPoint?: Point
+  selectedPoint?: Point;
+  gainedScore?: ScoreMap,
+  newScore?: ScoreMap,
+  previousScore?: ScoreMap
 }
 
 const initialState: GameState = {
   gameId: undefined,
-  target: {dim1: 0, dim2: 0},
-  currentClue: ""
+  target: { dim1: 0, dim2: 0 },
+  currentClue: "",
 };
 
 
@@ -24,8 +29,8 @@ const gameSlice = createSlice({
     setGameIdAction: (state, action: PayloadAction<string>) => {
       state.gameId = action.payload
     },
-    startGameAction: (state, action: PayloadAction<void> ) => {},
-    fetchRoundInfoAction: (state, action: PayloadAction<string>) => {},
+    startGameAction: (state, action: PayloadAction<void>) => { },
+    fetchRoundInfoAction: (state, action: PayloadAction<string>) => { },
     setPlayerIdAction: (state, action: PayloadAction<string>) => {
       state.playerId = action.payload
     },
@@ -38,28 +43,40 @@ const gameSlice = createSlice({
     submitClueAction: (state, action: PayloadAction<string>) => {
     },
     setCurrentClueAction: (state, action: PayloadAction<string>) => {
-     state.currentClue = action.payload
+      state.currentClue = action.payload
     },
-    setSelectedPointAction: (state, action: PayloadAction<Point> ) => {
-    state.selectedPoint = action.payload
+    setSelectedPointAction: (state, action: PayloadAction<Point>) => {
+      state.selectedPoint = action.payload
     },
-    submitPointAction: (state, action: PayloadAction<void>) => {
-      
+    submitPointAction: (state, action: PayloadAction<void>) => { },
+    fetchScoreAction: (state, action: PayloadAction<void>) => { },
+    setGainedScoreAction: (state, action: PayloadAction<ScoreMap>) => { 
+      state.gainedScore = action.payload
+    },
+    setNewScoreAction: (state, action: PayloadAction<ScoreMap>) => { 
+      state.newScore = action.payload
+    },
+    setPreviousScoreAction: (state, action: PayloadAction<ScoreMap>) => { 
+      state.previousScore = action.payload
     }
-  }
+  },
 });
 
 export const {
-    setGameIdAction,
-    startGameAction,
-    fetchRoundInfoAction,
-    setPlayerIdAction,
-    setSpectrumAction,
-    setTargetAction,
-    submitClueAction,
-    setCurrentClueAction,
-    submitPointAction,
-    setSelectedPointAction
+  setGameIdAction,
+  startGameAction,
+  fetchRoundInfoAction,
+  setPlayerIdAction,
+  setSpectrumAction,
+  setTargetAction,
+  submitClueAction,
+  setCurrentClueAction,
+  submitPointAction,
+  setSelectedPointAction,
+  fetchScoreAction,
+  setPreviousScoreAction,
+  setNewScoreAction,
+  setGainedScoreAction
 } = gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;

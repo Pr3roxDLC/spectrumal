@@ -1,9 +1,9 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { CreateGameResponse, Point, PointGuessResponse, RoundInfoResponse, WordGuessResponse } from "../../../api";
+import { CreateGameResponse, Point, PointGuessResponse, RoundInfoResponse, ScoreResponse, WordGuessResponse } from "../../../api";
 import { appSelect, useAppSelector } from "../../hooks";
 import { changeTabAction, openTabOnTopAction, TabType } from "../navigation/navigationSlice";
-import { setGameIdAction, fetchRoundInfoAction, startGameAction, setTargetAction, submitClueAction, setSpectrumAction, setCurrentClueAction, submitPointAction } from "./gameSlice";
+import { setGameIdAction, fetchRoundInfoAction, startGameAction, setTargetAction, submitClueAction, setSpectrumAction, setCurrentClueAction, submitPointAction, fetchScoreAction, setPreviousScoreAction, setNewScoreAction, setGainedScoreAction } from "./gameSlice";
 import { API } from "../../api";
 
 
@@ -84,6 +84,25 @@ function* submitPointSaga(action: PayloadAction<void>) {
 
 }
 
+function* fetchScoreSaga (action: PayloadAction<void>) {
+    let gameId: string = yield appSelect(state => state.game.gameId)
+
+    try {
+    const response: ScoreResponse = yield call(() =>
+      API.getScore({ id: gameId }))
+
+    console.log(response.score)
+
+      yield put(setPreviousScoreAction(response.score?.previousScores ?? {}));
+      yield put(setNewScoreAction(response.score?.newScores ?? {}));
+      yield put(setGainedScoreAction(response.score?.gainedScores ?? {}));
+    }
+
+   catch (error) {
+    console.error("Error getting score:", error);
+  }
+}
+
 export function* watchGame() {
   yield takeEvery(startGameAction.type,
     startGameSaga
@@ -96,5 +115,8 @@ export function* watchGame() {
   )
   yield takeEvery(submitPointAction.type,
     submitPointSaga
+  )
+  yield takeEvery(fetchScoreAction.type,
+    fetchScoreSaga
   )
 }

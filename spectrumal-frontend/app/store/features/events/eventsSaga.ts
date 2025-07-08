@@ -2,7 +2,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { call, take, put, cancelled, takeEvery } from "redux-saga/effects";
 import { connectToWebSocketAction, handleMessageAction } from "./eventsSlice";
 import { EventChannel, eventChannel } from "redux-saga";
-import { setGameIdAction, fetchRoundInfoAction } from "../game/gameSlice";
+import { setGameIdAction, fetchRoundInfoAction, fetchScoreAction } from "../game/gameSlice";
 import { addUserAction } from "../lobby/lobbySlice";
 import { changeTabAction, openTabOnTopAction, TabType } from "../navigation/navigationSlice";
 import { WEBSOCKET_BASE_URL } from "../../api";
@@ -82,6 +82,7 @@ function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Rec
       yield put (changeTabAction({type: TabType.GUESS_CLUE}))
       break
       case "SHOW_SCORE_SCREEN":
+         yield put (fetchScoreAction())
         yield put (changeTabAction({type: TabType.LEADERBOARD}))
       break
     default:

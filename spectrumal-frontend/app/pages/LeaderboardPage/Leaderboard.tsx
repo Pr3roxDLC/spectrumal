@@ -3,19 +3,9 @@ import { View, Text, Image, Animated, ScrollView } from 'react-native';
 import styles from './LeaderBoardStyles';
 import GlassContainer from '../../Components/glassContainer/GlassContainer';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useAppSelector } from '../../store/hooks';
 
 const CARD_HEIGHT = 60;
-
-const initialUsers = [
-  { id: '1', name: 'User 1', avatar: require('../../../assets/images/avatar5.svg') },
-  { id: '2', name: 'User 2', avatar: require('../../../assets/images/avatar6.svg') },
-  { id: '3', name: 'User 3', avatar: require('../../../assets/images/avatar7.svg') },
-  { id: '4', name: 'User 4', avatar: require('../../../assets/images/avatar8.svg') },
-  { id: '5', name: 'User 5', avatar: require('../../../assets/images/avatar8.svg') },
-  { id: '6', name: 'User 6', avatar: require('../../../assets/images/avatar8.svg') },
-  { id: '7', name: 'User 7', avatar: require('../../../assets/images/avatar8.svg') },
-  { id: '8', name: 'User 8', avatar: require('../../../assets/images/avatar8.svg') },
-];
 
 // Helper to shuffle array
 const shuffleArray = (array) => {
@@ -28,41 +18,60 @@ const shuffleArray = (array) => {
 };
 
 const Leaderboard = () => {
+  const users = useAppSelector(state => state.lobby.users);
+  const previousScoreMap = useAppSelector(state => state.game.previousScore || {});
+const newScoreMap = useAppSelector(state => state.game.newScore || {});
   const [userData, setUserData] = useState([]);
   const positions = useRef({});
-  const containerHeight = CARD_HEIGHT * initialUsers.length;
+
+  const containerHeight = CARD_HEIGHT * users.length;
 
   useEffect(() => {
-    // Assign random scores
-    const usersWithScores = initialUsers.map(user => ({
+    if (!users || users.length === 0) return;
+
+     const usersWithScores = users.map((user, index) => {
+    const id = user.id || `${index}`;
+    return {
       ...user,
-      score: Math.floor(Math.random() * 1000) + 500,
-    }));
+      id,
+      name: user.name || `User ${index + 1}`,
+      avatar: require('../../../assets/images/avatar5.svg'),
+      score: previousScoreMap[id] ?? 0, 
+    };
+  });
 
     setUserData(usersWithScores);
 
-    // Shuffle initially
     const shuffled = shuffleArray(usersWithScores);
 
-    // Initialize Animated.Value for each user
     shuffled.forEach((user, index) => {
       positions.current[user.id] = new Animated.Value(index * CARD_HEIGHT);
     });
 
-    // Delay, then animate to sorted positions
     setTimeout(() => {
-      const sorted = [...usersWithScores].sort((a, b) => b.score - a.score);
-      setUserData(sorted); // Update order for display
+    const updatedUsers = users.map((user, index) => {
+      const id = user.id || `${index}`;
+      return {
+        ...user,
+        id,
+        name: user.name || `User ${index + 1}`,
+        avatar: require('../../../assets/images/avatar5.svg'),
+        score: newScoreMap[id] ?? 0,
+      };
+    });
 
-      sorted.forEach((user, index) => {
-        Animated.timing(positions.current[user.id], {
-          toValue: index * CARD_HEIGHT,
-          duration: 1800,
-          useNativeDriver: false,
-        }).start();
-      });
-    }, 400);
-  }, []);
+    const sorted = [...updatedUsers].sort((a, b) => b.score - a.score);
+    setUserData(sorted);
+
+    sorted.forEach((user, index) => {
+      Animated.timing(positions.current[user.id], {
+        toValue: index * CARD_HEIGHT,
+        duration: 1800,
+        useNativeDriver: false,
+      }).start();
+    });
+  }, 400);
+}, [users, previousScoreMap, newScoreMap]);
 
   return (
     <View style={styles.container}>
@@ -77,8 +86,7 @@ const Leaderboard = () => {
           <View style={{ position: 'relative', height: containerHeight }}>
             {userData.map(user => {
               const animatedTop = positions.current[user.id] || new Animated.Value(0);
-              const rank =
-                userData.findIndex(u => u.id === user.id) + 1 || '-';
+              const rank = userData.findIndex(u => u.id === user.id) + 1;
 
               return (
                 <Animated.View
@@ -92,7 +100,10 @@ const Leaderboard = () => {
                 >
                   <GlassContainer width={'100%'} height={CARD_HEIGHT - 10} style={styles.card}>
                     <Text style={styles.rank}>#{rank}</Text>
-                    <Image source={user.avatar} style={styles.avatar} />
+                    <Image
+                      source={typeof user.avatar === 'string' ? { uri: user.avatar } : user.avatar}
+                      style={styles.avatar}
+                    />
                     <Text style={styles.name}>{user.name}</Text>
                     <Text style={styles.score}>{user.score} pts</Text>
                   </GlassContainer>
