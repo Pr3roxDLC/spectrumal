@@ -9,6 +9,7 @@ models/JoinLobbyRequest.ts
 models/JoinLobbyResponse.ts
 models/Point.ts
 models/PointGuessRequest.ts
+models/PointGuessResponse.ts
 models/RoundInfo.ts
 models/RoundInfoResponse.ts
 models/Score.ts

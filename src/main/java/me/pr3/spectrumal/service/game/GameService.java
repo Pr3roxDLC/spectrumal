@@ -138,7 +138,7 @@ public class GameService {
         return scoreService.getScores(gameId);
     }
 
-    public void pointGuess(UUID gameId, UUID player, PointGuessRequest pointGuessRequest) {
+    public PointGuessResponse pointGuess(UUID gameId, UUID player, PointGuessRequest pointGuessRequest) {
         GameState state = gameCache.getCache().getIfPresent(gameId);
         assert state != null;
         Round round = state.getRounds().get(state.getRound() - 1);
@@ -179,6 +179,7 @@ public class GameService {
                     }
                 }, 10000);            }
         }
+        return new PointGuessResponse(foundMissingPlayers);
     }
 
 }

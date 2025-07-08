@@ -8,6 +8,7 @@ export * from './JoinLobbyRequest';
 export * from './JoinLobbyResponse';
 export * from './Point';
 export * from './PointGuessRequest';
+export * from './PointGuessResponse';
 export * from './RoundInfo';
 export * from './RoundInfoResponse';
 export * from './Score';

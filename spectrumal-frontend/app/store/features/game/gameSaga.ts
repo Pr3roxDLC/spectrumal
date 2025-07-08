@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { CreateGameResponse, Point, RoundInfoResponse, WordGuessResponse } from "../../../api";
+import { CreateGameResponse, Point, PointGuessResponse, RoundInfoResponse, WordGuessResponse } from "../../../api";
 import { appSelect, useAppSelector } from "../../hooks";
 import { changeTabAction, openTabOnTopAction, TabType } from "../navigation/navigationSlice";
 import { setGameIdAction, fetchRoundInfoAction, startGameAction, setTargetAction, submitClueAction, setSpectrumAction, setCurrentClueAction, submitPointAction } from "./gameSlice";
@@ -21,7 +21,6 @@ function* startGameSaga(action: PayloadAction<void>) {
     yield put(openTabOnTopAction({ type: TabType.GIVE_CLUE }));
     yield put(fetchRoundInfoAction(response.id ?? ""))
 
-
   } catch (error) {
     console.error("Error starting game:", error);
   }
@@ -36,12 +35,10 @@ function* fetchRoundInfoSaga(action: PayloadAction<string>) {
     console.log(response)
     yield put(setTargetAction(response.round?.target ?? { dim1: 0, dim2: 0 }))
     yield put(setSpectrumAction(response.round?.spectrum))
-
     if (response.round?.roundState === 'FIND_POINT') {
       const currentClue = response.round?.wordGuess?.word ?? '';
       yield put(setCurrentClueAction(currentClue));
     }
-
   } catch (error) {
     console.error("Error fetching:", error);
   }
@@ -71,13 +68,15 @@ function* submitPointSaga(action: PayloadAction<void>) {
   let gameId: string = yield appSelect(state => state.game.gameId)
   let playerId: string = yield appSelect(state => state.game.playerId)
 
-  try {yield call(() => 
-  API.guessPoint({id: gameId, player: playerId,  pointGuessRequest: { guess: position }}))
+  try {
+    const response: PointGuessResponse = yield call(() =>
+      API.guessPoint({ id: gameId, player: playerId, pointGuessRequest: { guess: position } }))
+    
+    console.log('Selected Point:', position);
 
-
-  console.log('Selected Point:', position);
-
-  yield put(changeTabAction({ type: TabType.WAITING_FOR_OTHERS }))
+    if(response.showWaitingScreen){
+    yield put(changeTabAction({ type: TabType.WAITING_FOR_OTHERS }))
+    }
   }
   catch (error) {
     console.error('submitPointSaga error:', error);

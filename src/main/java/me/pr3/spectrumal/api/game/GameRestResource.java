@@ -4,10 +4,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import me.pr3.spectrumal.model.game.CreateGameResponse;
 import me.pr3.spectrumal.model.game.ScoreResponse;
-import me.pr3.spectrumal.model.game.round.PointGuessRequest;
-import me.pr3.spectrumal.model.game.round.WordGuessRequest;
-import me.pr3.spectrumal.model.game.round.WordGuessResponse;
-import me.pr3.spectrumal.model.game.round.RoundInfoResponse;
+import me.pr3.spectrumal.model.game.round.*;
 import me.pr3.spectrumal.service.game.GameService;
 
 import java.util.UUID;
@@ -42,9 +39,10 @@ public class GameRestResource {
 
     @POST
     @Consumes("application/json")
+    @Produces("application/json")
     @Path("/{id}/guess/point/{player}")
-    public void guessPoint(@PathParam("id") UUID id, @PathParam("player") UUID player, PointGuessRequest request) {
-        gameService.pointGuess(id, player, request);
+    public PointGuessResponse guessPoint(@PathParam("id") UUID id, @PathParam("player") UUID player, PointGuessRequest request) {
+        return gameService.pointGuess(id, player, request);
     }
 
     @GET

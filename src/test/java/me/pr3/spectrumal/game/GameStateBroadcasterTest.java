@@ -84,11 +84,15 @@ public class GameStateBroadcasterTest extends AbstractWeldTest {
         WordGuessRequest wordGuessRequest1 = new WordGuessRequest();
         String testWord1 = "TestWord1";
         wordGuessRequest1.setWord(testWord1);
-        gameService.wordGuess(gameId, user1Id, wordGuessRequest1);
+        WordGuessResponse wordGuessResponse1 = gameService.wordGuess(gameId, user1Id, wordGuessRequest1);
         WordGuessRequest wordGuessRequest2 = new WordGuessRequest();
         String testWord2 = "TestWord2";
         wordGuessRequest2.setWord(testWord2);
-        gameService.wordGuess(gameId, user2Id, wordGuessRequest2);
+        WordGuessResponse wordGuessResponse2 = gameService.wordGuess(gameId, user2Id, wordGuessRequest2);
+
+        //Verify that the last users response told them to skip the wait screen
+        Assertions.assertTrue(wordGuessResponse1.isShowWaitingScreen());
+        Assertions.assertFalse(wordGuessResponse2.isShowWaitingScreen());
 
         //Verify that the users were notified that all guesses were made
         verify(GameStateBroadcasterTestMockProducer.mockBroadcaster, times(1))
@@ -105,10 +109,14 @@ public class GameStateBroadcasterTest extends AbstractWeldTest {
         //Users guess points
         PointGuessRequest pointGuessRequest1 = new PointGuessRequest();
         pointGuessRequest1.guess = new Point(0,0);
-        gameService.pointGuess(gameId, user1Id, pointGuessRequest1);
+        PointGuessResponse pointGuessResponse1 = gameService.pointGuess(gameId, user1Id, pointGuessRequest1);
         PointGuessRequest pointGuessRequest2 = new PointGuessRequest();
         pointGuessRequest2.guess = new Point(1,1);
-        gameService.pointGuess(gameId, user2Id, pointGuessRequest2);
+        PointGuessResponse pointGuessResponse2 = gameService.pointGuess(gameId, user2Id, pointGuessRequest2);
+
+        //Assert that the last player was told to skip the waiting screen
+        Assertions.assertTrue(pointGuessResponse1.isShowWaitingScreen());
+        Assertions.assertFalse(pointGuessResponse2.isShowWaitingScreen());
 
         //Verify that the users were notified that all users made their point guesses
         verify(GameStateBroadcasterTestMockProducer.mockBroadcaster, times(1))

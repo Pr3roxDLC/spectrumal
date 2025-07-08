@@ -21,6 +21,7 @@ import type {
   JoinLobbyRequest,
   JoinLobbyResponse,
   PointGuessRequest,
+  PointGuessResponse,
   RoundInfoResponse,
   ScoreResponse,
   WordGuessRequest,
@@ -39,6 +40,8 @@ import {
     JoinLobbyResponseToJSON,
     PointGuessRequestFromJSON,
     PointGuessRequestToJSON,
+    PointGuessResponseFromJSON,
+    PointGuessResponseToJSON,
     RoundInfoResponseFromJSON,
     RoundInfoResponseToJSON,
     ScoreResponseFromJSON,
@@ -225,7 +228,7 @@ export class DefaultApi extends runtime.BaseAPI {
 
     /**
      */
-    async guessPointRaw(requestParameters: GuessPointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async guessPointRaw(requestParameters: GuessPointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PointGuessResponse>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -254,13 +257,14 @@ export class DefaultApi extends runtime.BaseAPI {
             body: PointGuessRequestToJSON(requestParameters['pointGuessRequest']),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => PointGuessResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async guessPoint(requestParameters: GuessPointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.guessPointRaw(requestParameters, initOverrides);
+    async guessPoint(requestParameters: GuessPointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PointGuessResponse> {
+        const response = await this.guessPointRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
