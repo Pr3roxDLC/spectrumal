@@ -4,9 +4,9 @@ import HeaderBack from '../../Components/header/HeaderBack';
 import InteractableSelector from '../../Components/Selector/interactable/InteractableSelector';
 import styles from './GuessClueStyles';
 import Button from '../../Components/button/Button';
-import { useAppDispatch } from '../../store/hooks';
-import { openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import GlassContainer from '../../Components/glassContainer/GlassContainer';
+import { submitPointAction } from '../../store/features/game/gameSlice';
 
 
 
@@ -14,8 +14,11 @@ const GuessClue = () => {
   const dispatch = useAppDispatch()
 
   const handleSubmitClick = () => {
-    dispatch(openTabOnTopAction({ type: TabType.WAITING_FOR_OTHERS }))
+      dispatch(submitPointAction());
   }
+
+
+  const showClue = useAppSelector(state => state.game.currentClue )
 
   return (
     <>
@@ -25,7 +28,7 @@ const GuessClue = () => {
         <View style={styles.textContainer}>
           <Text style={styles.text}>Guess the location of</Text>
           <GlassContainer style={{marginBottom: 50}} width={270} height={80}>
-          <Text style={styles.clue}>Stealing groceries</Text>
+          <Text style={styles.clue}>{showClue}</Text>
           </GlassContainer>
         </View>
         <Button style={{ width: "80%" }} label="Submit Answer" onPress={handleSubmitClick} >

@@ -5,12 +5,15 @@ interface GameState {
   gameId?: string;
   playerId?: string;
   spectrum?: Spectrum;
-  target: Point
+  target: Point;
+  currentClue?: string;
+  selectedPoint?: Point
 }
 
 const initialState: GameState = {
   gameId: undefined,
-  target: {dim1: 0, dim2: 0}
+  target: {dim1: 0, dim2: 0},
+  currentClue: ""
 };
 
 
@@ -33,7 +36,15 @@ const gameSlice = createSlice({
       state.target = action.payload
     },
     submitClueAction: (state, action: PayloadAction<string>) => {
-
+    },
+    setCurrentClueAction: (state, action: PayloadAction<string>) => {
+     state.currentClue = action.payload
+    },
+    setSelectedPointAction: (state, action: PayloadAction<Point> ) => {
+    state.selectedPoint = action.payload
+    },
+    submitPointAction: (state, action: PayloadAction<void>) => {
+      
     }
   }
 });
@@ -45,7 +56,10 @@ export const {
     setPlayerIdAction,
     setSpectrumAction,
     setTargetAction,
-    submitClueAction
+    submitClueAction,
+    setCurrentClueAction,
+    submitPointAction,
+    setSelectedPointAction
 } = gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;

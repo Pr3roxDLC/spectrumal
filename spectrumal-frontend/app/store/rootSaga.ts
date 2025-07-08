@@ -7,6 +7,6 @@ export default function* rootSaga() {
   yield all([
    watchLobby(),
    watchEvents(),
-   watchGame()
+   watchGame(),
   ]);
 }

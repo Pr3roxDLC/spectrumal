@@ -4,6 +4,8 @@ import SelectorBlip from '../SelectorBlip';
 import GlassContainer from '../../glassContainer/GlassContainer'
 import styles from './InteractableSelectorStyles';
 import SelectorAxis from './SelectorAxis';
+import { useAppDispatch } from '../../../store/hooks';
+import { setSelectedPointAction } from '../../../store/features/game/gameSlice';
 
 type SelectorProps = {
 
@@ -25,6 +27,7 @@ const InteractableSelector: React.FC<SelectorProps> = () => {
 
     const viewWidth = 300;
     const viewHeight = 300;
+    const dispatch = useAppDispatch()
 
     const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(value, max));
 
@@ -92,7 +95,12 @@ const InteractableSelector: React.FC<SelectorProps> = () => {
     };
 
     function onPositionUpdate(position: { x: number; y: number; }) {
-        console.log('Position updated:', position);
+ const dim1 = (position.x / 300) * 2 - 1;
+    const dim2 = (position.y / 300) * 2 - 1;
+
+    console.log('Position updated', { dim1, dim2 });
+
+dispatch(setSelectedPointAction({ dim1, dim2 }));
     }
 
 

@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import { View } from 'react-native'
 import styles2 from './GiveClueStyles';
-import HeaderBack from './../../Components/header/HeaderBack';
+import HeaderBack from '../../Components/header/HeaderBack';
 import GiveClueField from './GiveClueField';
-import Button from './../../Components/button/Button';
-import ReadOnlySelector from './../../Components/Selector/read-only/ReadOnlySelector';
+import Button from '../../Components/button/Button';
+import ReadOnlySelector from '../../Components/Selector/read-only/ReadOnlySelector';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice';
 import { submitClueAction } from '../../store/features/game/gameSlice';

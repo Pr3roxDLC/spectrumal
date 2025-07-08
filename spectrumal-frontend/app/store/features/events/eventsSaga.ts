@@ -6,6 +6,7 @@ import { setGameIdAction, fetchRoundInfoAction } from "../game/gameSlice";
 import { addUserAction } from "../lobby/lobbySlice";
 import { changeTabAction, openTabOnTopAction, TabType } from "../navigation/navigationSlice";
 import { WEBSOCKET_BASE_URL } from "../../api";
+import { appSelect } from "../../hooks";
 
 
 function* connectToWebSocketSaga(action: PayloadAction<{ userId: string }>): Generator<any, void, any> {
@@ -76,7 +77,12 @@ function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Rec
       console.log(payload)
       break
       case "SHOW_GUESS_CLUE_SCREEN":
+        let gameId: string = yield appSelect(state => state.game.gameId)
+        yield put(fetchRoundInfoAction(gameId))
       yield put (changeTabAction({type: TabType.GUESS_CLUE}))
+      break
+      case "SHOW_SCORE_SCREEN":
+        yield put (changeTabAction({type: TabType.LEADERBOARD}))
       break
     default:
       console.warn(`Unhandled message type: ${type}`);
