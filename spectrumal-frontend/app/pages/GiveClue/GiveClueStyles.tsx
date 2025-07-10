@@ -10,17 +10,15 @@ const styles2 = StyleSheet.create({
     },
     clueContainer: {
         width: "80%",
-        height: "40%",
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "flex-start"
+        height: "20%",
+        justifyContent: "center",
+        alignItems: "center"
     },
     giveAClue: {
         color: variables.colors.whiteText,
         fontSize: 28,
         fontWeight: '600',
         textAlign: "center",
-        marginTop: 60,
         marginBottom: 20,
         textShadowColor: 'rgba(0, 0, 0, 0.5)',
         textShadowOffset: { width: 1, height: 1 },

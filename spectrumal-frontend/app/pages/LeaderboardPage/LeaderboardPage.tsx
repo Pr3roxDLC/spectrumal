@@ -9,7 +9,6 @@ import ContinuingRound from './ContinuingRound'
 const LeaderboardPage = () => {
   return (
     <>
-      <HeaderBack></HeaderBack>
       <View style={styles.leaderboardContainer}>
         <ReadOnlySelector x={40} y={80}></ReadOnlySelector>
         <Leaderboard></Leaderboard>

@@ -4,7 +4,7 @@ import variables from "../../../assets/variables/Variables";
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 20,
-        marginBottom: 50,
+        marginTop: 50,
     },
 
     text: {

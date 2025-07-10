@@ -25,7 +25,6 @@ const GiveClue = () => {
 
   return (
     <>
-      <HeaderBack/>
       <View style={styles2.giveClueContainer}>
       <ReadOnlySelector x={target.dim1 ?? 0} y={target.dim2 ?? 0}></ReadOnlySelector>
       <GiveClueField setClueInput={setClueInput}  />

@@ -22,7 +22,6 @@ const GuessClue = () => {
 
   return (
     <>
-      <HeaderBack></HeaderBack>
       <View style={styles.guessClueContainer}>
         <InteractableSelector></InteractableSelector>
         <View style={styles.textContainer}>
