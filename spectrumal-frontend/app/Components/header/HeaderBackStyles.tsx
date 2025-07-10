@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         color: variables.colors.whiteText
     },
     settingIcon: {
-        color: variables.colors.whiteText
+        color: variables.colors.whiteText,
     }
 })
 

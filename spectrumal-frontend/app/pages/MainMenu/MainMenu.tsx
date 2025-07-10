@@ -5,6 +5,7 @@ import IconNoBg from '../../Components/icon/IconNoBg';
 import Button from '../../Components/button/Button';
 import { useAppDispatch } from '../../store/hooks';
 import { openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice';
+import HeaderBack from '../../Components/header/HeaderBack';
 
 
 const MainMenu = () => {
@@ -24,6 +25,7 @@ const MainMenu = () => {
 
   return (
     <>
+    <HeaderBack></HeaderBack>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}>Spectrumal</Text>

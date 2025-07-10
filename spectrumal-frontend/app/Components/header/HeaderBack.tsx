@@ -27,11 +27,19 @@ const HeaderBack = () => {
 
   return (
     <View style={styles.headerContainer}>
+       <View style={{ width: 50 }}>
+      {currentTab !== TabType.MAIN_MENU && (
       <TouchableOpacity onPress={returnToPreviousTab}>
         <GlassContainer width={50} height={50}>
         <AntDesign style={styles.backIcon} name="left" size={28} />
         </GlassContainer>
       </TouchableOpacity>
+      )}
+      </View>
+      
+       <View style={{ flex: 1 }} />
+
+        <View style={{ width: 50 }}>
        {currentTab !== TabType.SETTINGS_PAGE && (
        <TouchableOpacity onPress={handleSettingsClick}>
         <GlassContainer width={50} height={50}>
@@ -39,6 +47,7 @@ const HeaderBack = () => {
         </GlassContainer>
       </TouchableOpacity>
       )}
+      </View>
     </View>
   )
 }
