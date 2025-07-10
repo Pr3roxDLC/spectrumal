@@ -14,7 +14,7 @@ const lobbyCode = useSelector((state: State ) => state.lobby.lobbyCode);
         <Text style={styles.thisIsYourGameCode}>Your game code is...</Text>
       </View>
       <View style={styles.gameCodeBox}>
-        <GlassContainer height={100} width={250}>
+        <GlassContainer height={100} style={{minWidth: 250}}>
           <Text style={styles.gameCode}>{lobbyCode || 'Loading...'}</Text>
         </GlassContainer>
       </View>
