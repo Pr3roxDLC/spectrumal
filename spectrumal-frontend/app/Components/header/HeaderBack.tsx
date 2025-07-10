@@ -4,13 +4,19 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import styles from './HeaderBackStyles';
 import GlassContainer from '../glassContainer/GlassContainer';
 import Feather from '@expo/vector-icons/Feather';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { goBackToPreviousTabAction, openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice';
 
 
 
 const HeaderBack = () => {
   const dispatch = useAppDispatch();
+    const tabStack = useAppSelector(state => state.navigation.tabStack);
+
+
+  const currentTab = tabStack[tabStack.length - 1]?.type;
+
+
   const returnToPreviousTab = () => {
     dispatch(goBackToPreviousTabAction())
   }
@@ -26,11 +32,13 @@ const HeaderBack = () => {
         <AntDesign style={styles.backIcon} name="left" size={28} />
         </GlassContainer>
       </TouchableOpacity>
+       {currentTab !== TabType.SETTINGS_PAGE && (
        <TouchableOpacity onPress={handleSettingsClick}>
         <GlassContainer width={50} height={50}>
         <Feather style={styles.settingIcon} name="settings" size={28} />
         </GlassContainer>
       </TouchableOpacity>
+      )}
     </View>
   )
 }
