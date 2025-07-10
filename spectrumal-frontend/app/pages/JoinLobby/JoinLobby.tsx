@@ -9,8 +9,6 @@ import LobbyComponent from '../StartLobby/LobbyComponent';
 const JoinLobby = () => {
     return (
         <>
-            <HeaderBack
-            />
             <View style={styles.lobbyContainer}>
                 <WaitingForHost />
                 <LobbyComponent />
