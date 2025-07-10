@@ -4,6 +4,7 @@ import SelectorBlip from '../SelectorBlip';
 import GlassContainer from '../../glassContainer/GlassContainer';
 import SelectorAxis from '../interactable/SelectorAxis';
 import styles from './ReadOnlySelectorStyles';
+import SpectrumHeader from '../SpectrumHeader';
 
 type ReadOnlySelectorProps = {
     x: number;
@@ -13,6 +14,8 @@ type ReadOnlySelectorProps = {
 const ReadOnlySelector: React.FC<ReadOnlySelectorProps> = ({ x, y }) => {
 
     return (
+        <>
+        <SpectrumHeader></SpectrumHeader>
         <View style={{ width: 300, height: 300 }}>
             <SelectorAxis></SelectorAxis>
             <GlassContainer width={300} height={300}>
@@ -34,6 +37,7 @@ const ReadOnlySelector: React.FC<ReadOnlySelectorProps> = ({ x, y }) => {
                 </View>
             </GlassContainer>
         </View>
+        </>
     );
 };
 

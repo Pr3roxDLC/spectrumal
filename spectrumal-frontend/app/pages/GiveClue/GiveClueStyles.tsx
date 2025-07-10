@@ -20,6 +20,7 @@ const styles2 = StyleSheet.create({
         fontSize: 28,
         fontWeight: '600',
         textAlign: "center",
+        marginTop: 60,
         marginBottom: 20,
         textShadowColor: 'rgba(0, 0, 0, 0.5)',
         textShadowOffset: { width: 1, height: 1 },

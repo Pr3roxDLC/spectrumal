@@ -5,7 +5,6 @@ const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 35,
     width: 350,
     padding: 20,
   },

@@ -19,7 +19,7 @@ const JoinGame = () => {
   }
 
   const handleCodeInput = (text: string) => {
-      setCode(text)
+      setCode(text.toUpperCase())
   }
 
   const handleJoinLobbyClick = () => {
