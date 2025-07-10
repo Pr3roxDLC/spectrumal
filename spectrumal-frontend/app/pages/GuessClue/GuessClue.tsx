@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import HeaderBack from '../../Components/header/HeaderBack';
 import InteractableSelector from '../../Components/Selector/interactable/InteractableSelector';
 import styles from './GuessClueStyles';
 import Button from '../../Components/button/Button';

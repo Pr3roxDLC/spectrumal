@@ -28,9 +28,10 @@ function* startGameSaga(action: PayloadAction<void>) {
 
 function* fetchRoundInfoSaga(action: PayloadAction<string>) {
   let playerId: string = yield appSelect(state => state.game.playerId)
+  let roundNumber: number = yield appSelect(state => state.game.roundNumber)
   try {
     const response: RoundInfoResponse = yield call(() =>
-      API.getRoundInfo({ id: action.payload, round: 1, player: playerId })
+      API.getRoundInfo({ id: action.payload, round: roundNumber, player: playerId })
     );
     console.log(response)
     yield put(setTargetAction(response.round?.target ?? { dim1: 0, dim2: 0 }))

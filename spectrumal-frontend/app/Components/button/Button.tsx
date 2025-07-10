@@ -24,12 +24,12 @@ const Button = (props: Props) => {
       >
         <GlassContainer
           height={'100%'}
-          style={disabled ? disabledStyles.disabledContainer : undefined}
+          style={disabled ? styles.disabledContainer : undefined}
         >
           <Text
             style={[
               styles.buttonText,
-              disabled ? disabledStyles.disabledText : undefined,
+              disabled ? styles.disabledText : undefined,
             ]}
           >
             {label}
@@ -39,15 +39,5 @@ const Button = (props: Props) => {
     </View>
   );
 };
-
-const disabledStyles = StyleSheet.create({
-  disabledContainer: {
-    backgroundColor: '#d3d3d3', 
-    opacity: 0.5,
-  },
-  disabledText: {
-    color: '#999',
-  },
-});
 
 export default Button;

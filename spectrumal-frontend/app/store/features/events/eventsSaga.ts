@@ -2,7 +2,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { call, take, put, cancelled, takeEvery } from "redux-saga/effects";
 import { connectToWebSocketAction, handleMessageAction } from "./eventsSlice";
 import { EventChannel, eventChannel } from "redux-saga";
-import { setGameIdAction, fetchRoundInfoAction, fetchScoreAction } from "../game/gameSlice";
+import { setGameIdAction, fetchRoundInfoAction, fetchScoreAction, increaseRoundAction, clearSelectedPointAction } from "../game/gameSlice";
 import { addUserAction } from "../lobby/lobbySlice";
 import { changeTabAction, openTabOnTopAction, TabType } from "../navigation/navigationSlice";
 import { WEBSOCKET_BASE_URL } from "../../api";
@@ -64,6 +64,8 @@ export function createWebSocketChannel(socket: WebSocket): EventChannel<any> {
 
 function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Record<string, string> }>) {
   const { type, payload } = action.payload;
+  const gameId: string = yield appSelect(state => state.game.gameId);
+
 
   switch (type) {
     case 'LOBBY_PLAYER_JOIN':
@@ -71,19 +73,24 @@ function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Rec
       console.log(action.payload)
       break;
     case "LOBBY_GAME_START":
-      yield put (openTabOnTopAction({type: TabType.GIVE_CLUE}))
-       yield put(setGameIdAction(payload.id))
-       yield put(fetchRoundInfoAction(payload.id))
+      yield put(openTabOnTopAction({ type: TabType.GIVE_CLUE }))
+      yield put(setGameIdAction(payload.id))
+      yield put(fetchRoundInfoAction(payload.id))
       console.log(payload)
       break
-      case "SHOW_GUESS_CLUE_SCREEN":
-        let gameId: string = yield appSelect(state => state.game.gameId)
-        yield put(fetchRoundInfoAction(gameId))
-      yield put (changeTabAction({type: TabType.GUESS_CLUE}))
+    case "SHOW_GUESS_CLUE_SCREEN":
+      yield put(fetchRoundInfoAction(gameId))
+      yield put(changeTabAction({ type: TabType.GUESS_CLUE }))
       break
-      case "SHOW_SCORE_SCREEN":
-         yield put (fetchScoreAction())
-        yield put (changeTabAction({type: TabType.LEADERBOARD}))
+    case "SHOW_SCORE_SCREEN":
+      yield put(clearSelectedPointAction());
+      yield put(fetchScoreAction())
+      yield put(changeTabAction({ type: TabType.LEADERBOARD }))
+      break
+    case "SHOW_GIVE_CLUE_SCREEN":
+       yield put(increaseRoundAction())
+       yield put (fetchRoundInfoAction(gameId))
+      yield put(changeTabAction({ type: TabType.GIVE_CLUE }))
       break
     default:
       console.warn(`Unhandled message type: ${type}`);

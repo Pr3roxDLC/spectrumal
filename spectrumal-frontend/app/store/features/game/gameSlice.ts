@@ -12,13 +12,15 @@ interface GameState {
   selectedPoint?: Point;
   gainedScore?: ScoreMap,
   newScore?: ScoreMap,
-  previousScore?: ScoreMap
+  previousScore?: ScoreMap,
+  roundNumber: number
 }
 
 const initialState: GameState = {
   gameId: undefined,
   target: { dim1: 0, dim2: 0 },
   currentClue: "",
+  roundNumber: 1
 };
 
 
@@ -58,7 +60,13 @@ const gameSlice = createSlice({
     },
     setPreviousScoreAction: (state, action: PayloadAction<ScoreMap>) => { 
       state.previousScore = action.payload
-    }
+    },
+    increaseRoundAction: (state, action: PayloadAction<void>) => {
+      state.roundNumber += 1
+    },
+    clearSelectedPointAction: (state) => {
+  state.selectedPoint = undefined;
+}
   },
 });
 
@@ -76,7 +84,9 @@ export const {
   fetchScoreAction,
   setPreviousScoreAction,
   setNewScoreAction,
-  setGainedScoreAction
+  setGainedScoreAction,
+  increaseRoundAction,
+  clearSelectedPointAction
 } = gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;
