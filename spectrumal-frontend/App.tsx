@@ -17,6 +17,7 @@ import GradientBackground from './app/Components/gradientBackground/GradientBack
 import LeaderboardPage from './app/pages/LeaderboardPage/LeaderboardPage';
 import WaitingForOthers from './app/pages/WaitingForOthers/WaitingForOthers';
 import GameStarting from './app/pages/GameStarting/GameStarting';
+import LeaderboardPageTest from './app/pages/LeaderboardPageTest/LeaderboardPageTest';
 
 export default function App () {
   const currentActiveTab = useAppSelector(
@@ -43,7 +44,8 @@ export default function App () {
               START_LOBBY: <Lobby></Lobby>,
               WAITING_FOR_OTHERS: <WaitingForOthers></WaitingForOthers>,
               LEADERBOARD: <LeaderboardPage></LeaderboardPage>,
-              GAME_STARTING: <GameStarting></GameStarting>
+              GAME_STARTING: <GameStarting></GameStarting>,
+              LEADERBOARD_PAGE_TEST: <LeaderboardPageTest></LeaderboardPageTest>,
             }[currentActiveTab?.type ?? TabType.MAIN_MENU]
           }
         </ApplicationProvider>

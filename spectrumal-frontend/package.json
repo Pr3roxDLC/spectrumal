@@ -19,6 +19,7 @@
     "@ui-kitten/components": "^5.3.1",
     "expo": "~53.0.12",
     "expo-blur": "~14.1.5",
+    "expo-haptics": "^14.1.4",
     "expo-linear-gradient": "~14.1.5",
     "expo-status-bar": "~2.2.3",
     "install": "^0.13.0",
