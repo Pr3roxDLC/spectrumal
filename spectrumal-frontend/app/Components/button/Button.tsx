@@ -1,27 +1,53 @@
-import React from 'react'
-import { TouchableOpacity, Text, ViewStyle, DimensionValue, View } from 'react-native';
+import React from 'react';
+import { TouchableOpacity, Text, ViewStyle, DimensionValue, View, StyleSheet } from 'react-native';
 import GlassContainer from '../glassContainer/GlassContainer';
 import styles from './ButtonStyles';
 
-
 export interface Props {
-    label: string;
-    onPress: () => void;
-    style?: ViewStyle;
-    width?: DimensionValue
+  label: string;
+  onPress: () => void;
+  style?: ViewStyle;
+  width?: DimensionValue;
+  disabled?: boolean;
 }
 
 const Button = (props: Props) => {
+  const { label, onPress, style, disabled } = props;
 
-    return (
-        <View style={[props.style, styles.container]}>
-            <TouchableOpacity style={{height: "100%"}} activeOpacity={0.8} onPress={() => props.onPress()}>
-            <GlassContainer height={"100%"}>
-                <Text style={styles.buttonText}>{props.label}</Text>
-            </GlassContainer>
-            </TouchableOpacity>
-        </View>
-    )
-}
+  return (
+    <View style={[style, styles.container]}>
+      <TouchableOpacity
+        style={{ height: '100%' }}
+        activeOpacity={disabled ? 1 : 0.8}
+        onPress={disabled ? undefined : () => onPress()}
+        disabled={disabled}
+      >
+        <GlassContainer
+          height={'100%'}
+          style={disabled ? disabledStyles.disabledContainer : undefined}
+        >
+          <Text
+            style={[
+              styles.buttonText,
+              disabled ? disabledStyles.disabledText : undefined,
+            ]}
+          >
+            {label}
+          </Text>
+        </GlassContainer>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
-export default Button
+const disabledStyles = StyleSheet.create({
+  disabledContainer: {
+    backgroundColor: '#d3d3d3', 
+    opacity: 0.5,
+  },
+  disabledText: {
+    color: '#999',
+  },
+});
+
+export default Button;
