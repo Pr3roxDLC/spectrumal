@@ -5,6 +5,7 @@ import Leaderboard from './Leaderboard'
 import ReadOnlySelector from '../../Components/Selector/read-only/ReadOnlySelector'
 import ContinuingRound from './ContinuingRound'
 import * as Haptics from 'expo-haptics';
+import { useAppSelector } from '../../store/hooks'
 
 const LeaderboardPage = () => {
   useEffect(() => {
@@ -30,11 +31,13 @@ const LeaderboardPage = () => {
       clearTimeout(timeoutId);
     };
   }, []);
+
+   const target = useAppSelector(state => state.game.target)
   
   return (
     <>
       <View style={styles.leaderboardContainer}>
-        <ReadOnlySelector x={40} y={80}></ReadOnlySelector>
+        <ReadOnlySelector showUserGuesses={true} target={target}></ReadOnlySelector>
         <Leaderboard></Leaderboard>
         <ContinuingRound></ContinuingRound>
       </View>

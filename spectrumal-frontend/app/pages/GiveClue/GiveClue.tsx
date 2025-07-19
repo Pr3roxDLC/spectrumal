@@ -27,7 +27,7 @@ const GiveClue = () => {
   return (
     <>
       <View style={styles2.giveClueContainer}>
-      <ReadOnlySelector x={target.dim1 ?? 0} y={target.dim2 ?? 0}></ReadOnlySelector>
+      <ReadOnlySelector showUserGuesses={false} target={target}></ReadOnlySelector>
       <GiveClueField setClueInput={setClueInput}  />
       <Button disabled={emptyInput} style={{ width: "80%"}} label="Ready" onPress={handleReadyClick} />
       </View>

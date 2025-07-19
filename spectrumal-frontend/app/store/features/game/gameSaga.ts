@@ -3,7 +3,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { CreateGameResponse, Point, PointGuessResponse, RoundInfoResponse, ScoreResponse, WordGuessResponse } from "../../../api";
 import { appSelect, useAppSelector } from "../../hooks";
 import { changeTabAction, openTabOnTopAction, TabType } from "../navigation/navigationSlice";
-import { setGameIdAction, fetchRoundInfoAction, startGameAction, setTargetAction, submitClueAction, setSpectrumAction, setCurrentClueAction, submitPointAction, fetchScoreAction, setPreviousScoreAction, setNewScoreAction, setGainedScoreAction } from "./gameSlice";
+import { setGameIdAction, fetchRoundInfoAction, startGameAction, setTargetAction, submitClueAction, setSpectrumAction, setCurrentClueAction, submitPointAction, fetchScoreAction, setPreviousScoreAction, setNewScoreAction, setGainedScoreAction, userGuessesAction, setUserGuessesAction } from "./gameSlice";
 import { API } from "../../api";
 
 
@@ -92,8 +92,12 @@ function* fetchScoreSaga (action: PayloadAction<void>) {
     const response: ScoreResponse = yield call(() =>
       API.getScore({ id: gameId }))
 
-    console.log(response.score)
+    let point1: Point = {dim1: 0.43, dim2: -0.7}
+    let point2: Point = {dim1: 0.13, dim2: -0.4}
+    let point3: Point = {dim1: 0.93, dim2: -0.1}
 
+    console.log(response.score)
+      yield put (setUserGuessesAction([point1, point2, point3]))
       yield put(setPreviousScoreAction(response.score?.previousScores ?? {}));
       yield put(setNewScoreAction(response.score?.newScores ?? {}));
       yield put(setGainedScoreAction(response.score?.gainedScores ?? {}));
