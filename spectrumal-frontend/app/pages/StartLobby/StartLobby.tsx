@@ -5,18 +5,21 @@ import HeaderBack from '../../Components/header/HeaderBack';
 import styles from './StartLobbyStyles';
 import GameCode from './GameCode';
 import LobbyComponent from './LobbyComponent';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { startGameAction } from '../../store/features/game/gameSlice';
 
 
 
 const Lobby = () => {
   const dispatch = useAppDispatch()
+  const numberOfPlayers = useAppSelector(state => state.lobby.users.length)
+   const moreThanThreePlayers = numberOfPlayers > 2
+
 
   const handleStartGameClick = () => {
     dispatch(startGameAction())
-
   }
+
 
   return (
     <>
@@ -24,7 +27,7 @@ const Lobby = () => {
       <View style={styles.lobbyContainer}>
         <GameCode />
         <LobbyComponent />
-        <Button label="Start Game" onPress={handleStartGameClick} style={{ width: "80%" }}></Button>
+        <Button disabled={!moreThanThreePlayers} label="Start Game" onPress={handleStartGameClick} style={{ width: "80%" }}></Button>
       </View>
     </>
 
