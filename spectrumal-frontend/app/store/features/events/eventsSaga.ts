@@ -88,9 +88,14 @@ function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Rec
       yield put(changeTabAction({ type: TabType.LEADERBOARD }))
       break
     case "SHOW_GIVE_CLUE_SCREEN":
-       yield put(increaseRoundAction())
-       yield put (fetchRoundInfoAction(gameId))
-      yield put(changeTabAction({ type: TabType.GIVE_CLUE }))
+      const roundNumber: number = yield appSelect(state => state.game.roundNumber);
+       if (roundNumber < 4) {
+    yield put(increaseRoundAction());
+    yield put(fetchRoundInfoAction(gameId));
+    yield put(changeTabAction({ type: TabType.GIVE_CLUE }));
+  } else {
+    console.log("Maximum round reached (4)");
+  }
       break
     default:
       console.warn(`Unhandled message type: ${type}`);
