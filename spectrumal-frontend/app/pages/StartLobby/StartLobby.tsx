@@ -27,6 +27,7 @@ const Lobby = () => {
       <View style={styles.lobbyContainer}>
         <GameCode />
         <LobbyComponent />
+        <Button label="Test Start Game" onPress={handleStartGameClick} style={{ width: "80%" }}></Button>
         <Button disabled={!moreThanThreePlayers} label="Start Game" onPress={handleStartGameClick} style={{ width: "80%" }}></Button>
       </View>
     </>
