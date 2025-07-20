@@ -16,7 +16,7 @@ const { isMusicPlaying, isSfxEnabled, toggleMusic, toggleSfx } = useAudio();
     <>
       <HeaderBack></HeaderBack>
       <View style={styles.settingsContainer}>
-        <GlassContainer style={{ marginTop: 20 }} width="90%" height={55}>
+        <GlassContainer width="90%" height={55}>
           <View style={styles.settingsOptionContainer}>
             <Text style={styles.settingsOptionText}>Haptics</Text>
             <ToggleButton

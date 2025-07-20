@@ -13,7 +13,7 @@ const CustomTextInput = (props: Props) => {
   return (
     <View style={styles.container}>
       <BlurView intensity={70} tint="dark" style={styles.blurContainer}>
-        <TextInput value={props.value}
+        <TextInput maxLength={6} value={props.value}
           onChangeText={props.onChange} placeholderTextColor="#B5C5E3" placeholder={props.placeholder}
           style={styles.input}
         />

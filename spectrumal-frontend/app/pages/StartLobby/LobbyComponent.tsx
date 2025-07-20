@@ -15,12 +15,26 @@ const LobbyComponent = () => {
 
 
 
+  const numberOfUsers = useAppSelector(state =>state.lobby.users.length)
+  const minimumUsers = 3
+  const usersNeeded = minimumUsers - numberOfUsers
+
+  let waitingMessage = ""
+  if(usersNeeded > 1){
+    waitingMessage = `Waiting for ${usersNeeded} more users to join...`
+  }
+  else if (usersNeeded === 1) {
+    waitingMessage = 'Waiting for 1 more user to join...'
+  } else {
+    waitingMessage = 'Ready to start the game!'
+  }
+
 
   return (
     <GlassContainer width="80%" height="40%">
       <View style={styles.lobbyComponentContainer}>
         <View style={styles.lobbyTitleContainer}>
-          <Text style={styles.lobbyTitle}>Lobby</Text>
+          <Text style={styles.lobbyTitle}>{waitingMessage}</Text>
         </View>
         <View style={styles.usersInLobbyContainer}>
           {users.map((user, index) => (

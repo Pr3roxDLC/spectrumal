@@ -8,6 +8,20 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center"
     },
+    avatarContainer: {
+        borderRadius: 25,
+        width: 60,
+        height: 60,
+        borderWidth: 2,
+        borderColor: variables.colors.whiteText,
+        justifyContent: "center",
+        alignItems: "center",
+        shadowColor: 'rgba(0, 0, 0, 0.3)',
+        shadowOffset: { width: 8, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        boxShadow: 'rgba(255, 255, 255, 0.3) 4px 4px 16px -8px inset',
+    },
 
     /*game code */
 
@@ -18,6 +32,7 @@ const styles = StyleSheet.create({
         width: "80%",
         height: "30%",
     },
+
     textContainer: {
         display: "flex",
         justifyContent: "center",
@@ -57,21 +72,23 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         paddingVertical: 10,
-        borderRadius: 15
+        paddingHorizontal: 10,
+        borderRadius: 15,
+        justifyContent: "flex-start",
+        alignItems: "flex-start"
     },
     lobbyTitleContainer: {
         width: "100%",
-        height: "30%",
+        height: "20%",
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",
     },
     lobbyTitle: {
         color: variables.colors.whiteText,
-        fontSize: 26,
+        fontSize: 17,
         fontWeight: '600',
-        textAlign: "center",
-        marginBottom: 20,
+        marginTop: 10,
         textShadowColor: 'rgba(0, 0, 0, 0.5)',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 4,

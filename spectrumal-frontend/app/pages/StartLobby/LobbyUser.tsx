@@ -11,7 +11,9 @@ export interface Props {
 const LobbyUser = (props: Props) => {
   return (
     <View style={styles.userAndName}>
-        <Avatar style={{borderColor: "black", borderWidth: 1}} source={require('../../../assets/images/avatar5.svg')} />
+      <View style={styles.avatarContainer}>
+        <Avatar source={require('../../../assets/images/avatar5.svg')} />
+        </View>
         <Text style={styles.userName}>{props.user.name}</Text>
         </View>
   )
