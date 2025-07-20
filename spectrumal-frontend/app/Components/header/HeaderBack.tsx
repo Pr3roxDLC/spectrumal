@@ -40,7 +40,7 @@ const HeaderBack = () => {
        <View style={{ flex: 1 }} />
 
         <View style={{ width: 50 }}>
-       {currentTab !== TabType.SETTINGS_PAGE && (
+       {currentTab !== TabType.SETTINGS_PAGE && currentTab!==  TabType.JOIN_LOBBY  && (
        <TouchableOpacity onPress={handleSettingsClick}>
         <GlassContainer width={50} height={50}>
         <Feather style={styles.settingIcon} name="settings" size={28} />
