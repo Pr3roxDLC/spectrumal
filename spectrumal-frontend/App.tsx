@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 import { SafeAreaView, StatusBar } from 'react-native';
@@ -15,15 +15,41 @@ import Lobby from './app/pages/StartLobby/StartLobby';
 import Play from './app/pages/Play/Play';
 import GradientBackground from './app/Components/gradientBackground/GradientBackground';
 import LeaderboardPage from './app/pages/LeaderboardPage/LeaderboardPage';
-import WaitingForOthers from './app/pages/WaitingForOthers/WaitingForOthers';
+import WaitingForOthers  from './app/pages/WaitingForOthers/WaitingForOthers';
 import GameStarting from './app/pages/GameStarting/GameStarting';
 import LeaderboardPageTest from './app/pages/LeaderboardPageTest/LeaderboardPageTest';
+import { Audio } from 'expo-av';
+import { MusicProvider } from './app/pages/SettingsPage/MusicContext';
 
 export default function App () {
+   const sound = useRef(null);
   const currentActiveTab = useAppSelector(
     (state) => state.navigation.tabStack.at(-1)
   );
 
+    
+  useEffect(() => {
+    const playBackgroundMusic = async () => {
+      try {
+        const { sound: playbackObject } = await Audio.Sound.createAsync(
+          require('./assets/sounds/335571__magntron__gamemusic.mp3'), 
+          {
+            shouldPlay: true,
+            isLooping: true,
+            volume: 0.8,
+          }
+        );
+        sound.current = playbackObject;
+      } catch (error) {
+        console.error('Error loading or playing sound:', error);
+      }
+    };
+
+    playBackgroundMusic();
+
+ return () => {
+    };
+  }, []);
 
 
   return (
@@ -31,6 +57,7 @@ export default function App () {
       <StatusBar hidden={true} />
        <SafeAreaView style={{ flex: 1 }}>
           <GradientBackground>
+            <MusicProvider>
         <ApplicationProvider {...eva} theme={eva.dark}>
           {
             {
@@ -49,6 +76,7 @@ export default function App () {
             }[currentActiveTab?.type ?? TabType.MAIN_MENU]
           }
         </ApplicationProvider>
+        </MusicProvider>
         </GradientBackground>
         </SafeAreaView>
         

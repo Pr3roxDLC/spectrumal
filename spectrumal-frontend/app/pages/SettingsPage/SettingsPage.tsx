@@ -4,10 +4,13 @@ import styles from './SettingsStyles';
 import HeaderBack from '../../Components/header/HeaderBack';
 import GlassContainer from '../../Components/glassContainer/GlassContainer';
 import ToggleButton from './ToggleButton';
+import { useMusic } from './MusicContext';
 
 
 
 const SettingsPage = () => {
+const { isPlaying, toggleMusic } = useMusic();
+
   return (
     <>
       <HeaderBack></HeaderBack>
@@ -24,8 +27,8 @@ const SettingsPage = () => {
           <View style={styles.settingsOptionContainer}>
             <Text style={styles.settingsOptionText}>Music</Text>
             <ToggleButton
-              initialValue={false}
-              onToggle={(value) =>  value}></ToggleButton>
+               initialValue={isPlaying}
+      onToggle={toggleMusic}></ToggleButton>
           </View>
         </GlassContainer>
         <GlassContainer style={{ marginTop: 20 }} width="90%" height={55}>
