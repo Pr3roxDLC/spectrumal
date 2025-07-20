@@ -8,20 +8,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center"
     },
-    avatarContainer: {
-        borderRadius: 25,
-        width: 60,
-        height: 60,
-        borderWidth: 2,
-        borderColor: variables.colors.whiteText,
-        justifyContent: "center",
-        alignItems: "center",
-        shadowColor: 'rgba(0, 0, 0, 0.3)',
-        shadowOffset: { width: 8, height: 8 },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-        boxShadow: 'rgba(255, 255, 255, 0.3) 4px 4px 16px -8px inset',
-    },
 
     /*game code */
 

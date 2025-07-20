@@ -5,18 +5,21 @@ import HeaderBack from '../../Components/header/HeaderBack';
 import GlassContainer from '../../Components/glassContainer/GlassContainer';
 import Slider from '@react-native-community/slider';
 import variables from '../../../assets/variables/Variables';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setNumberOfRoundsAction } from '../../store/features/game/gameSlice';
 
 
 
 const GameSettingsPage = () => {
-  const [rounds, setRounds] = useState(5);
+   const dispatch = useAppDispatch();
+  const numberOfRounds = useAppSelector(state => state.game.numberOfRounds);
   return (
     <>
-      <HeaderBack></HeaderBack>
+      <HeaderBack />
       <View style={styles.settingsContainer}>
         <GlassContainer width="90%" height={55}>
           <View style={styles.settingsOptionContainer}>
-            <Text style={styles.settingsOptionText}>Number of Rounds: {rounds}</Text>
+            <Text style={styles.settingsOptionText}>Number of Rounds: {numberOfRounds}</Text>
             <Slider
               style={{ width: '30%', height: 40 }}
               minimumValue={1}
@@ -25,14 +28,14 @@ const GameSettingsPage = () => {
               minimumTrackTintColor={variables.colors.whiteText}
               maximumTrackTintColor="#ccc"
               thumbTintColor={variables.colors.whiteText}
-              value={rounds}
-              onValueChange={(value) => setRounds(value)}
+              value={numberOfRounds}
+              onValueChange={(value) => dispatch(setNumberOfRoundsAction(value))}
             />
           </View>
         </GlassContainer>
       </View>
     </>
-  )
+  );
 }
 
 export default GameSettingsPage
