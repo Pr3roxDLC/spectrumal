@@ -19,7 +19,7 @@ import WaitingForOthers  from './app/pages/WaitingForOthers/WaitingForOthers';
 import GameStarting from './app/pages/GameStarting/GameStarting';
 import LeaderboardPageTest from './app/pages/LeaderboardPageTest/LeaderboardPageTest';
 import { Audio } from 'expo-av';
-import { MusicProvider } from './app/pages/SettingsPage/MusicContext';
+import { AudioProvider } from './app/pages/SettingsPage/AudioContext';
 
 export default function App () {
    const sound = useRef(null);
@@ -32,7 +32,7 @@ export default function App () {
     const playBackgroundMusic = async () => {
       try {
         const { sound: playbackObject } = await Audio.Sound.createAsync(
-          require('./assets/sounds/335571__magntron__gamemusic.mp3'), 
+          require('./assets/sounds/background-music.mp3'), 
           {
             shouldPlay: true,
             isLooping: true,
@@ -57,7 +57,7 @@ export default function App () {
       <StatusBar hidden={true} />
        <SafeAreaView style={{ flex: 1 }}>
           <GradientBackground>
-            <MusicProvider>
+            <AudioProvider>
         <ApplicationProvider {...eva} theme={eva.dark}>
           {
             {
@@ -76,7 +76,7 @@ export default function App () {
             }[currentActiveTab?.type ?? TabType.MAIN_MENU]
           }
         </ApplicationProvider>
-        </MusicProvider>
+        </AudioProvider>
         </GradientBackground>
         </SafeAreaView>
         

@@ -4,12 +4,13 @@ import styles from './SettingsStyles';
 import HeaderBack from '../../Components/header/HeaderBack';
 import GlassContainer from '../../Components/glassContainer/GlassContainer';
 import ToggleButton from './ToggleButton';
-import { useMusic } from './MusicContext';
+import { useAudio } from './AudioContext';
 
 
 
 const SettingsPage = () => {
-const { isPlaying, toggleMusic } = useMusic();
+
+const { isMusicPlaying, isSfxEnabled, toggleMusic, toggleSfx } = useAudio();
 
   return (
     <>
@@ -25,18 +26,18 @@ const { isPlaying, toggleMusic } = useMusic();
         </GlassContainer>
         <GlassContainer style={{ marginTop: 20 }} width="90%" height={55}>
           <View style={styles.settingsOptionContainer}>
-            <Text style={styles.settingsOptionText}>Music</Text>
+            <Text style={styles.settingsOptionText}>Background Music</Text>
             <ToggleButton
-               initialValue={isPlaying}
+               initialValue={isMusicPlaying}
       onToggle={toggleMusic}></ToggleButton>
           </View>
         </GlassContainer>
         <GlassContainer style={{ marginTop: 20 }} width="90%" height={55}>
           <View style={styles.settingsOptionContainer}>
-            <Text style={styles.settingsOptionText}>Audio</Text>
+            <Text style={styles.settingsOptionText}>Sound Effects</Text>
             <ToggleButton
-              initialValue={false}
-              onToggle={(value) =>  value}></ToggleButton>
+              initialValue={isSfxEnabled}
+      onToggle={toggleSfx}></ToggleButton>
           </View>
         </GlassContainer>
         <GlassContainer style={{ marginTop: 20 }} width="90%" height={55}>
