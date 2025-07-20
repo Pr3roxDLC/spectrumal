@@ -20,6 +20,7 @@ import GameStarting from './app/pages/GameStarting/GameStarting';
 import LeaderboardPageTest from './app/pages/LeaderboardPageTest/LeaderboardPageTest';
 import { Audio } from 'expo-av';
 import { AudioProvider } from './app/pages/SettingsPage/AudioContext';
+import GameSettings from './app/pages/GameSettingsPage/GameSettings';
 
 export default function App () {
    const sound = useRef(null);
@@ -73,6 +74,7 @@ export default function App () {
               LEADERBOARD: <LeaderboardPage></LeaderboardPage>,
               GAME_STARTING: <GameStarting></GameStarting>,
               LEADERBOARD_PAGE_TEST: <LeaderboardPageTest></LeaderboardPageTest>,
+              GAME_SETTINGS_PAGE: <GameSettings></GameSettings>,
             }[currentActiveTab?.type ?? TabType.MAIN_MENU]
           }
         </ApplicationProvider>
