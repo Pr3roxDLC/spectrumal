@@ -11,11 +11,24 @@ import { createNewLobbyAction } from '../../store/features/lobby/lobbySlice';
 const StartGame = () => {
   const dispatch = useAppDispatch()
   const [name, setName] = useState("")
+  const [error, setError] = useState("")
+
+
   const handleUsernameInput = (text: string) => {
+
     setName(text)
+    if (text.trim()) {
+      setError(""); 
+    }
   }
 
   const handleStartGameClick = () => {
+
+        if (name.trim() === "") {
+      setError("Name is required");
+      return;
+    }
+
     const id = uuidv4(); 
     dispatch(createNewLobbyAction({ playerId: id , name: name }));
   }
@@ -25,6 +38,7 @@ const StartGame = () => {
       <View style={styles.startGameContainer}>
         <Text style={styles.codeAndName}>Name</Text>
          <CustomTextInput onChange={handleUsernameInput} value={name} placeholder='Enter your name' />
+         {error ? <Text style={styles.errorText}>{error}</Text> : null}
         <Button label="Start Lobby" style={{ width: "100%" }} onPress={handleStartGameClick} />
       </View>
     </View>

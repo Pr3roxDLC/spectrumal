@@ -45,8 +45,14 @@ function* joinLobbySaga(action: PayloadAction<{ playerId: string; name: string; 
     yield put(openTabOnTopAction({ type: TabType.JOIN_LOBBY }));
     yield put(setPlayerIdAction(action.payload.playerId))
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error joining lobby:", error);
+
+    if ( error?.message?.includes("Error joining lobby")) {
+      yield put({ type: "lobby/setCodeError", payload: "Lobby does not exist" });
+    } else {
+      yield put({ type: "lobby/setCodeError", payload: "Lobby does not exist" });
+    }
   }
 }
 

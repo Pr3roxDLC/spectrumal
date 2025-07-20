@@ -23,6 +23,14 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 4,
     },
+        errorText: {
+        color: "#ed4040",
+        fontSize: 14,
+        textAlign: "center",
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 4,
+    }
 })
 
 export default styles

@@ -6,6 +6,7 @@ import styles from './InteractableSelectorStyles';
 import SelectorAxis from './SelectorAxis';
 import { useAppDispatch } from '../../../store/hooks';
 import { setSelectedPointAction } from '../../../store/features/game/gameSlice';
+import SpectrumHeader from '../SpectrumHeader';
 
 type SelectorProps = {
 
@@ -105,6 +106,8 @@ dispatch(setSelectedPointAction({ dim1, dim2 }));
 
 
     return (
+        <>
+        <SpectrumHeader></SpectrumHeader>
         <View style={{ width: 300, height: 300}}>
             <SelectorAxis></SelectorAxis>
         <GlassContainer width={300} height={300}>
@@ -136,6 +139,7 @@ dispatch(setSelectedPointAction({ dim1, dim2 }));
             </View>
         </GlassContainer>
         </View>
+        </>
     );
 };
 

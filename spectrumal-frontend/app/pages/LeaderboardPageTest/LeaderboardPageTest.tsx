@@ -5,9 +5,10 @@ import Leaderboard from './Leaderboard'
 import ReadOnlySelector from '../../Components/Selector/read-only/ReadOnlySelector'
 import ContinuingRound from './ContinuingRound'
 import * as Haptics from 'expo-haptics';
-import { useAppSelector } from '../../store/hooks'
+import HeaderBack from '../../Components/header/HeaderBack'
 
-const LeaderboardPage = () => {
+
+const LeaderboardPageTest = () => {
   useEffect(() => {
     const delayBeforeStart = 500; 
     const pulseCount = 24; 
@@ -32,12 +33,11 @@ const LeaderboardPage = () => {
     };
   }, []);
 
-   const target = useAppSelector(state => state.game.target)
-  
   return (
     <>
+    <HeaderBack></HeaderBack>
       <View style={styles.leaderboardContainer}>
-        <ReadOnlySelector showUserGuesses={true} target={target}></ReadOnlySelector>
+        <ReadOnlySelector x={40} y={80}></ReadOnlySelector>
         <Leaderboard></Leaderboard>
         <ContinuingRound></ContinuingRound>
       </View>
@@ -45,6 +45,4 @@ const LeaderboardPage = () => {
   )
 }
 
-export default LeaderboardPage
-
-
+export default LeaderboardPageTest

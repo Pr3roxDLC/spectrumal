@@ -10,10 +10,9 @@ const styles2 = StyleSheet.create({
     },
     clueContainer: {
         width: "80%",
-        height: "40%",
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "flex-start"
+        height: "20%",
+        justifyContent: "center",
+        alignItems: "center"
     },
     giveAClue: {
         color: variables.colors.whiteText,

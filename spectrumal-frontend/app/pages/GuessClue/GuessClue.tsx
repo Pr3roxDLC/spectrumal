@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import HeaderBack from '../../Components/header/HeaderBack';
 import InteractableSelector from '../../Components/Selector/interactable/InteractableSelector';
 import styles from './GuessClueStyles';
 import Button from '../../Components/button/Button';
@@ -12,6 +11,8 @@ import { submitPointAction } from '../../store/features/game/gameSlice';
 
 const GuessClue = () => {
   const dispatch = useAppDispatch()
+  const selectedPoint = useAppSelector(state => state.game.selectedPoint);
+const isBlipPlaced = selectedPoint !== undefined;
 
   const handleSubmitClick = () => {
       dispatch(submitPointAction());
@@ -22,7 +23,6 @@ const GuessClue = () => {
 
   return (
     <>
-      <HeaderBack></HeaderBack>
       <View style={styles.guessClueContainer}>
         <InteractableSelector></InteractableSelector>
         <View style={styles.textContainer}>
@@ -31,7 +31,7 @@ const GuessClue = () => {
           <Text style={styles.clue}>{showClue}</Text>
           </GlassContainer>
         </View>
-        <Button style={{ width: "80%" }} label="Submit Answer" onPress={handleSubmitClick} >
+        <Button disabled={!isBlipPlaced} style={{ width: "80%" }} label="Submit Answer" onPress={handleSubmitClick} >
         </Button>
       </View>
     </>

@@ -5,6 +5,7 @@ import IconNoBg from '../../Components/icon/IconNoBg';
 import Button from '../../Components/button/Button';
 import { useAppDispatch } from '../../store/hooks';
 import { openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice';
+import HeaderBack from '../../Components/header/HeaderBack';
 
 
 const MainMenu = () => {
@@ -19,11 +20,12 @@ const MainMenu = () => {
   }
 
   const handleDemoPress = () => {
-    dispatch(openTabOnTopAction({ type: TabType.GAME_STARTING }))
+    dispatch(openTabOnTopAction({ type: TabType.LEADERBOARD_PAGE_TEST }))
   }
 
   return (
     <>
+    <HeaderBack></HeaderBack>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}>Spectrumal</Text>

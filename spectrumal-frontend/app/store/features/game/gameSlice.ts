@@ -12,13 +12,17 @@ interface GameState {
   selectedPoint?: Point;
   gainedScore?: ScoreMap,
   newScore?: ScoreMap,
-  previousScore?: ScoreMap
+  previousScore?: ScoreMap,
+  roundNumber: number,
+  guesses: Point[]
 }
 
 const initialState: GameState = {
   gameId: undefined,
   target: { dim1: 0, dim2: 0 },
   currentClue: "",
+  roundNumber: 1,
+  guesses: []
 };
 
 
@@ -50,14 +54,23 @@ const gameSlice = createSlice({
     },
     submitPointAction: (state, action: PayloadAction<void>) => { },
     fetchScoreAction: (state, action: PayloadAction<void>) => { },
-    setGainedScoreAction: (state, action: PayloadAction<ScoreMap>) => { 
+    setGainedScoreAction: (state, action: PayloadAction<ScoreMap>) => {
       state.gainedScore = action.payload
     },
-    setNewScoreAction: (state, action: PayloadAction<ScoreMap>) => { 
+    setNewScoreAction: (state, action: PayloadAction<ScoreMap>) => {
       state.newScore = action.payload
     },
-    setPreviousScoreAction: (state, action: PayloadAction<ScoreMap>) => { 
+    setPreviousScoreAction: (state, action: PayloadAction<ScoreMap>) => {
       state.previousScore = action.payload
+    },
+    increaseRoundAction: (state, action: PayloadAction<void>) => {
+      state.roundNumber += 1
+    },
+    clearSelectedPointAction: (state) => {
+      state.selectedPoint = undefined;
+    },
+    setUserGuessesAction: (state, action: PayloadAction<Point[]>) => {
+state.guesses = action.payload
     }
   },
 });
@@ -76,7 +89,10 @@ export const {
   fetchScoreAction,
   setPreviousScoreAction,
   setNewScoreAction,
-  setGainedScoreAction
+  setGainedScoreAction,
+  increaseRoundAction,
+  clearSelectedPointAction,
+  setUserGuessesAction
 } = gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;
