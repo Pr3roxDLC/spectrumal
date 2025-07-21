@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Modal } from 'react-native'
-import styles from '../LeaveCloseLobby/LeaveLobbyStyles'
-import { goBackToPreviousTabAction, openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice'
+import styles from './LobbyIsFullStyles'
+import { openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice'
 import { useAppDispatch } from '../../store/hooks'
 import Button from '../../Components/button/Button'
 import GlassContainer from '../../Components/glassContainer/GlassContainer'
@@ -28,7 +28,7 @@ const LobbyIsFull = ({ modalVisible, setModalVisible }: { modalVisible: boolean,
           <BlurView intensity={50} tint="dark" style={styles.blurBackground}>
         <View style={styles.centeredView}>
           <GlassContainer style={styles.modalView}>
-            <Text style={styles.modalText}>Sorry! This lobby is full</Text>
+            <Text style={styles.modalText}>Sorry, this lobby is full</Text>
             <Button label={"Join Another Lobby"} style={{width: "90%", marginTop: 20}}
               onPress={handleClose}>
             </Button>

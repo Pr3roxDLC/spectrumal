@@ -6,6 +6,7 @@ import CustomTextInput from '../../Components/customTextInput/CustomTextInput'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { joinLobbyAction } from '../../store/features/lobby/lobbySlice'
 import { v4 as uuidv4 } from 'uuid';
+import LobbyIsFull from '../LobbyIsFull/LobbyIsFull'
 
 
 
@@ -14,7 +15,6 @@ const JoinGame = () => {
   const invalidCode = useAppSelector(state => state.lobby.codeError)
   const numberOfUsers = useAppSelector(state => state.lobby.users.length);
   const MAX_USERS = 8
-  const [lobbyFullError, setLobbyFullError] = useState("");
 
 
 
@@ -23,6 +23,7 @@ const JoinGame = () => {
     const [code, setCode] = useState("")
     const [nameError, setNameError] = useState("")
     const [codeError, setCodeError] = useState("")
+      const [showLeaveModal, setShowLeaveModal] = useState(false)
 
     const handleUsernameInput = (text: string) => {
     setName(text)
@@ -41,7 +42,6 @@ const JoinGame = () => {
 
   const handleJoinLobbyClick = () => {
   let hasError = false;
-  setLobbyFullError("");
 
   if (name.trim() === "") {
     setNameError("Name is required");
@@ -58,8 +58,8 @@ const JoinGame = () => {
   }
 
     if (numberOfUsers >= MAX_USERS) {
-    setLobbyFullError("Sorry, this lobby is full.");
-    hasError = true;
+     setShowLeaveModal(true); 
+  return;
   }
 
   if (hasError) return;
@@ -69,13 +69,13 @@ const JoinGame = () => {
 
 
   return (
+    <>
     <View style={styles.container}>
       <View style={styles.joinGameContainer}>
         <Text style={styles.codeAndName}>Game code</Text>
         <CustomTextInput value={code} onChange={handleCodeInput} placeholder='Enter your game code' />
          {codeError ? <Text style={styles.errorText}>{codeError}</Text> : null}
          {invalidCode ? <Text style={styles.errorText}>{invalidCode}</Text> : null}
-         {lobbyFullError ? <Text style={styles.errorText}>{lobbyFullError}</Text> : null}
 
         <Text style={styles.codeAndName}>Name</Text>
         <CustomTextInput value={name} onChange={handleUsernameInput} placeholder='Enter your name' />
@@ -87,6 +87,8 @@ const JoinGame = () => {
         />
       </View>
     </View>
+    <LobbyIsFull modalVisible={showLeaveModal} setModalVisible={setShowLeaveModal} />
+    </>
   )
 }
 
