@@ -75,13 +75,13 @@ function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Rec
     case "LOBBY_GAME_START":
       yield put(openTabOnTopAction({ type: TabType.GIVE_CLUE }))
       yield put(setGameIdAction(payload.id))
-       const parsedRounds = Number(payload.rounds);
-  console.log("Parsed rounds:", parsedRounds); 
-  if (!isNaN(parsedRounds)) {
-    yield put(setNumberOfRoundsAction(parsedRounds));
-  } else {
-    console.warn("Invalid or missing rounds value in payload:", payload.rounds);
-  }
+      const parsedRounds = Number(payload.rounds);
+      console.log("Parsed rounds:", parsedRounds);
+      if (!isNaN(parsedRounds)) {
+        yield put(setNumberOfRoundsAction(parsedRounds));
+      } else {
+        console.warn("Invalid or missing rounds value in payload:", payload.rounds);
+      }
       yield put(fetchRoundInfoAction(payload.id))
       console.log(payload)
       break

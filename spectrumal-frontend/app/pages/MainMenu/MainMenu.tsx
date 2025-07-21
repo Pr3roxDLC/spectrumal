@@ -20,7 +20,7 @@ const MainMenu = () => {
   }
 
   const handleDemoPress = () => {
-    dispatch(openTabOnTopAction({ type: TabType.LEADERBOARD_PAGE_TEST }))
+    dispatch(openTabOnTopAction({ type: TabType.PODIUM_PAGE }))
   }
 
   return (

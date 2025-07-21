@@ -20,6 +20,7 @@ import LeaderboardPageTest from './app/pages/LeaderboardPageTest/LeaderboardPage
 import GameSettings from './app/pages/GameSettingsPage/GameSettings';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { AudioProvider } from './app/pages/SettingsPage/AudioContext';
+import Podium from './app/pages/Podium/Podium';
 
 export default function App() {
   const currentActiveTab = useAppSelector(
@@ -68,6 +69,7 @@ export default function App() {
                   GAME_STARTING: <GameStarting />,
                   LEADERBOARD_PAGE_TEST: <LeaderboardPageTest />,
                   GAME_SETTINGS_PAGE: <GameSettings />,
+                  PODIUM_PAGE: <Podium />
                 }[currentActiveTab?.type ?? TabType.MAIN_MENU]
               }
             </ApplicationProvider>
