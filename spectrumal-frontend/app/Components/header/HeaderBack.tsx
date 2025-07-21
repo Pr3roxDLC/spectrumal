@@ -10,7 +10,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 
-const HeaderBack = () => {
+const HeaderBack = ({ onBackPress }: { onBackPress?: () => void }) => {
   const dispatch = useAppDispatch();
   const tabStack = useAppSelector(state => state.navigation.tabStack);
 
@@ -18,8 +18,12 @@ const HeaderBack = () => {
   const currentTab = tabStack[tabStack.length - 1]?.type;
 
 
-  const returnToPreviousTab = () => {
-    dispatch(goBackToPreviousTabAction())
+ const returnToPreviousTab = () => {
+    if (onBackPress) {
+      onBackPress()
+    } else {
+      dispatch(goBackToPreviousTabAction())
+    }
   }
 
   const handleSettingsClick = () => {

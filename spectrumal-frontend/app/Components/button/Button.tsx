@@ -6,11 +6,12 @@ import { Audio } from 'expo-av';
 import { useAudio } from '../../pages/SettingsPage/AudioContext';
 
 export interface Props {
-  label: string;
+  label?: string;
   onPress: () => void;
   style?: ViewStyle;
   width?: DimensionValue;
   disabled?: boolean;
+  children?: React.ReactNode
 }
 
 const Button = (props: Props) => {

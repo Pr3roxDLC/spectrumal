@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 10,
         borderRadius: 15,
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         alignItems: "flex-start"
     },
     lobbyTitleContainer: {

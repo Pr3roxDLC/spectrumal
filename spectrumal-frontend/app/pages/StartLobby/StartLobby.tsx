@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Share, Alert } from 'react-native'
 import Button from '../../Components/button/Button'
 import HeaderBack from '../../Components/header/HeaderBack';
@@ -7,6 +7,7 @@ import GameCode from './GameCode';
 import LobbyComponent from './LobbyComponent';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { startGameAction } from '../../store/features/game/gameSlice';
+import LeaveLobby from '../LeaveCloseLobby/LeaveLobby';
 
 const Lobby = () => {
   const dispatch = useAppDispatch()
@@ -31,13 +32,19 @@ const Lobby = () => {
     }
   }
 
+  const [showLeaveModal, setShowLeaveModal] = useState(false)
+  
+  const handleBackPress = () => {
+      setShowLeaveModal(true)
+  }
+
   const handleStartGameClick = () => {
     dispatch(startGameAction())
   }
 
   return (
     <>
-      <HeaderBack />
+      <HeaderBack onBackPress={handleBackPress} />
       <View style={styles.lobbyContainer}>
         <GameCode />
         <LobbyComponent />
@@ -45,6 +52,7 @@ const Lobby = () => {
         <Button label="Invite Friends" style={{ width: "80%" }} onPress={handleInviteFriendsPress} />
         <Button disabled={!moreThanThreePlayers} label="Start Game" onPress={handleStartGameClick} style={{ width: "80%" }} />
       </View>
+      <LeaveLobby modalVisible={showLeaveModal} setModalVisible={setShowLeaveModal} />
     </>
   )
 }
