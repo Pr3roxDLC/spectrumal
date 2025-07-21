@@ -15,6 +15,7 @@ const LobbyIsFull = ({ modalVisible, setModalVisible }: { modalVisible: boolean,
     setModalVisible(false)
     dispatch(openTabOnTopAction({ type: TabType.PLAY }))
   }
+  if (!modalVisible) return null;
 
   return (
     <>
