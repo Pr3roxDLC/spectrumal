@@ -80,11 +80,12 @@ const styles = StyleSheet.create({
         textShadowRadius: 4,
     },
     usersInLobbyContainer: {
-        display: "flex",
         flexDirection: "row",
         width: "100%",
+        paddingTop: 25,
+        height: "80%",
         flexWrap: "wrap",
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
     },
     userAndName: {
         display: "flex",

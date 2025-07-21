@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         marginTop: 30,
+        marginBottom: 30
     },
     podiumInnerContainer: {
         flexDirection: 'row',

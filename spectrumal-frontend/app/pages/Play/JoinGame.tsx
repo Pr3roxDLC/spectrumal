@@ -12,6 +12,10 @@ import { v4 as uuidv4 } from 'uuid';
 const JoinGame = () => {
   const dispatch = useAppDispatch()
   const invalidCode = useAppSelector(state => state.lobby.codeError)
+  const numberOfUsers = useAppSelector(state => state.lobby.users.length);
+  const MAX_USERS = 8
+  const [lobbyFullError, setLobbyFullError] = useState("");
+
 
 
 
@@ -37,6 +41,7 @@ const JoinGame = () => {
 
   const handleJoinLobbyClick = () => {
   let hasError = false;
+  setLobbyFullError("");
 
   if (name.trim() === "") {
     setNameError("Name is required");
@@ -52,6 +57,11 @@ const JoinGame = () => {
     setCodeError("");
   }
 
+    if (numberOfUsers >= MAX_USERS) {
+    setLobbyFullError("Sorry, this lobby is full.");
+    hasError = true;
+  }
+
   if (hasError) return;
     const id = uuidv4(); 
     dispatch(joinLobbyAction({playerId: id, name: name, code: code}))
@@ -65,6 +75,8 @@ const JoinGame = () => {
         <CustomTextInput value={code} onChange={handleCodeInput} placeholder='Enter your game code' />
          {codeError ? <Text style={styles.errorText}>{codeError}</Text> : null}
          {invalidCode ? <Text style={styles.errorText}>{invalidCode}</Text> : null}
+         {lobbyFullError ? <Text style={styles.errorText}>{lobbyFullError}</Text> : null}
+
         <Text style={styles.codeAndName}>Name</Text>
         <CustomTextInput value={name} onChange={handleUsernameInput} placeholder='Enter your name' />
          {nameError ? <Text style={styles.errorText}>{nameError}</Text> : null}

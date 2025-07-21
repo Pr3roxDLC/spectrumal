@@ -2,8 +2,10 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './PodiumStyles';
 import { Avatar } from '@ui-kitten/components';
+import { useAppSelector } from '../../store/hooks';
 
 const PodiumComponent = () => {
+      const users = useAppSelector(state => state.lobby.users)
 
   return (
     <View style={styles.podiumContainer}>
