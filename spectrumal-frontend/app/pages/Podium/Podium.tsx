@@ -2,10 +2,10 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import styles from './PodiumStyles'
 import PodiumComponent from './PodiumComponent'
-import Leaderboard from '../LeaderboardPageTest/Leaderboard'
 import Button from '../../Components/button/Button'
 import { openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice'
 import { useAppDispatch } from '../../store/hooks'
+import Leaderboard from '../LeaderboardPage/Leaderboard'
 
 const Podium = () => {
 const dispatch = useAppDispatch()

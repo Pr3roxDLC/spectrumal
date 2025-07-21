@@ -105,6 +105,7 @@ function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Rec
         console.log("roundNumber:", roundNumber);
         console.log("numberOfRounds:", numberOfRounds);
         console.log(`Maximum round reached (${numberOfRounds})`);
+        yield put(openTabOnTopAction({ type: TabType.PODIUM_PAGE }));
       }
       break
     default:

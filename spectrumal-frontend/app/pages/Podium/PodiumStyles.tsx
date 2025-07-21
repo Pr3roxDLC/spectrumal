@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     },
     avatar: {
         marginBottom: 6,
-        width: 64,
-        height: 64,
+        width: 54,
+        height: 54,
     },
     username: {
         color: variables.colors.whiteText,
