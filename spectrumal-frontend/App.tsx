@@ -21,6 +21,7 @@ import GameSettings from './app/pages/GameSettingsPage/GameSettings';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { AudioProvider } from './app/pages/SettingsPage/AudioContext';
 import Podium from './app/pages/Podium/Podium';
+import SplashScreen from './app/pages/SplashScreen/SplashScreen';
 
 export default function App() {
   const currentActiveTab = useAppSelector(
@@ -69,7 +70,8 @@ export default function App() {
                   GAME_STARTING: <GameStarting />,
                   LEADERBOARD_PAGE_TEST: <LeaderboardPageTest />,
                   GAME_SETTINGS_PAGE: <GameSettings />,
-                  PODIUM_PAGE: <Podium />
+                  PODIUM_PAGE: <Podium />,
+                  SPLASH_SCREEN: <SplashScreen />
                 }[currentActiveTab?.type ?? TabType.MAIN_MENU]
               }
             </ApplicationProvider>
