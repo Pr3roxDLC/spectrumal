@@ -34,16 +34,20 @@ const Button = (props: Props) => {
     }
   };
 
-  const { isSfxEnabled } = useAudio(); 
+  const { isSfxEnabled, isHapticsEnabled } = useAudio(); 
 
 
 const handlePress = async () => {
   if (isSfxEnabled) {
-    await playClickSound(); 
-    Haptics.selectionAsync()
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
+    await playClickSound();
   }
-  onPress(); 
+
+  if (isHapticsEnabled) {
+    Haptics.selectionAsync();
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+  }
+
+  onPress();
 }
 
   return (
