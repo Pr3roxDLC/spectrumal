@@ -1,20 +1,23 @@
-
 import React, { createContext, useContext, useRef, useState, useEffect } from 'react';
 import { Audio } from 'expo-av';
 
 type AudioContextType = {
   isMusicPlaying: boolean;
   isSfxEnabled: boolean;
+  isHapticsEnabled: boolean; 
   toggleMusic: () => void;
   toggleSfx: () => void;
+  toggleHaptics: () => void; 
   playSfx: (file: any) => Promise<void>;
 };
 
 const AudioContext = createContext<AudioContextType>({
   isMusicPlaying: false,
   isSfxEnabled: true,
+  isHapticsEnabled: true, 
   toggleMusic: () => {},
   toggleSfx: () => {},
+  toggleHaptics: () => {}, 
   playSfx: async () => {},
 });
 
@@ -24,6 +27,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const music = useRef<Audio.Sound | null>(null);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isSfxEnabled, setIsSfxEnabled] = useState(true);
+  const [isHapticsEnabled, setIsHapticsEnabled] = useState(true); 
 
   const loadMusic = async () => {
     if (!music.current) {
@@ -52,6 +56,10 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setIsSfxEnabled((prev) => !prev);
   };
 
+  const toggleHaptics = () => {
+    setIsHapticsEnabled((prev) => !prev); 
+  };
+
   const playSfx = async (file: any) => {
     if (!isSfxEnabled) return;
 
@@ -78,7 +86,15 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   return (
     <AudioContext.Provider
-      value={{ isMusicPlaying, isSfxEnabled, toggleMusic, toggleSfx, playSfx }}
+      value={{
+        isMusicPlaying,
+        isSfxEnabled,
+        isHapticsEnabled,     
+        toggleMusic,
+        toggleSfx,
+        toggleHaptics,        
+        playSfx,
+      }}
     >
       {children}
     </AudioContext.Provider>

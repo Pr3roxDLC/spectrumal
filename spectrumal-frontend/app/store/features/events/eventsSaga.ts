@@ -2,7 +2,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { call, take, put, cancelled, takeEvery } from "redux-saga/effects";
 import { connectToWebSocketAction, handleMessageAction } from "./eventsSlice";
 import { EventChannel, eventChannel } from "redux-saga";
-import { setGameIdAction, fetchRoundInfoAction, fetchScoreAction, increaseRoundAction, clearSelectedPointAction } from "../game/gameSlice";
+import { setGameIdAction, fetchRoundInfoAction, fetchScoreAction, increaseRoundAction, clearSelectedPointAction, setNumberOfRoundsAction } from "../game/gameSlice";
 import { addUserAction } from "../lobby/lobbySlice";
 import { changeTabAction, openTabOnTopAction, TabType } from "../navigation/navigationSlice";
 import { WEBSOCKET_BASE_URL } from "../../api";
@@ -75,6 +75,13 @@ function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Rec
     case "LOBBY_GAME_START":
       yield put(openTabOnTopAction({ type: TabType.GIVE_CLUE }))
       yield put(setGameIdAction(payload.id))
+      const parsedRounds = Number(payload.rounds);
+      console.log("Parsed rounds:", parsedRounds);
+      if (!isNaN(parsedRounds)) {
+        yield put(setNumberOfRoundsAction(parsedRounds));
+      } else {
+        console.warn("Invalid or missing rounds value in payload:", payload.rounds);
+      }
       yield put(fetchRoundInfoAction(payload.id))
       console.log(payload)
       break
@@ -89,13 +96,17 @@ function* onHandleMessageSaga(action: PayloadAction<{ type: string; payload: Rec
       break
     case "SHOW_GIVE_CLUE_SCREEN":
       const roundNumber: number = yield appSelect(state => state.game.roundNumber);
-       if (roundNumber < 4) {
-    yield put(increaseRoundAction());
-    yield put(fetchRoundInfoAction(gameId));
-    yield put(changeTabAction({ type: TabType.GIVE_CLUE }));
-  } else {
-    console.log("Maximum round reached (4)");
-  }
+      const numberOfRounds: number = yield appSelect(state => state.game.numberOfRounds);
+      if (roundNumber < numberOfRounds) {
+        yield put(increaseRoundAction());
+        yield put(fetchRoundInfoAction(gameId));
+        yield put(changeTabAction({ type: TabType.GIVE_CLUE }));
+      } else {
+        console.log("roundNumber:", roundNumber);
+        console.log("numberOfRounds:", numberOfRounds);
+        console.log(`Maximum round reached (${numberOfRounds})`);
+        yield put(openTabOnTopAction({ type: TabType.PODIUM_PAGE }));
+      }
       break
     default:
       console.warn(`Unhandled message type: ${type}`);

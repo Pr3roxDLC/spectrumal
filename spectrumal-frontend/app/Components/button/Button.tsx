@@ -1,16 +1,18 @@
 import React, { useRef } from 'react';
-import { TouchableOpacity, Text, ViewStyle, DimensionValue, View } from 'react-native';
+import { TouchableOpacity, Text, ViewStyle, DimensionValue, View, StyleProp } from 'react-native';
 import GlassContainer from '../glassContainer/GlassContainer';
 import styles from './ButtonStyles';
 import { Audio } from 'expo-av';
 import { useAudio } from '../../pages/SettingsPage/AudioContext';
+import * as Haptics from 'expo-haptics';
 
 export interface Props {
-  label: string;
+  label?: string;
   onPress: () => void;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
   width?: DimensionValue;
   disabled?: boolean;
+  children?: React.ReactNode
 }
 
 const Button = (props: Props) => {
@@ -32,14 +34,20 @@ const Button = (props: Props) => {
     }
   };
 
-  const { isSfxEnabled } = useAudio(); 
+  const { isSfxEnabled, isHapticsEnabled } = useAudio(); 
 
 
 const handlePress = async () => {
   if (isSfxEnabled) {
-    await playClickSound(); 
+    await playClickSound();
   }
-  onPress(); 
+
+  if (isHapticsEnabled) {
+    Haptics.selectionAsync();
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+  }
+
+  onPress();
 }
 
   return (

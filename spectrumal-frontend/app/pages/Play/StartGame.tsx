@@ -37,7 +37,7 @@ const StartGame = () => {
     <View style={[styles.container]}>
       <View style={styles.startGameContainer}>
         <Text style={styles.codeAndName}>Name</Text>
-         <CustomTextInput onChange={handleUsernameInput} value={name} placeholder='Enter your name' />
+         <CustomTextInput maxLength={20} onChange={handleUsernameInput} value={name} placeholder='Enter your name' />
          {error ? <Text style={styles.errorText}>{error}</Text> : null}
         <Button label="Start Lobby" style={{ width: "100%" }} onPress={handleStartGameClick} />
       </View>

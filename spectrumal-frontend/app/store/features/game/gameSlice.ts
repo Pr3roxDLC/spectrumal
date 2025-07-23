@@ -14,6 +14,7 @@ interface GameState {
   newScore?: ScoreMap,
   previousScore?: ScoreMap,
   roundNumber: number,
+  numberOfRounds: number,
   guesses: Point[]
 }
 
@@ -22,6 +23,7 @@ const initialState: GameState = {
   target: { dim1: 0, dim2: 0 },
   currentClue: "",
   roundNumber: 1,
+  numberOfRounds: 5,
   guesses: []
 };
 
@@ -66,6 +68,9 @@ const gameSlice = createSlice({
     increaseRoundAction: (state, action: PayloadAction<void>) => {
       state.roundNumber += 1
     },
+    setNumberOfRoundsAction: (state, action: PayloadAction<number>) => {
+      state.numberOfRounds = action.payload
+    },
     clearSelectedPointAction: (state) => {
       state.selectedPoint = undefined;
     },
@@ -92,7 +97,8 @@ export const {
   setGainedScoreAction,
   increaseRoundAction,
   clearSelectedPointAction,
-  setUserGuessesAction
+  setUserGuessesAction,
+  setNumberOfRoundsAction
 } = gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;

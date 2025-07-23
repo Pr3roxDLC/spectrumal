@@ -10,18 +10,18 @@ import { useAudio } from './AudioContext';
 
 const SettingsPage = () => {
 
-const { isMusicPlaying, isSfxEnabled, toggleMusic, toggleSfx } = useAudio();
+const { isMusicPlaying, isSfxEnabled, isHapticsEnabled, toggleMusic, toggleHaptics, toggleSfx } = useAudio();
 
   return (
     <>
       <HeaderBack></HeaderBack>
       <View style={styles.settingsContainer}>
-        <GlassContainer style={{ marginTop: 20 }} width="90%" height={55}>
+        <GlassContainer width="90%" height={55}>
           <View style={styles.settingsOptionContainer}>
             <Text style={styles.settingsOptionText}>Haptics</Text>
             <ToggleButton
-              initialValue={false}
-              onToggle={(value) =>  value}></ToggleButton>
+               initialValue={isHapticsEnabled}
+      onToggle={toggleHaptics}></ToggleButton>
           </View>
         </GlassContainer>
         <GlassContainer style={{ marginTop: 20 }} width="90%" height={55}>

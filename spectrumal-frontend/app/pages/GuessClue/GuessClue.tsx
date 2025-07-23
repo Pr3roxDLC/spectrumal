@@ -27,7 +27,7 @@ const isBlipPlaced = selectedPoint !== undefined;
         <InteractableSelector></InteractableSelector>
         <View style={styles.textContainer}>
           <Text style={styles.text}>Guess the location of</Text>
-          <GlassContainer style={{marginBottom: 50}} width={270} height={80}>
+          <GlassContainer style={{marginBottom: 50, minHeight: 80 }} width={270}>
           <Text style={styles.clue}>{showClue}</Text>
           </GlassContainer>
         </View>

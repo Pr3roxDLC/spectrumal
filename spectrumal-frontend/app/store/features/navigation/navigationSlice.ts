@@ -13,7 +13,11 @@ export enum TabType {
   LEADERBOARD = "LEADERBOARD",
   GAME_STARTING = "GAME_STARTING",
   SETTINGS = "SETTINGS",
-  LEADERBOARD_PAGE_TEST = "LEADERBOARD_PAGE_TEST"
+  LEADERBOARD_PAGE_TEST = "LEADERBOARD_PAGE_TEST",
+  GAME_SETTINGS_PAGE = "GAME_SETTINGS_PAGE",
+  PODIUM_PAGE = "PODIUM_PAGE",
+  SPLASH_SCREEN = "SPLASH_SCREEN",
+  GAME_PACKAGES = "GAME_PACKAGES"
 }
 
 export class TabData {
@@ -23,7 +27,7 @@ export class TabData {
 
 const navigationSlice = createSlice({
   name: "navigation",
-  initialState: { tabStack: [{ type: TabType.MAIN_MENU, data: {} } as TabData] }, 
+  initialState: { tabStack: [{ type: TabType.SPLASH_SCREEN, data: {} } as TabData] }, 
   reducers: {
     changeTabAction: (state, action: PayloadAction<TabData>) => {
       state.tabStack = [action.payload];

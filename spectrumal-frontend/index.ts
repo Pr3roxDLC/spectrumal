@@ -1,7 +1,5 @@
 import "@expo/metro-runtime";
 import { registerRootComponent } from 'expo';
-
-import MainMenu from './app/pages/MainMenu';
 import Index from "./Index.tsx";
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);

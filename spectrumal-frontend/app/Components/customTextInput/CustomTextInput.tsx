@@ -6,14 +6,15 @@ import styles from './CustomTextInputStyles';
 export interface Props {
   placeholder: string
   value?: any
-  onChange?: (text: string) => void
+  onChange?: (text: string) => void,
+  maxLength?: number
 }
 
 const CustomTextInput = (props: Props) => {
   return (
     <View style={styles.container}>
       <BlurView intensity={70} tint="dark" style={styles.blurContainer}>
-        <TextInput value={props.value}
+        <TextInput maxLength={props.maxLength} value={props.value}
           onChangeText={props.onChange} placeholderTextColor="#B5C5E3" placeholder={props.placeholder}
           style={styles.input}
         />
