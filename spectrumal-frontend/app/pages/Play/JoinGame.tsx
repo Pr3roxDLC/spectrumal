@@ -78,7 +78,7 @@ const JoinGame = () => {
          {invalidCode ? <Text style={styles.errorText}>{invalidCode}</Text> : null}
 
         <Text style={styles.codeAndName}>Name</Text>
-        <CustomTextInput value={name} onChange={handleUsernameInput} placeholder='Enter your name' />
+        <CustomTextInput maxLength={20} value={name} onChange={handleUsernameInput} placeholder='Enter your name' />
          {nameError ? <Text style={styles.errorText}>{nameError}</Text> : null}
         <Button
           label="Join Lobby"
