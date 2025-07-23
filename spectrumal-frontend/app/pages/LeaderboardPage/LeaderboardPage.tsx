@@ -6,9 +6,18 @@ import ReadOnlySelector from '../../Components/Selector/read-only/ReadOnlySelect
 import ContinuingRound from './ContinuingRound'
 import * as Haptics from 'expo-haptics';
 import { useAppSelector } from '../../store/hooks'
+import { useAudio } from '../SettingsPage/AudioContext'; 
+
 
 const LeaderboardPage = () => {
+  const { isHapticsEnabled } = useAudio();
+
   useEffect(() => {
+    if (!isHapticsEnabled) 
+    {console.log("haptics is not enabled")
+      return
+    }
+
     const delayBeforeStart = 500; 
     const pulseCount = 24; 
     const interval = 50;
