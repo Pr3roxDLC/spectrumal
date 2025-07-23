@@ -73,7 +73,7 @@ const JoinGame = () => {
     <View style={styles.container}>
       <View style={styles.joinGameContainer}>
         <Text style={styles.codeAndName}>Game code</Text>
-        <CustomTextInput value={code} onChange={handleCodeInput} placeholder='Enter your game code' />
+        <CustomTextInput maxLength={6} value={code} onChange={handleCodeInput} placeholder='Enter your game code' />
          {codeError ? <Text style={styles.errorText}>{codeError}</Text> : null}
          {invalidCode ? <Text style={styles.errorText}>{invalidCode}</Text> : null}
 
