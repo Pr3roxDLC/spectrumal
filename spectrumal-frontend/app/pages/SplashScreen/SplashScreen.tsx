@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { View, StyleSheet, Animated, Easing } from 'react-native';
+import { Animated, Easing } from 'react-native';
 import { changeTabAction, TabType } from '../../store/features/navigation/navigationSlice';
 import { useAppDispatch } from '../../store/hooks';
 import variables from '../../../assets/variables/Variables';
+import styles from './SplashScreenStyles';
 
 const SplashScreen = () => {
   const dispatch = useAppDispatch();
@@ -14,7 +15,7 @@ const SplashScreen = () => {
   const glowAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    // Loop glow effect
+    // Glow loop animation (no native driver because textShadowRadius doesn't support it)
     Animated.loop(
       Animated.sequence([
         Animated.timing(glowAnim, {
@@ -32,6 +33,7 @@ const SplashScreen = () => {
       ])
     ).start();
 
+    // Main animation sequence
     Animated.sequence([
       Animated.parallel([
         Animated.timing(fadeAnim, {
@@ -80,11 +82,13 @@ const SplashScreen = () => {
       }),
     ]).start();
 
-    // Trigger navigation 400ms after container fade starts (100ms before it ends)
+    // Trigger navigation 100ms before container fade completes (containerFade duration is 100ms)
+    const totalDuration = 1000 + 2000 + 1000; // entrance + delay + exit flip
+    const navDelay = totalDuration + 100; // 100ms fade out after exit flip starts
+
     const timer = setTimeout(() => {
       dispatch(changeTabAction({ type: TabType.MAIN_MENU }));
-    },  1000 + 2000 + 1000 + 500); 
-    // Explanation of delay: 1000(entrance) + 2000(delay) + 1000(exit flip) + 400ms (fade start + 400ms)
+    }, navDelay);
 
     return () => clearTimeout(timer);
   }, [dispatch, fadeAnim, scaleAnim, rotateYAnim, glowAnim, containerFade]);
@@ -101,15 +105,29 @@ const SplashScreen = () => {
 
   return (
     <Animated.View style={[styles.container, { opacity: containerFade }]}>
+      {/* Glow effect wrapper */}
+      <Animated.Text
+        style={[
+          styles.text,
+          {
+            position: 'absolute',
+            color: variables.colors.whiteText,
+            textShadowColor: variables.colors.whiteText,
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: glow,
+          },
+        ]}
+      >
+      </Animated.Text>
+
+      {/* Main animated text with native driver */}
       <Animated.Text
         style={[
           styles.text,
           {
             opacity: fadeAnim,
             transform: [{ scale: scaleAnim }, { rotateY }],
-            textShadowColor: variables.colors.whiteText,
-            textShadowOffset: { width: 0, height: 0 },
-            textShadowRadius: glow,
+            color: variables.colors.whiteText,
           },
         ]}
       >
@@ -118,24 +136,5 @@ const SplashScreen = () => {
     </Animated.View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    perspective: 100,
-  },
-  text: {
-    fontSize: 48,
-    fontWeight: '900',
-    color: variables.colors.whiteText,
-    letterSpacing: 2,
-    textAlign: 'center',
-    textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 4,
-  },
-});
 
 export default SplashScreen;
