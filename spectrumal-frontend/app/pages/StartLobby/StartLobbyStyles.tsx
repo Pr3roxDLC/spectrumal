@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
     usersInLobbyContainer: {
         flexDirection: "row",
         width: "100%",
-        paddingTop: 25,
         height: "80%",
         flexWrap: "wrap",
         justifyContent: "flex-start",
@@ -91,15 +90,17 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: "25%"
+        width: "25%",
+        height: "50%",
     },
     userName: {
-        paddingVertical: 10,
+        paddingVertical: 7,
+        width: "100%",
+        flexWrap: "wrap",
         color: variables.colors.whiteText,
         fontSize: 17,
         fontWeight: '600',
         textAlign: "center",
-        marginBottom: 20,
         textShadowColor: 'rgba(0, 0, 0, 0.5)',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 4,
