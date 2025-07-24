@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { joinLobbyAction } from '../../store/features/lobby/lobbySlice'
 import { v4 as uuidv4 } from 'uuid';
 import LobbyIsFull from '../LobbyIsFull/LobbyIsFull'
+import CodeInput from './CodeInput'
 
 
 
@@ -33,7 +34,7 @@ const JoinGame = () => {
   }
 
   const handleCodeInput = (text: string) => {
-      setCode(text.toUpperCase())
+      setCode(text)
 
       if (text.trim()) {
       setCodeError(""); 
@@ -73,7 +74,7 @@ const JoinGame = () => {
     <View style={styles.container}>
       <View style={styles.joinGameContainer}>
         <Text style={styles.codeAndName}>Game code</Text>
-        <CustomTextInput maxLength={6} value={code} onChange={handleCodeInput} placeholder='Enter your game code' />
+        <CodeInput value={code} onChange={handleCodeInput} />
          {codeError ? <Text style={styles.errorText}>{codeError}</Text> : null}
          {invalidCode ? <Text style={styles.errorText}>{invalidCode}</Text> : null}
 
