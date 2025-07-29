@@ -18,7 +18,6 @@ import WaitingForOthers from './app/pages/WaitingForOthers/WaitingForOthers';
 import GameStarting from './app/pages/GameStarting/GameStarting';
 import LeaderboardPageTest from './app/pages/LeaderboardPageTest/LeaderboardPageTest';
 import GameSettings from './app/pages/GameSettingsPage/GameSettings';
-import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { AudioProvider } from './app/pages/SettingsPage/AudioContext';
 import Podium from './app/pages/Podium/Podium';
 import SplashScreen from './app/pages/SplashScreen/SplashScreen';
@@ -29,25 +28,6 @@ export default function App() {
     (state) => state.navigation.tabStack.at(-1)
   );
 
-  const player = useAudioPlayer(require('./assets/sounds/background-music.mp3'));
-  const status = useAudioPlayerStatus(player);
-
-  useEffect(() => {
-    player.volume = 0.8;
-    player.loop = true;
-    player.play();
-
-    return () => {
-      player.pause();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (status.didJustFinish && !player.loop) {
-      player.seekTo(0);
-      player.play();
-    }
-  }, [status.didJustFinish]);
 
   return (
     <>

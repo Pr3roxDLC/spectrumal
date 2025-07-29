@@ -1,64 +1,66 @@
-import React, { createContext, useContext, useRef, useState, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useRef,
+  useState,
+  useEffect,
+} from 'react';
 import { Audio } from 'expo-av';
 
 type AudioContextType = {
   isMusicPlaying: boolean;
   isSfxEnabled: boolean;
-  isHapticsEnabled: boolean; 
+  isHapticsEnabled: boolean;
   toggleMusic: () => void;
   toggleSfx: () => void;
-  toggleHaptics: () => void; 
+  toggleHaptics: () => void;
   playSfx: (file: any) => Promise<void>;
 };
 
 const AudioContext = createContext<AudioContextType>({
   isMusicPlaying: false,
   isSfxEnabled: true,
-  isHapticsEnabled: true, 
+  isHapticsEnabled: true,
   toggleMusic: () => {},
   toggleSfx: () => {},
-  toggleHaptics: () => {}, 
+  toggleHaptics: () => {},
   playSfx: async () => {},
 });
 
 export const useAudio = () => useContext(AudioContext);
 
-export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const music = useRef<Audio.Sound | null>(null);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isSfxEnabled, setIsSfxEnabled] = useState(true);
-  const [isHapticsEnabled, setIsHapticsEnabled] = useState(true); 
+  const [isHapticsEnabled, setIsHapticsEnabled] = useState(true);
 
-  const loadMusic = async () => {
+  const toggleMusic = async () => {
     if (!music.current) {
       const { sound } = await Audio.Sound.createAsync(
         require('../../../assets/sounds/background-music.mp3'),
-        { isLooping: true, volume: 0.8 }
+        {
+          isLooping: true,
+          volume: 0.8,
+          shouldPlay: false, 
+        }
       );
       music.current = sound;
     }
-  };
 
-  const toggleMusic = async () => {
-    await loadMusic();
-    if (music.current) {
-      if (isMusicPlaying) {
-        await music.current.pauseAsync();
-        setIsMusicPlaying(false);
-      } else {
-        await music.current.playAsync();
-        setIsMusicPlaying(true);
-      }
+    if (isMusicPlaying) {
+      await music.current.pauseAsync();
+      setIsMusicPlaying(false);
+    } else {
+      await music.current.playAsync();
+      setIsMusicPlaying(true);
     }
   };
 
-  const toggleSfx = () => {
-    setIsSfxEnabled((prev) => !prev);
-  };
-
-  const toggleHaptics = () => {
-    setIsHapticsEnabled((prev) => !prev); 
-  };
+  const toggleSfx = () => setIsSfxEnabled((prev) => !prev);
+  const toggleHaptics = () => setIsHapticsEnabled((prev) => !prev);
 
   const playSfx = async (file: any) => {
     if (!isSfxEnabled) return;
@@ -66,7 +68,6 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     try {
       const { sound } = await Audio.Sound.createAsync(file);
       await sound.replayAsync();
-
       sound.setOnPlaybackStatusUpdate((status) => {
         if (!status.isLoaded || status.didJustFinish) {
           sound.unloadAsync();
@@ -78,9 +79,11 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   useEffect(() => {
-    loadMusic();
     return () => {
-      music.current?.unloadAsync();
+      if (music.current) {
+        music.current.pauseAsync();
+        music.current.unloadAsync();
+      }
     };
   }, []);
 
@@ -89,10 +92,10 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       value={{
         isMusicPlaying,
         isSfxEnabled,
-        isHapticsEnabled,     
+        isHapticsEnabled,
         toggleMusic,
         toggleSfx,
-        toggleHaptics,        
+        toggleHaptics,
         playSfx,
       }}
     >
@@ -100,3 +103,4 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     </AudioContext.Provider>
   );
 };
+
