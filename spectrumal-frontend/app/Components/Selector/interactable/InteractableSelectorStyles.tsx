@@ -4,7 +4,6 @@ import variables from "../../../../assets/variables/Variables";
 const styles = StyleSheet.create({
     touchableView: {
         width: 300,
-        
         height: 300,
         backgroundColor: '#00000000', // Transparent background
         justifyContent: 'center',

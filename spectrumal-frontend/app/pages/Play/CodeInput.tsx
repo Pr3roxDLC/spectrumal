@@ -1,15 +1,16 @@
 // CodeInput.tsx
 import React, { useRef, useEffect } from 'react';
 import { View, TextInput } from 'react-native';
-import GlassContainer from '../../Components/glassContainer/GlassContainer';
 import styles from './JoinGameStyles';
+import CustomTextInput from '../../Components/customTextInput/CustomTextInput';
 
 interface CodeInputProps {
   value: string;
   onChange: (code: string) => void;
+  onChangeText?: (code: string) => void;
 }
 
-const CodeInput = ({ value, onChange }: CodeInputProps) => {
+const CodeInput = ({ value, onChangeText, onChange }: CodeInputProps) => {
   const code = value.toUpperCase().split('').slice(0, 6); 
   const inputs = useRef<Array<TextInput | null>>([]);
 
@@ -60,13 +61,8 @@ const CodeInput = ({ value, onChange }: CodeInputProps) => {
   return (
     <View style={styles.codeInputContainer}>
       {Array.from({ length: 6 }).map((_, index) => (
-        <GlassContainer
+          <CustomTextInput 
           key={index}
-          style={styles.glass}
-          width="15%"
-          height="75%"
-        >
-          <TextInput
             ref={(ref) => (inputs.current[index] = ref)}
             style={styles.input}
             value={code[index] || ''}
@@ -75,9 +71,8 @@ const CodeInput = ({ value, onChange }: CodeInputProps) => {
             keyboardType="default"
             maxLength={1}
             autoCapitalize="characters"
-            autoFocus={index === 0}
+            autoFocus={index === 0} compact
           />
-        </GlassContainer>
       ))}
     </View>
   );

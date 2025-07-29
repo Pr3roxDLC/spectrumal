@@ -34,26 +34,22 @@ const styles = StyleSheet.create({
     codeInputContainer: {
         flexDirection: "row",
         alignItems: "center",
-        gap: 3,
+        gap: 2,
         width: "100%",
-        height: 100,
+        height: 80,
         marginBottom: 20,
-    },
-        glass: {
-        borderRadius: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     input: {
         fontSize: 30,
         color: variables.colors.whiteText,
         textAlign: 'center',
-        width: '100%',
-        height: '100%',
+        width:"16%",
+        height:"95%",
         fontWeight: 600,
         textShadowColor: 'rgba(0, 0, 0, 0.5)',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 4,
+        
     },
 })
 

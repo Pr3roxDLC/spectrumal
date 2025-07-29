@@ -1,26 +1,40 @@
-import React from 'react'
-import { View, TextInput } from 'react-native';
+import React, { forwardRef } from 'react'
+import { View, TextInput, DimensionValue, StyleProp, ViewStyle } from 'react-native';
 import { BlurView } from 'expo-blur';
 import styles from './CustomTextInputStyles';
+import { TextInputProps } from 'react-native';
 
-export interface Props {
-  placeholder: string
-  value?: any
-  onChange?: (text: string) => void,
-  maxLength?: number
+export interface Props extends TextInputProps {
+  width?: DimensionValue;
+  height?: DimensionValue;
+  style?: StyleProp<ViewStyle>;
+  compact?: boolean;
 }
 
-const CustomTextInput = (props: Props) => {
-  return (
-    <View style={styles.container}>
-      <BlurView intensity={70} tint="dark" style={styles.blurContainer}>
-        <TextInput maxLength={props.maxLength} value={props.value}
-          onChangeText={props.onChange} placeholderTextColor="#B5C5E3" placeholder={props.placeholder}
-          style={styles.input}
-        />
-      </BlurView>
-    </View>
-  )
-}
+
+
+const CustomTextInput = forwardRef<TextInput, Props>(
+  ({ width, height, style, compact, ...rest }, ref) => {
+    return (
+      <View style={[styles.container, { width, height }, style]}>
+        <BlurView intensity={70} tint="dark" style={[
+    styles.blurContainer,
+    compact && styles.compactBlurContainer, 
+  ]}>
+          <TextInput
+            ref={ref}
+            placeholderTextColor="#B5C5E3"
+             style={[
+    styles.input,
+    compact && styles.compactInput, 
+  ]}
+            {...rest} 
+          />
+        </BlurView>
+      </View>
+    );
+  }
+);
+
 
 export default CustomTextInput
