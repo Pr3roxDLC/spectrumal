@@ -34,6 +34,10 @@
     },
     "experiments": {
       "reactCanary": true
-    }
+    },
+    "plugins": [
+      "expo-audio",
+      "expo-video"
+    ]
   }
 }

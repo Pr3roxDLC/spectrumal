@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Image, Animated, ScrollView } from 'react-native';
+import { View, Text, Image, Animated, ScrollView, Dimensions } from 'react-native';
 import styles from './LeaderBoardStyles';
 import GlassContainer from '../../Components/glassContainer/GlassContainer';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -18,13 +18,18 @@ const shuffleArray = (array) => {
 };
 
 const Leaderboard = () => {
+  const screenHeight = Dimensions.get('window').height;
   const users = useAppSelector(state => state.lobby.users);
   const previousScoreMap = useAppSelector(state => state.game.previousScore || {});
 const newScoreMap = useAppSelector(state => state.game.newScore || {});
   const [userData, setUserData] = useState([]);
   const positions = useRef({});
+    const maxContainerHeight = screenHeight * 0.27;
+  const totalContentHeight = CARD_HEIGHT * users.length;
+  const containerHeight = Math.min(totalContentHeight, maxContainerHeight);
+  
+    const [isScrollable, setIsScrollable] = useState(false);
 
-  const containerHeight = CARD_HEIGHT * users.length;
 
   useEffect(() => {
     if (!users || users.length === 0) return;
@@ -82,6 +87,13 @@ const newScoreMap = useAppSelector(state => state.game.newScore || {});
           style={{ maxHeight: containerHeight }}
           contentContainerStyle={{ height: containerHeight }}
           showsVerticalScrollIndicator={false}
+          onContentSizeChange={(contentWidth, contentHeight) => {
+    if (contentHeight > containerHeight) {
+      setIsScrollable(true);
+    } else {
+      setIsScrollable(false);
+    }
+  }}
         >
           <View style={{ position: 'relative', height: containerHeight }}>
             {userData.map(user => {
@@ -113,11 +125,13 @@ const newScoreMap = useAppSelector(state => state.game.newScore || {});
           </View>
         </ScrollView>
 
-        <LinearGradient
-          colors={['transparent', 'rgba(10,31,68,0.9)']}
-          style={styles.bottomFade}
-          pointerEvents="none"
-        />
+    {isScrollable && (
+  <LinearGradient
+    colors={['transparent', 'rgba(10,31,68,0.9)']}
+    style={styles.bottomFade}
+    pointerEvents="none"
+  />
+)}
       </View>
     </View>
   );

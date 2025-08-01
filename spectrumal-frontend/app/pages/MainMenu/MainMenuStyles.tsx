@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 
     /*Header container */
     headerContainer: {
-        height: "30%",
+        height: "15%",
         width: "100%",
         display: "flex",
         justifyContent: "center",

@@ -1,17 +1,52 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View } from 'react-native'
-import HeaderBack from '../../Components/header/HeaderBack'
 import styles from './LeaderboardPageStyles'
 import Leaderboard from './Leaderboard'
 import ReadOnlySelector from '../../Components/Selector/read-only/ReadOnlySelector'
 import ContinuingRound from './ContinuingRound'
+import * as Haptics from 'expo-haptics';
+import { useAppSelector } from '../../store/hooks'
+import { useAudio } from '../SettingsPage/AudioContext'; 
+
 
 const LeaderboardPage = () => {
+  const { isHapticsEnabled } = useAudio();
+
+  useEffect(() => {
+    if (!isHapticsEnabled) 
+    {console.log("haptics is not enabled")
+      return
+    }
+
+    const delayBeforeStart = 500; 
+    const pulseCount = 24; 
+    const interval = 50;
+
+    const startShake = () => {
+      let count = 0;
+      const intervalId = setInterval(() => {
+        if (count >= pulseCount) {
+          clearInterval(intervalId);
+          return;
+        }
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+        count++;
+      }, interval);
+    };
+
+    const timeoutId = setTimeout(startShake, delayBeforeStart);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
+   const target = useAppSelector(state => state.game.target)
+  
   return (
     <>
-      <HeaderBack></HeaderBack>
       <View style={styles.leaderboardContainer}>
-        <ReadOnlySelector x={40} y={80}></ReadOnlySelector>
+        <ReadOnlySelector showUserGuesses={true} target={target}></ReadOnlySelector>
         <Leaderboard></Leaderboard>
         <ContinuingRound></ContinuingRound>
       </View>
@@ -20,3 +55,5 @@ const LeaderboardPage = () => {
 }
 
 export default LeaderboardPage
+
+

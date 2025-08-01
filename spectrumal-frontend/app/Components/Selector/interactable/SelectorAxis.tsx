@@ -1,9 +1,14 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { DimensionValue, Text, View } from 'react-native'
 import styles from './InteractableSelectorStyles'
 import { useAppSelector } from '../../../store/hooks'
 
-const InteractableAxis = () => {
+export interface Props {
+   height?: DimensionValue;
+   width?: DimensionValue
+}
+
+const InteractableAxis = (props: Props) => {
 const top = useAppSelector(state => state.game.spectrum?.dimensions?.[1].left)
 const bottom = useAppSelector(state => state.game.spectrum?.dimensions?.[1].right)
 const left = useAppSelector(state => state.game.spectrum?.dimensions?.[0].left)

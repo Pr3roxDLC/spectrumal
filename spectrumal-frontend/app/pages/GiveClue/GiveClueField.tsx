@@ -11,7 +11,7 @@ const GiveClueField = (props: Props) => {
   return (
     <View style={styles.clueContainer}>
         <Text style={styles.giveAClue}>Give a clue</Text>
-        <CustomTextInput onChange={props.setClueInput} placeholder="Type your clue here" />
+        <CustomTextInput maxLength={50} onChange={props.setClueInput} placeholder="Type your clue here" />
     </View>
   )
 }

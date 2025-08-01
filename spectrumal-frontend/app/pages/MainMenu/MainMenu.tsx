@@ -5,6 +5,7 @@ import IconNoBg from '../../Components/icon/IconNoBg';
 import Button from '../../Components/button/Button';
 import { useAppDispatch } from '../../store/hooks';
 import { openTabOnTopAction, TabType } from '../../store/features/navigation/navigationSlice';
+import HeaderBack from '../../Components/header/HeaderBack';
 
 
 const MainMenu = () => {
@@ -18,12 +19,13 @@ const MainMenu = () => {
     dispatch(openTabOnTopAction({ type: TabType.HOW_TO_PLAY }))
   }
 
-  const handleDemoPress = () => {
-    dispatch(openTabOnTopAction({ type: TabType.GAME_STARTING }))
+  const handleGamePackagesPress = () => {
+    dispatch(openTabOnTopAction({ type: TabType.GAME_PACKAGES }))
   }
 
   return (
     <>
+    <HeaderBack></HeaderBack>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}>Spectrumal</Text>
@@ -35,7 +37,7 @@ const MainMenu = () => {
           <View style={styles.buttonsContainer}>
             <Button label='Play' onPress={handlePlayClick} style={{ width: "80%" }}></Button>
             <Button label='How To Play' onPress={handleHowToPlayClick} style={{ width: "80%" }}></Button>
-            <Button onPress={handleDemoPress} label='Demo' style={{ width: "80%" }}></Button>
+            <Button onPress={handleGamePackagesPress} label='Game Packages' style={{ width: "80%" }}></Button>
           </View>
         </View>
       </View>

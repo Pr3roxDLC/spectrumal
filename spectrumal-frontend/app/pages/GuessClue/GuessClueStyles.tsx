@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         textAlign: "left",
         marginBottom: 30,
+        marginTop: 60,
         textShadowColor: 'rgba(0, 0, 0, 0.5)',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 4,
@@ -28,6 +29,9 @@ const styles = StyleSheet.create({
     clue: {
         color: variables.colors.whiteText,
         fontSize: 25,
+        flexWrap: 'wrap',
+        padding: 10,
+        width: '100%',
         fontWeight: '600',
         textAlign: "center",
         textShadowColor: 'rgba(0, 0, 0, 0.5)',

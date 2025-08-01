@@ -19,6 +19,16 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 1,
   },
+
+  /*disabled styles */
+
+    disabledContainer: {
+    backgroundColor: '#d3d3d3', 
+    opacity: 0.5,
+  },
+  disabledText: {
+    color: '#999',
+  },
 })
 
 export default styles

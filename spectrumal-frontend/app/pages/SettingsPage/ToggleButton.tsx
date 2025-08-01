@@ -18,16 +18,16 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ initialValue = false, onTog
 
   return (
 
-<SwitchToggle
-  switchOn={isEnabled}
-  onPress={toggleSwitch}
-  circleColorOn="#1E3A8A"         
-  circleColorOff="#ccc"            
-  backgroundColorOn="#93C5FD"   
-  backgroundColorOff="#e5e5e5"  
-  containerStyle={{ width: 60, height: 30, borderRadius: 25, padding: 5 }}
-  circleStyle={{ width: 20, height: 20, borderRadius: 10 }}
-/>
+    <SwitchToggle
+      switchOn={isEnabled}
+      onPress={toggleSwitch}
+      circleColorOn="#1E3A8A"
+      circleColorOff="#ccc"
+      backgroundColorOn="#93C5FD"
+      backgroundColorOff="#e5e5e5"
+      containerStyle={{ width: 60, height: 30, borderRadius: 25, padding: 5 }}
+      circleStyle={{ width: 20, height: 20, borderRadius: 10 }}
+    />
 
   );
 };

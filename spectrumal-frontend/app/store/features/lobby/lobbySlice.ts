@@ -6,12 +6,14 @@ interface LobbyState {
   lobbyCode: string | null;
   lobbyId: string | null;
   users: User[];
+  codeError: string
 }
 
 const initialState: LobbyState = {
   lobbyCode: null,
   lobbyId: null,
   users: [],
+  codeError: ""
 };
 
 const lobbySlice = createSlice({
@@ -38,6 +40,9 @@ const lobbySlice = createSlice({
     createNewLobbyAction: (state, action: PayloadAction<{ playerId: string; name: string }>) => { },
     joinLobbyAction: (state, action: PayloadAction<{ playerId: string; name: string; code: string }>) => {
     },
+    setCodeError: (state, action: PayloadAction<string>) => {
+      state.codeError = action.payload
+    }
   }
 });
 

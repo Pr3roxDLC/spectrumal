@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import variables from "../../../assets/variables/Variables";
 
 const styles = StyleSheet.create({
 container: {
@@ -21,9 +22,10 @@ container: {
     shadowRadius: 15,
   },
   input: {
-    color: '#E0E7FF',
+    color: variables.colors.whiteText,
     fontSize: 20,
     padding: 0, 
+    outline: "none",
   },
 })
 

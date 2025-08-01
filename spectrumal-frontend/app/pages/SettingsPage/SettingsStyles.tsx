@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import variables from "../../../assets/variables/Variables";
+import { SliderComponent } from "@react-native-community/slider";
 const styles = StyleSheet.create({
        settingsContainer: {
         height: "90%",
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         textShadowColor: 'rgba(0, 0, 0, 0.5)',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 4,
-    }
+    },
 })
 
 export default styles
