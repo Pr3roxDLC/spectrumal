@@ -46,6 +46,7 @@ public class ScoreService {
         User currentUser = currentRound.userForCurrentPointGuess;
         Point targetPoint = currentRound.userTargets.get(currentUser.getId());
         Map<UUID, Point> userGuesses = currentRound.userPointGuesses.get(currentUser.getId());
+        score.setUserGuesses(userGuesses);
         List<ScoringEntry> sortedUsers = getUsersSortedByDistanceToTarget(userGuesses, targetPoint);
         for (ScoringEntry user : sortedUsers) {
             int gainedScore = user.score();
