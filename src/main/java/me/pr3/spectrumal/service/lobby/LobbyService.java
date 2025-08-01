@@ -2,6 +2,7 @@ package me.pr3.spectrumal.service.lobby;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import me.pr3.spectrumal.model.game.ColorUtils;
 import me.pr3.spectrumal.model.lobby.*;
 import me.pr3.spectrumal.model.user.User;
 import me.pr3.spectrumal.service.game.websocket.GameStateBroadcaster;
@@ -39,7 +40,9 @@ public class LobbyService {
             throw new IllegalStateException("Lobby is full");
         }
         broadcaster.notify(lobby.users, new Message(Message.Type.LOBBY_PLAYER_JOIN, Map.of("id", request.id.toString(), "name", request.name)));
-        lobby.users.add(new User(request.id, request.name));
+        User newUser = new User(request.id, request.name);
+        newUser.setColor(ColorUtils.generateFullySaturatedColor());
+        lobby.users.add(newUser);
         JoinLobbyResponse joinLobbyResponse = new JoinLobbyResponse();
         joinLobbyResponse.setLobbyId(lobby.lobbyId);
         joinLobbyResponse.setUsers(lobby.users);
