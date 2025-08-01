@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { UserColor } from './UserColor';
+import {
+    UserColorFromJSON,
+    UserColorFromJSONTyped,
+    UserColorToJSON,
+    UserColorToJSONTyped,
+} from './UserColor';
+
 /**
  * 
  * @export
@@ -31,6 +39,12 @@ export interface User {
      * @memberof User
      */
     name?: string;
+    /**
+     * 
+     * @type {UserColor}
+     * @memberof User
+     */
+    color?: UserColor;
 }
 
 /**
@@ -52,6 +66,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         
         'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'] == null ? undefined : json['name'],
+        'color': json['color'] == null ? undefined : UserColorFromJSON(json['color']),
     };
 }
 
@@ -68,6 +83,7 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
         
         'id': value['id'],
         'name': value['name'],
+        'color': UserColorToJSON(value['color']),
     };
 }
 

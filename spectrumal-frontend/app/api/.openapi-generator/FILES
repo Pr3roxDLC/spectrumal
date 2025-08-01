@@ -4,9 +4,11 @@ index.ts
 models/CreateGameResponse.ts
 models/CreateLobbyRequest.ts
 models/CreateLobbyResponse.ts
+models/DeleteLobbyRequest.ts
 models/Dimension.ts
 models/JoinLobbyRequest.ts
 models/JoinLobbyResponse.ts
+models/LeaveLobbyRequest.ts
 models/Point.ts
 models/PointGuessRequest.ts
 models/PointGuessResponse.ts
@@ -16,6 +18,8 @@ models/Score.ts
 models/ScoreResponse.ts
 models/Spectrum.ts
 models/User.ts
+models/UserColor.ts
+models/UserColorColorSpace.ts
 models/WordGuess.ts
 models/WordGuessRequest.ts
 models/WordGuessResponse.ts

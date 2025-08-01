@@ -128,7 +128,7 @@
           "default" : {
             "description" : "default response",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/PointGuessResponse"
                 }
@@ -207,6 +207,28 @@
         }
       }
     },
+    "/lobby/delete" : {
+      "delete" : {
+        "operationId" : "deleteLobby",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DeleteLobbyRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : { }
+            }
+          }
+        }
+      }
+    },
     "/lobby/join/{code}" : {
       "post" : {
         "operationId" : "joinLobby",
@@ -240,6 +262,28 @@
           }
         }
       }
+    },
+    "/lobby/leave" : {
+      "post" : {
+        "operationId" : "leaveLobby",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LeaveLobbyRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : { }
+            }
+          }
+        }
+      }
     }
   },
   "components" : {
@@ -268,6 +312,51 @@
           },
           "name" : {
             "type" : "string"
+          },
+          "color" : {
+            "type" : "object",
+            "properties" : {
+              "red" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "green" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "blue" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "alpha" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "rgb" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "colorSpace" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "integer",
+                    "format" : "int32"
+                  },
+                  "numComponents" : {
+                    "type" : "integer",
+                    "format" : "int32"
+                  },
+                  "cs_sRGB" : {
+                    "type" : "boolean"
+                  }
+                }
+              },
+              "transparency" : {
+                "type" : "integer",
+                "format" : "int32"
+              }
+            }
           }
         }
       },
@@ -451,6 +540,15 @@
           }
         }
       },
+      "DeleteLobbyRequest" : {
+        "type" : "object",
+        "properties" : {
+          "lobbyId" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        }
+      },
       "JoinLobbyResponse" : {
         "type" : "object",
         "properties" : {
@@ -475,6 +573,19 @@
           },
           "name" : {
             "type" : "string"
+          }
+        }
+      },
+      "LeaveLobbyRequest" : {
+        "type" : "object",
+        "properties" : {
+          "userId" : {
+            "type" : "string",
+            "format" : "uuid"
+          },
+          "lobbyId" : {
+            "type" : "string",
+            "format" : "uuid"
           }
         }
       }

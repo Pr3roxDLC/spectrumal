@@ -18,8 +18,10 @@ import type {
   CreateGameResponse,
   CreateLobbyRequest,
   CreateLobbyResponse,
+  DeleteLobbyRequest,
   JoinLobbyRequest,
   JoinLobbyResponse,
+  LeaveLobbyRequest,
   PointGuessRequest,
   PointGuessResponse,
   RoundInfoResponse,
@@ -34,10 +36,14 @@ import {
     CreateLobbyRequestToJSON,
     CreateLobbyResponseFromJSON,
     CreateLobbyResponseToJSON,
+    DeleteLobbyRequestFromJSON,
+    DeleteLobbyRequestToJSON,
     JoinLobbyRequestFromJSON,
     JoinLobbyRequestToJSON,
     JoinLobbyResponseFromJSON,
     JoinLobbyResponseToJSON,
+    LeaveLobbyRequestFromJSON,
+    LeaveLobbyRequestToJSON,
     PointGuessRequestFromJSON,
     PointGuessRequestToJSON,
     PointGuessResponseFromJSON,
@@ -58,6 +64,10 @@ export interface CreateRequest {
 
 export interface CreateGameRequest {
     lobbyId: string;
+}
+
+export interface DeleteLobbyOperationRequest {
+    deleteLobbyRequest?: DeleteLobbyRequest;
 }
 
 export interface GetRoundInfoRequest {
@@ -85,6 +95,10 @@ export interface GuessWordRequest {
 export interface JoinLobbyOperationRequest {
     code: string;
     joinLobbyRequest?: JoinLobbyRequest;
+}
+
+export interface LeaveLobbyOperationRequest {
+    leaveLobbyRequest?: LeaveLobbyRequest;
 }
 
 /**
@@ -148,6 +162,32 @@ export class DefaultApi extends runtime.BaseAPI {
     async createGame(requestParameters: CreateGameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateGameResponse> {
         const response = await this.createGameRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     */
+    async deleteLobbyRaw(requestParameters: DeleteLobbyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/lobby/delete`,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+            body: DeleteLobbyRequestToJSON(requestParameters['deleteLobbyRequest']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteLobby(requestParameters: DeleteLobbyOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteLobbyRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -340,6 +380,32 @@ export class DefaultApi extends runtime.BaseAPI {
     async joinLobby(requestParameters: JoinLobbyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JoinLobbyResponse> {
         const response = await this.joinLobbyRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     */
+    async leaveLobbyRaw(requestParameters: LeaveLobbyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/lobby/leave`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: LeaveLobbyRequestToJSON(requestParameters['leaveLobbyRequest']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async leaveLobby(requestParameters: LeaveLobbyOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.leaveLobbyRaw(requestParameters, initOverrides);
     }
 
 }
