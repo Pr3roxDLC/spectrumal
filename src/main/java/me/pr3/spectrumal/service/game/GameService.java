@@ -148,8 +148,10 @@ public class GameService {
         boolean foundMissingPlayers = false;
         for (User user : state.users) {
             if(!round.userPointGuesses.get(round.userForCurrentPointGuess.getId()).containsKey(user.getId())) {
-                foundMissingPlayers = true;
-                break;
+                if(user != round.userForCurrentPointGuess) {
+                    foundMissingPlayers = true;
+                    break;
+                }
             }
         }
 
@@ -165,7 +167,7 @@ public class GameService {
                     public void run() {
                         broadcaster.notify(state.users, new Message(Message.Type.SHOW_GUESS_CLUE_SCREEN, Map.of()));
                     }
-                }, 10000);
+                }, 20000);
             }else {
                 scoreService.recalculateScores(gameId);
                 round.roundState = Round.RoundState.OVER;
@@ -177,7 +179,7 @@ public class GameService {
                     public void run() {
                         broadcaster.notify(state.users, new Message(Message.Type.SHOW_GIVE_CLUE_SCREEN, Map.of()));
                     }
-                }, 10000);            }
+                }, 20000);            }
         }
         return new PointGuessResponse(foundMissingPlayers);
     }
