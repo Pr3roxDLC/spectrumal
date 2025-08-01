@@ -45,6 +45,7 @@ public class Message {
         LOBBY_PLAYER_JOIN,
         LOBBY_PLAYER_LEAVE,
         LOBBY_GAME_START,
+        LOBBY_CLOSED,
         SHOW_GIVE_CLUE_SCREEN,
         SHOW_GUESS_CLUE_SCREEN,
         SHOW_SCORE_SCREEN,

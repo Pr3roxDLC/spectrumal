@@ -2,10 +2,7 @@ package me.pr3.spectrumal.service.lobby;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import me.pr3.spectrumal.model.lobby.CreateLobbyResponse;
-import me.pr3.spectrumal.model.lobby.JoinLobbyRequest;
-import me.pr3.spectrumal.model.lobby.JoinLobbyResponse;
-import me.pr3.spectrumal.model.lobby.Lobby;
+import me.pr3.spectrumal.model.lobby.*;
 import me.pr3.spectrumal.model.user.User;
 import me.pr3.spectrumal.service.game.websocket.GameStateBroadcaster;
 import me.pr3.spectrumal.service.game.websocket.Message;
@@ -38,11 +35,30 @@ public class LobbyService {
 
     public JoinLobbyResponse joinLobby(String code, JoinLobbyRequest request) {
         Lobby lobby = lobbyCache.getCodeCache().getIfPresent(code);
+        if(lobby.users.size() >= 8) {
+            throw new IllegalStateException("Lobby is full");
+        }
         broadcaster.notify(lobby.users, new Message(Message.Type.LOBBY_PLAYER_JOIN, Map.of("id", request.id.toString(), "name", request.name)));
         lobby.users.add(new User(request.id, request.name));
         JoinLobbyResponse joinLobbyResponse = new JoinLobbyResponse();
         joinLobbyResponse.setLobbyId(lobby.lobbyId);
         joinLobbyResponse.setUsers(lobby.users);
         return joinLobbyResponse;
+    }
+
+    public void leaveLobby(LeaveLobbyRequest request) {
+        Lobby lobby = lobbyCache.getIdCache().getIfPresent(request.getLobbyId());
+        if (lobby == null) {
+            return; // Lobby not found
+        }
+        lobby.users.removeIf(user -> user.getId().equals(request.getUserId()));
+        broadcaster.notify(lobby.users, new Message(Message.Type.LOBBY_PLAYER_LEAVE, Map.of("id", request.getUserId().toString())));
+    }
+
+    public void deleteLobby(DeleteLobbyRequest request) {
+        Lobby lobby = lobbyCache.getIdCache().getIfPresent(request.getLobbyId());
+        lobbyCache.getIdCache().invalidate(lobby.lobbyId);
+        lobbyCache.getCodeCache().invalidate(lobby.code);
+        broadcaster.notify(lobby.users, new Message(Message.Type.LOBBY_CLOSED, Map.of()));
     }
 }
