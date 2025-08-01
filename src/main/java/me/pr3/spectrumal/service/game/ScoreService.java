@@ -46,18 +46,13 @@ public class ScoreService {
         User currentUser = currentRound.userForCurrentPointGuess;
         Point targetPoint = currentRound.userTargets.get(currentUser.getId());
         Map<UUID, Point> userGuesses = currentRound.userPointGuesses.get(currentUser.getId());
-        List<UUID> sortedUsers = getUsersSortedByDistanceToTarget(userGuesses, targetPoint);
-        if(!sortedUsers.isEmpty()) {
-            score.getGainedScores().put(sortedUsers.get(0), 3);
-            score.getNewScores().put(sortedUsers.get(0), score.getPreviousScores().get(sortedUsers.get(0)) + 3);
-        }
-        if(sortedUsers.size() > 1) {
-            score.getGainedScores().put(sortedUsers.get(1), 2);
-            score.getNewScores().put(sortedUsers.get(1), score.getPreviousScores().get(sortedUsers.get(1)) + 2);
-        }
-        if(sortedUsers.size() > 2) {
-            score.getGainedScores().put(sortedUsers.get(2), 1);
-            score.getNewScores().put(sortedUsers.get(2), score.getPreviousScores().get(sortedUsers.get(2)) + 1);
+        List<ScoringEntry> sortedUsers = getUsersSortedByDistanceToTarget(userGuesses, targetPoint);
+        for (ScoringEntry user : sortedUsers) {
+            int gainedScore = user.score();
+            score.getGainedScores().put(user.userId(), gainedScore);
+            int previousScore = score.getNewScores().get(user.userId());
+            score.getPreviousScores().put(user.userId(), previousScore);
+            score.getNewScores().put(user.userId(), previousScore + gainedScore);
         }
     }
 
@@ -68,16 +63,24 @@ public class ScoreService {
         }
     }
 
-    private List<UUID> getUsersSortedByDistanceToTarget(
+    private List<ScoringEntry> getUsersSortedByDistanceToTarget(
             Map<UUID, Point> userGuesses,
             Point targetPoint
     ) {
         return userGuesses.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue(
-                        Comparator.comparingDouble(p -> p.distanceTo(targetPoint))
-                ))
-                .map(Map.Entry::getKey)
+                .map(entry -> new ScoringEntry(entry.getKey(), calculateScore(entry.getValue(), targetPoint)))
+                .sorted(Comparator.comparingDouble(ScoringEntry::score))
                 .toList();
     }
+
+    private int calculateScore(Point value, Point targetPoint) {
+        double dx = value.dim1 - targetPoint.dim1;
+        double dy = value.dim2 - targetPoint.dim2;
+        double distance = Math.sqrt(dx * dx + dy * dy); // max. Distanz ist ca. 2.828
+        double normalized = distance / Math.sqrt(8); // Normierung auf [0,1]
+        return (int)(1000 * Math.exp(-4 * normalized)); // Dropoff-Faktor anpassbar
+    }
+
+    public record ScoringEntry(UUID userId, int score) {}
 
 }
